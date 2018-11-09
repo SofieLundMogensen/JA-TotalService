@@ -13,6 +13,7 @@ namespace JATotalservice.Droid.Views
             base.OnCreate(bundle);
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            System.Console.WriteLine("Hejsa");
         }
     }
 }
