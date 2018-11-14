@@ -14,7 +14,10 @@ namespace JATotalserviceAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            BusinessLogicLayer.Class1 class1 = new BusinessLogicLayer.Class1();
+            int test = class1.test();
+            return new string[] { "value1", "value2", test.ToString() };
         }
 
         // GET api/test/5

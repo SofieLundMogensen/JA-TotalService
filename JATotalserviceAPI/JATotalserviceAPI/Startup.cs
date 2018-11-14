@@ -50,6 +50,11 @@ namespace JATotalserviceAPI
         #region snippet_ConfigureServices
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.Configure<IISOptions>(options =>
+            {
+                options.ForwardClientCertificate = false;
+            });
             /*services.AddDbContext<TodoContext>(opt =>
                 opt.UseInMemoryDatabase("TodoList"));*/
             services.AddMvc()

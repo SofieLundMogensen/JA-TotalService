@@ -21,4 +21,7 @@ namespace JATotalserviceAPI
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>();
     }
+
+
+
 }
