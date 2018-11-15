@@ -9,6 +9,8 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using JATotalservice.Core.ViewModels;
+using MvvmCross.Binding.BindingContext;
 
 namespace JATotalservice.Droid.Views
 {
@@ -21,6 +23,13 @@ namespace JATotalservice.Droid.Views
         {
             base.OnCreate(bundle);
 
+            MaterialsViewModel vi = new MaterialsViewModel();
+          var s=  vi.Hello;
+            var set = this.CreateBindingSet<MaterialsView, MaterialsViewModel>();
+            var text = FindViewById(Resource.Id.text) as TextView;
+         
+            set.Bind(text).For(m => m.Text).To(vm => vm.Hello);
+            set.Apply();
             //SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
             //SetContentView(Resource.Layout.MaterialsView);
