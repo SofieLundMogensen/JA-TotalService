@@ -17,36 +17,46 @@
       android:layout_below="@id/toolbar_layout"
       android:layout_width="match_parent"
       android:layout_height="match_parent" >
-		<LinearLayout
-			android:orientation="vertical"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent">
-			<Button
-				android:text="Button"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:id="@+id/button1" />
-			<TextView
-				android:text="Text"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:id="@+id/textView1"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:text="Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button1" />
+            <TextView
+                android:text="Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
 				/>
-			<EditText
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="40dp"
-				local:MvxBind="Text Hello" />
-			<TextView
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:textSize="40dp"
-				local:MvxBind="Text Hello" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                local:MvxBind="Text Hello" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                local:MvxBind="Text Hello" />
+            <Button
+                android:text="Navigate to materials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/navigateToNextView" />
 			<Button
-				android:text="Navigate to next view"
+				android:text="Naviagate to time"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:id="@+id/navigateToNextView" />
-		</LinearLayout>
+				android:id="@+id/navigateToTimeView" />
+			<Button
+				android:text="Navigate to estimate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/navigateToEstimateView" />
+        </LinearLayout>
   </FrameLayout>
 </RelativeLayout>
