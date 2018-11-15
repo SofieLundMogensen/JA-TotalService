@@ -12,6 +12,17 @@
         layout="@layout/toolbar"
         local:layout_scrollFlags="scroll|enterAlways" />
   </android.support.design.widget.AppBarLayout>
+	
+  <android.support.design.widget.BottomNavigationView
+		android:id="@+id/bottomNavigation"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParrentBottom="true"
+		app:itemBackground="@color/primary"
+		app:itemTextColor="@drawable/NavigationItemColorSelectorState"
+		app:menu="@Menu/BottomNavigationMain"
+  />
+
   <FrameLayout
       android:id="@+id/content_frame"
       android:layout_below="@id/toolbar_layout"
