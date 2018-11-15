@@ -1,8 +1,10 @@
+using Android;
 using Android.App;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Views;
 using Android.Widget;
+
 
 namespace JATotalservice.Droid.Views
 {
@@ -26,10 +28,11 @@ namespace JATotalservice.Droid.Views
             textView.Text = "Dennis er awesome";
 
 
-            var bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.bottomNavigation);
+           // var bottomNavigation = FindViewById<BottomNavigationView>(Resource.Id.textView3);
 
-            bottomNavigation.NavigationItemReselected += (s, e) =>
-            {
+          
+          //  bottomNavigation.NavigationItemReselected += (s, e) =>
+          //  {
                 //switch (e.Item.ItemId)
                 //{
                 //    case Resource.Id.action_dennis:
@@ -42,7 +45,7 @@ namespace JATotalservice.Droid.Views
                 //        Toast.MakeText(this, "Sofie er sej", ToastLength.Short).Show();
                 //        break;
                 //}
-            };
+         //   };
 
         }
     }

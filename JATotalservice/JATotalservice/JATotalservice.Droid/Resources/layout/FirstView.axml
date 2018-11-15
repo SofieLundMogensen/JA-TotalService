@@ -14,13 +14,14 @@
   </android.support.design.widget.AppBarLayout>
 	
   <android.support.design.widget.BottomNavigationView
-		android:id="@+id/bottomNavigation"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_alignParrentBottom="true"
 		app:itemBackground="@color/primary"
-		app:itemTextColor="@drawable/NavigationItemColorSelectorState"
+		app:itemTextColor="@color/white"
+		app:itemIconTint ="@color/white"
 		app:menu="@Menu/BottomNavigationMain"
+		android:id="@+id/bottomNavigation"
   />
 
   <FrameLayout
@@ -42,6 +43,18 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/textView1"
+				/>
+			<TextView
+				android:text="Text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/textView2"
+				/>
+			<TextView
+				android:text="Text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/textView3"
 				/>
 			<EditText
 				android:layout_width="match_parent"

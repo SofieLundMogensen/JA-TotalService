@@ -4041,26 +4041,26 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f020053
 			public const int avd_hide_password = 2130837587;
 			
-			// aapt resource value: 0x7f020069
-			public const int avd_hide_password_1 = 2130837609;
-			
 			// aapt resource value: 0x7f02006a
-			public const int avd_hide_password_2 = 2130837610;
+			public const int avd_hide_password_1 = 2130837610;
 			
 			// aapt resource value: 0x7f02006b
-			public const int avd_hide_password_3 = 2130837611;
+			public const int avd_hide_password_2 = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int avd_hide_password_3 = 2130837612;
 			
 			// aapt resource value: 0x7f020054
 			public const int avd_show_password = 2130837588;
 			
-			// aapt resource value: 0x7f02006c
-			public const int avd_show_password_1 = 2130837612;
-			
 			// aapt resource value: 0x7f02006d
-			public const int avd_show_password_2 = 2130837613;
+			public const int avd_show_password_1 = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int avd_show_password_3 = 2130837614;
+			public const int avd_show_password_2 = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int avd_show_password_3 = 2130837615;
 			
 			// aapt resource value: 0x7f020055
 			public const int design_bottom_navigation_item_background = 2130837589;
@@ -4084,43 +4084,46 @@ namespace JATotalservice.Droid
 			public const int navigation_empty_icon = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int notification_action_background = 2130837596;
+			public const int NavigationItemColorSelectorState = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int notification_bg = 2130837597;
+			public const int notification_action_background = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int notification_bg_low = 2130837598;
+			public const int notification_bg = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int notification_bg_low_normal = 2130837599;
+			public const int notification_bg_low = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int notification_bg_low_pressed = 2130837600;
+			public const int notification_bg_low_normal = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int notification_bg_normal = 2130837601;
+			public const int notification_bg_low_pressed = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int notification_bg_normal_pressed = 2130837602;
+			public const int notification_bg_normal = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int notification_icon_background = 2130837603;
-			
-			// aapt resource value: 0x7f020067
-			public const int notification_template_icon_bg = 2130837607;
-			
-			// aapt resource value: 0x7f020068
-			public const int notification_template_icon_low_bg = 2130837608;
+			public const int notification_bg_normal_pressed = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int notification_tile_bg = 2130837604;
+			public const int notification_icon_background = 2130837604;
+			
+			// aapt resource value: 0x7f020068
+			public const int notification_template_icon_bg = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int notification_template_icon_low_bg = 2130837609;
 			
 			// aapt resource value: 0x7f020065
-			public const int notify_panel_notification_icon_bg = 2130837605;
+			public const int notification_tile_bg = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int splash = 2130837606;
+			public const int notify_panel_notification_icon_bg = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int splash = 2130837607;
 			
 			static Drawable()
 			{
@@ -4141,8 +4144,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090010
 			public const int MvxBindingTagUnique = 2131296272;
 			
-			// aapt resource value: 0x7f09008b
-			public const int action0 = 2131296395;
+			// aapt resource value: 0x7f09008d
+			public const int action0 = 2131296397;
 			
 			// aapt resource value: 0x7f090066
 			public const int action_bar = 2131296358;
@@ -4165,17 +4168,23 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090043
 			public const int action_bar_title = 2131296323;
 			
-			// aapt resource value: 0x7f090088
-			public const int action_container = 2131296392;
+			// aapt resource value: 0x7f09008a
+			public const int action_container = 2131296394;
 			
 			// aapt resource value: 0x7f090067
 			public const int action_context_bar = 2131296359;
 			
-			// aapt resource value: 0x7f09008f
-			public const int action_divider = 2131296399;
+			// aapt resource value: 0x7f0900a3
+			public const int action_dennis = 2131296419;
 			
-			// aapt resource value: 0x7f090089
-			public const int action_image = 2131296393;
+			// aapt resource value: 0x7f090091
+			public const int action_divider = 2131296401;
+			
+			// aapt resource value: 0x7f09008b
+			public const int action_image = 2131296395;
+			
+			// aapt resource value: 0x7f0900a4
+			public const int action_marc = 2131296420;
 			
 			// aapt resource value: 0x7f090003
 			public const int action_menu_divider = 2131296259;
@@ -4192,11 +4201,14 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090045
 			public const int action_mode_close_button = 2131296325;
 			
-			// aapt resource value: 0x7f09008a
-			public const int action_text = 2131296394;
+			// aapt resource value: 0x7f0900a5
+			public const int action_sofie = 2131296421;
 			
-			// aapt resource value: 0x7f090098
-			public const int actions = 2131296408;
+			// aapt resource value: 0x7f09008c
+			public const int action_text = 2131296396;
+			
+			// aapt resource value: 0x7f09009a
+			public const int actions = 2131296410;
 			
 			// aapt resource value: 0x7f090046
 			public const int activity_chooser_view_content = 2131296326;
@@ -4228,8 +4240,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09004d
 			public const int buttonPanel = 2131296333;
 			
-			// aapt resource value: 0x7f09008c
-			public const int cancel_action = 2131296396;
+			// aapt resource value: 0x7f09008e
+			public const int cancel_action = 2131296398;
 			
 			// aapt resource value: 0x7f090032
 			public const int center = 2131296306;
@@ -4243,8 +4255,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09005d
 			public const int checkbox = 2131296349;
 			
-			// aapt resource value: 0x7f090094
-			public const int chronometer = 2131296404;
+			// aapt resource value: 0x7f090096
+			public const int chronometer = 2131296406;
 			
 			// aapt resource value: 0x7f09003b
 			public const int clip_horizontal = 2131296315;
@@ -4303,8 +4315,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090023
 			public const int end = 2131296291;
 			
-			// aapt resource value: 0x7f09009e
-			public const int end_padder = 2131296414;
+			// aapt resource value: 0x7f0900a0
+			public const int end_padder = 2131296416;
 			
 			// aapt resource value: 0x7f09002c
 			public const int enterAlways = 2131296300;
@@ -4342,8 +4354,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09004b
 			public const int icon = 2131296331;
 			
-			// aapt resource value: 0x7f090099
-			public const int icon_group = 2131296409;
+			// aapt resource value: 0x7f09009b
+			public const int icon_group = 2131296411;
 			
 			// aapt resource value: 0x7f090027
 			public const int ifRoom = 2131296295;
@@ -4351,8 +4363,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090048
 			public const int image = 2131296328;
 			
-			// aapt resource value: 0x7f090095
-			public const int info = 2131296405;
+			// aapt resource value: 0x7f090097
+			public const int info = 2131296407;
 			
 			// aapt resource value: 0x7f090000
 			public const int item_touch_helper_previous_elevation = 2131296256;
@@ -4363,11 +4375,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090036
 			public const int left = 2131296310;
 			
-			// aapt resource value: 0x7f09009a
-			public const int line1 = 2131296410;
-			
 			// aapt resource value: 0x7f09009c
-			public const int line3 = 2131296412;
+			public const int line1 = 2131296412;
+			
+			// aapt resource value: 0x7f09009e
+			public const int line3 = 2131296414;
 			
 			// aapt resource value: 0x7f090011
 			public const int listMode = 2131296273;
@@ -4375,11 +4387,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09004a
 			public const int list_item = 2131296330;
 			
-			// aapt resource value: 0x7f0900a0
-			public const int masked = 2131296416;
+			// aapt resource value: 0x7f0900a2
+			public const int masked = 2131296418;
 			
-			// aapt resource value: 0x7f09008e
-			public const int media_actions = 2131296398;
+			// aapt resource value: 0x7f090090
+			public const int media_actions = 2131296400;
 			
 			// aapt resource value: 0x7f090024
 			public const int middle = 2131296292;
@@ -4402,14 +4414,14 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090012
 			public const int normal = 2131296274;
 			
-			// aapt resource value: 0x7f090097
-			public const int notification_background = 2131296407;
+			// aapt resource value: 0x7f090099
+			public const int notification_background = 2131296409;
 			
-			// aapt resource value: 0x7f090091
-			public const int notification_main_column = 2131296401;
+			// aapt resource value: 0x7f090093
+			public const int notification_main_column = 2131296403;
 			
-			// aapt resource value: 0x7f090090
-			public const int notification_main_column_container = 2131296400;
+			// aapt resource value: 0x7f090092
+			public const int notification_main_column_container = 2131296402;
 			
 			// aapt resource value: 0x7f090039
 			public const int parallax = 2131296313;
@@ -4432,11 +4444,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090037
 			public const int right = 2131296311;
 			
-			// aapt resource value: 0x7f090096
-			public const int right_icon = 2131296406;
+			// aapt resource value: 0x7f090098
+			public const int right_icon = 2131296408;
 			
-			// aapt resource value: 0x7f090092
-			public const int right_side = 2131296402;
+			// aapt resource value: 0x7f090094
+			public const int right_side = 2131296404;
 			
 			// aapt resource value: 0x7f09001c
 			public const int screen = 2131296284;
@@ -4531,8 +4543,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090038
 			public const int start = 2131296312;
 			
-			// aapt resource value: 0x7f09008d
-			public const int status_bar_latest_event_content = 2131296397;
+			// aapt resource value: 0x7f09008f
+			public const int status_bar_latest_event_content = 2131296399;
 			
 			// aapt resource value: 0x7f090060
 			public const int submenuarrow = 2131296352;
@@ -4543,11 +4555,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090013
 			public const int tabMode = 2131296275;
 			
-			// aapt resource value: 0x7f09009d
-			public const int text = 2131296413;
+			// aapt resource value: 0x7f09009f
+			public const int text = 2131296415;
 			
-			// aapt resource value: 0x7f09009b
-			public const int text2 = 2131296411;
+			// aapt resource value: 0x7f09009d
+			public const int text2 = 2131296413;
 			
 			// aapt resource value: 0x7f090054
 			public const int textSpacerNoButtons = 2131296340;
@@ -4558,6 +4570,12 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090087
 			public const int textView1 = 2131296391;
 			
+			// aapt resource value: 0x7f090088
+			public const int textView2 = 2131296392;
+			
+			// aapt resource value: 0x7f090089
+			public const int textView3 = 2131296393;
+			
 			// aapt resource value: 0x7f090082
 			public const int text_input_password_toggle = 2131296386;
 			
@@ -4567,8 +4585,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09000d
 			public const int textinput_error = 2131296269;
 			
-			// aapt resource value: 0x7f090093
-			public const int time = 2131296403;
+			// aapt resource value: 0x7f090095
+			public const int time = 2131296405;
 			
 			// aapt resource value: 0x7f09004c
 			public const int title = 2131296332;
@@ -4609,8 +4627,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09000e
 			public const int view_offset_helper = 2131296270;
 			
-			// aapt resource value: 0x7f09009f
-			public const int visible = 2131296415;
+			// aapt resource value: 0x7f0900a1
+			public const int visible = 2131296417;
 			
 			// aapt resource value: 0x7f090029
 			public const int withText = 2131296297;
@@ -4872,6 +4890,22 @@ namespace JATotalservice.Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f100000
+			public const int BottomNavigationMain = 2131755008;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}
