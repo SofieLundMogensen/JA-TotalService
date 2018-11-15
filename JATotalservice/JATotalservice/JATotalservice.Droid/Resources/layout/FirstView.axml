@@ -42,6 +42,11 @@
 				android:layout_height="wrap_content"
 				android:textSize="40dp"
 				local:MvxBind="Text Hello" />
+			<Button
+				android:text="Navigate to next view"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/navigateToNextView" />
 		</LinearLayout>
   </FrameLayout>
 </RelativeLayout>

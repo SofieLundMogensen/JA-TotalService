@@ -25,7 +25,13 @@ namespace JATotalservice.Droid.Views
 
             FindViewById(Resource.Id.button1).Click += (o, e) =>
             textView.Text = "Dennis er awesome";
-            
+
+            //SetContentView(Resource.Layout.FirstView);
+
+            Button button = FindViewById<Button>(Resource.Id.navigateToNextView);
+
+            button.Click += delegate { StartActivity(typeof(MaterialsView)); };
+
         }
     }
 }
