@@ -118,12 +118,18 @@
     <Compile Include="Views\BaseView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Views\MaterialsView.cs" />
+    <Compile Include="Views\TimeView.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\MaterialsView.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\TimeView.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

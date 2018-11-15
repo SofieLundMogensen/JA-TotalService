@@ -26,12 +26,14 @@ namespace JATotalservice.Droid.Views
             FindViewById(Resource.Id.button1).Click += (o, e) =>
             textView.Text = "Dennis er awesome";
 
-            //SetContentView(Resource.Layout.FirstView);
 
-            Button button = FindViewById<Button>(Resource.Id.navigateToNextView);
+            Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView);
 
-            button.Click += delegate { StartActivity(typeof(MaterialsView)); };
+            navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); };
 
+            Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
+
+            navigateToTimeButton.Click += delegate { StartActivity(typeof(TimeView)); };
         }
     }
 }
