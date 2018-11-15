@@ -12,10 +12,10 @@ using Android.Widget;
 
 namespace JATotalservice.Droid.Views
 {
-    [Activity(Label = "View for MaterialsViewModel")]
-    public class MaterialsView : BaseView
+    [Activity(Label = "View for EstimateViewModel")]
+    public class EstimateView : BaseView
     {
-        protected override int LayoutResource => Resource.Layout.MaterialsView;
+        protected override int LayoutResource => Resource.Layout.EstimateView;
 
         protected override void OnCreate(Bundle bundle)
         {

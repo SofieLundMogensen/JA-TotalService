@@ -27,13 +27,14 @@ namespace JATotalservice.Droid.Views
             textView.Text = "Dennis er awesome";
 
 
-            Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView);
-
-            navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); };
+            Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
+            navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view
 
             Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
-
             navigateToTimeButton.Click += delegate { StartActivity(typeof(TimeView)); };
+
+            Button navigateToEstimateButton = FindViewById<Button>(Resource.Id.navigateToEstimateView);
+            navigateToEstimateButton.Click += delegate { StartActivity(typeof(EstimateView)); };
         }
     }
 }

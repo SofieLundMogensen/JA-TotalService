@@ -52,6 +52,11 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:id="@+id/navigateToTimeView" />
+			<Button
+				android:text="Navigate to estimate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/navigateToEstimateView" />
         </LinearLayout>
   </FrameLayout>
 </RelativeLayout>
