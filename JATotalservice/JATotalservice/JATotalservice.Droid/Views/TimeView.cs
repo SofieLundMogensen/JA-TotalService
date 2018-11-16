@@ -33,9 +33,9 @@ namespace JATotalservice.Droid.Views
 
         protected void SetupBindings()
         {
-            var set = this.CreateBindingSet<TimeView, TimeViewModel>();
+            var set = this.CreateBindingSet<TimeView, TimeViewModel>(); //Creates the binding between the view and viewModel
 
-            set.Bind(testTextView).For(m => m.Text).To(vm => vm.TestString);
+            set.Bind(testTextView).For(m => m.Text).To(vm => vm.TestString); //Binds the test from the viewModel til the view's textView
 
             set.Apply();
         }
