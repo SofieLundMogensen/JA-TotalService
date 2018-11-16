@@ -22,7 +22,11 @@ namespace JATotalservice.Core.ViewModels
             get { return hello; }
             set { SetProperty(ref hello, value); }
         }
-
+        public MaterialsViewModel()
+        {
+            GetMaterials();
+        }
+        
         public void AddMaterial(Material material)
         {
             //Adds the material to the list of materials
@@ -33,6 +37,20 @@ namespace JATotalservice.Core.ViewModels
         public void GetMaterials()
         {
             List<Material> tempMaterials = new List<Material>();
+           
+            for (int i = 1; i <= 10; i++)
+            {
+
+                Material material = new Material
+                {
+                    id = i,
+                    name = "item" + i,
+                    description = "jaja",
+                    price = 200
+                };
+                tempMaterials.Add(material);
+            }
+
 
             //TODO: Call api and get the list of materials 
 
