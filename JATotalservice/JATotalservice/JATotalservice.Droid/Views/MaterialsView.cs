@@ -19,20 +19,23 @@ namespace JATotalservice.Droid.Views
     {
         protected override int LayoutResource => Resource.Layout.MaterialsView;
 
+        TextView testTextView;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            Console.WriteLine("---------------------hejsa med dig, jeg er her---------------------");
+            testTextView = FindViewById(Resource.Id.text) as TextView;
 
-            MaterialsViewModel vi = new MaterialsViewModel();
-          var s=  vi.Hello;
+        }
+
+        internal void setupBindings()
+        {
             var set = this.CreateBindingSet<MaterialsView, MaterialsViewModel>();
-            var text = FindViewById(Resource.Id.text) as TextView;
-         
-            set.Bind(text).For(m => m.Text).To(vm => vm.Hello);
-            set.Apply();
-            //SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            
+            set.Bind(testTextView).For(m => m.Text).To(vm => vm.Hello);
 
-            //SetContentView(Resource.Layout.MaterialsView);
+            set.Apply();
         }
     }
 }
