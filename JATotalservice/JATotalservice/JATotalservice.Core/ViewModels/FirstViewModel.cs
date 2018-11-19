@@ -1,5 +1,6 @@
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using System;
 using System.Threading.Tasks;
 
 namespace JATotalservice.Core.ViewModels
@@ -8,9 +9,15 @@ namespace JATotalservice.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
+        public IMvxCommand navigateCommand => new MvxAsyncCommand(Some1Method);
+
         public FirstViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+        }
+
+        public FirstViewModel()
+        {
         }
 
         public override void Prepare()
@@ -18,7 +25,7 @@ namespace JATotalservice.Core.ViewModels
             base.Prepare();
         }
 
-        public async Task Initialize()
+        public override async Task Initialize()
         {
             await base.Initialize();
         }
@@ -27,11 +34,7 @@ namespace JATotalservice.Core.ViewModels
         {
             await _navigationService.Navigate<MaterialsViewModel>();
         }
-
-        public void ttt()
-        {
-
-        }
+        
 
         string hello = "Hello MvvmCross";
         public string Hello
