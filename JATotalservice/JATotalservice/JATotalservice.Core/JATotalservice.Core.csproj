@@ -13,5 +13,9 @@
     <PackageReference Include="MvvmCross.Core" Version="5.2.1" />
     <PackageReference Include="MvvmCross.Platform" Version="5.2.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\JATotalserviceAPI\Model\ModelLayer.csproj" />
+  </ItemGroup>
     
 </Project>
