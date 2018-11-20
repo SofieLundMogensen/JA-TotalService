@@ -4,7 +4,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
-using MvvmCross.Platform;
+
 
 namespace JATotalservice.Droid.Views
 {
