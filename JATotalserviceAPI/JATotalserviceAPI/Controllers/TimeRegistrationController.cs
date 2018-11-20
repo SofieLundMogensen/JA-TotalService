@@ -12,7 +12,7 @@ namespace ServiceAPI.Controllers
     public class TimeRegistrationController : ControllerBase
     {
         // GET api/TimeRegistrations
-        [HttpGet]
+        [HttpGet("GetAll")]
         public List<TimeRegistartion> Getall()
         {
             BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
@@ -21,7 +21,7 @@ namespace ServiceAPI.Controllers
         }
 
         // GET api/TimeRegistration/5
-        [HttpGet("{id}")]
+        [HttpGet(("Get") + "{id}")]
         public TimeRegistartion Get(int id)
         {
             BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
@@ -29,21 +29,21 @@ namespace ServiceAPI.Controllers
             return timeRegistration;
         }
         // POST api/TimeRegistration
-        [HttpPost]
+        [HttpPost("Post")]
         public void Post(TimeRegistartion timeRegistartion)
         {
             BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             timeRegistrationController.Create(timeRegistartion);
         }
         // PUT api/TimeRegistration/5
-        [HttpPut]
+        [HttpPut("Put")]
         public void Put(TimeRegistartion timeRegistartion)
         {
             BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             timeRegistrationController.Update(timeRegistartion);
         }
         // DELETE api/TimeRegistration/5
-        [HttpDelete("{id}")]
+        [HttpDelete(("Delete")+("{id}"))]
         public void Delete(int id)
         {
             BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
