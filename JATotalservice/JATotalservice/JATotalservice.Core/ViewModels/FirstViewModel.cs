@@ -1,4 +1,5 @@
-using MvvmCross.Core.ViewModels;
+
+using MvvmCross.ViewModels;
 
 namespace JATotalservice.Core.ViewModels
 {

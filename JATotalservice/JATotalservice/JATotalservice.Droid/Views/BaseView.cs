@@ -1,5 +1,6 @@
 using Android.OS;
 using Android.Support.V7.Widget;
+using MvvmCross;
 using MvvmCross.Droid.Support.V7.AppCompat;
 
 namespace JATotalservice.Droid.Views

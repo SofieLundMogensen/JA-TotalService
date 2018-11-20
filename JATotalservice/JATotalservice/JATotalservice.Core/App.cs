@@ -1,8 +1,13 @@
-using MvvmCross.Platform.IoC;
+﻿using MvvmCross.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using MvvmCross.IoC;
+using MvvmCross;
 
 namespace JATotalservice.Core
 {
-    public class App : MvvmCross.Core.ViewModels.MvxApplication
+    public class App : MvxApplication
     {
         public override void Initialize()
         {
@@ -11,7 +16,15 @@ namespace JATotalservice.Core
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
-            RegisterNavigationServiceAppStart<ViewModels.FirstViewModel>();
+            CreatableTypes()
+                .EndingWith("Client")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
+            // Mvx.IoCProvider.RegisterSingleton<IUserDialogs>(() => UserDialogs.Instance);
+
+            // register the appstart object
+            RegisterCustomAppStart<AppStart>();
         }
     }
 }

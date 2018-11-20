@@ -1,24 +1,49 @@
-using Android.Content;
-using MvvmCross.Core.ViewModels;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Android.Support.Design.Widget;
+using Android.Support.V4.View;
+using Android.Support.V4.Widget;
+using Android.Support.V7.Widget;
+using MvvmCross.Binding.Bindings.Target.Construction;
+using MvvmCross.Droid.Support.V4;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platform.Platform;
+using MvvmCross.Droid.Support.V7.RecyclerView;
+using MvvmCross.Platforms.Android.Presenters;
+
+using JATotalservice.Core;
+
 
 namespace JATotalservice.Droid
 {
-    public class Setup : MvxAppCompatSetup
+    public class Setup : MvxAppCompatSetup<App>
     {
-        public Setup(Context applicationContext) : base(applicationContext)
+        protected override IEnumerable<Assembly> AndroidViewAssemblies => new List<Assembly>(base.AndroidViewAssemblies)
         {
+            typeof(NavigationView).Assembly,
+            typeof(CoordinatorLayout).Assembly,
+            typeof(FloatingActionButton).Assembly,
+            typeof(Android.Support.V7.Widget.Toolbar).Assembly,
+            typeof(DrawerLayout).Assembly,
+            typeof(ViewPager).Assembly,
+            typeof(MvxRecyclerView).Assembly,
+            typeof(MvxSwipeRefreshLayout).Assembly,
+        };
+
+        /// <summary>
+        /// Fill the Binding Factory Registry with bindings from the support library.
+        /// </summary>
+        protected override void FillTargetFactories(IMvxTargetBindingFactoryRegistry registry)
+        {
+            MvxAppCompatSetupHelper.FillTargetFactories(registry);
+            base.FillTargetFactories(registry);
+
+            //registry.RegisterFactory(new MvxCustomBindingFactory<SwipeRefreshLayout>("IsRefreshing", (swipeRefreshLayout) => new SwipeRefreshLayoutIsRefreshingTargetBinding(swipeRefreshLayout)));
         }
 
-        protected override IMvxApplication CreateApp()
+        protected override IMvxAndroidViewPresenter CreateViewPresenter()
         {
-            return new Core.App();
-        }
-
-        protected override IMvxTrace CreateDebugTrace()
-        {
-            return new DebugTrace();
+            return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
         }
     }
 }

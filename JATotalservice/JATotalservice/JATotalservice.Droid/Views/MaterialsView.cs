@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -46,7 +45,7 @@ namespace JATotalservice.Droid.Views
 
             fabMain = FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             Material material = new Material { id = 200, name = "træ", price = 100, description = "noget" };
-            fabMain.Click += delegate { materials.AddMaterial(material); gridview.Adapter = materialAdapter; };
+           fabMain.Click += delegate { materials.AddMaterial(material); gridview.Adapter = materialAdapter; };
 
             setupBindings();
 
