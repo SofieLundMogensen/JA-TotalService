@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ModelLayer
 {
-    public class Material
+    public class Material2
     {
         public int id { get; set; }
         public string name { get; set; }

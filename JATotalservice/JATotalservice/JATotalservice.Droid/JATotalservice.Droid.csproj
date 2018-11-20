@@ -87,6 +87,10 @@
     <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\JATotalserviceAPI\Model\ModelLayer.csproj">
+      <Project>{4a3f9fcd-65ca-4b8a-9a9f-56723fa4f20d}</Project>
+      <Name>ModelLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JATotalservice.Core\JATotalservice.Core.csproj">
       <Project>{5C3A1B1E-D2AD-4F46-B021-A51075345843}</Project>
       <Name>JATotalservice.Core</Name>
