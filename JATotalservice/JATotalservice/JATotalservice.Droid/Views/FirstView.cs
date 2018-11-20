@@ -3,7 +3,8 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-
+using JATotalservice.Core.ViewModels;
+using MvvmCross.Platform;
 
 namespace JATotalservice.Droid.Views
 {
@@ -26,9 +27,12 @@ namespace JATotalservice.Droid.Views
             FindViewById(Resource.Id.button1).Click += (o, e) =>
             textView.Text = "Dennis er awesome";
 
-
+            FirstViewModel t = new FirstViewModel();
             Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
             navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view
+            //navigateToMaterialsButton.Click += delegate { t.navigateCommand.Execute(); };
+            
+            //t.navigateCommand.Execute();
 
             Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
             navigateToTimeButton.Click += delegate { StartActivity(typeof(TimeView)); };

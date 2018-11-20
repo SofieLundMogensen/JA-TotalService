@@ -9,6 +9,16 @@ namespace JATotalservice.Core.ViewModels
 {
     public class MaterialsViewModel : MvxViewModel
     {
+        public override void Prepare()
+        {
+            base.Prepare();
+        }
+
+        //public override async Task Initialize()
+        //{
+        //    await base.Initialize();
+        //}
+
         List<Material> materials;
         string hello = "Virker det her?";
 
