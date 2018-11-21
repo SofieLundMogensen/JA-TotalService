@@ -11,44 +11,38 @@ namespace ServiceAPI.Controllers
     [ApiController]
     public class TimeRegistrationController : ControllerBase
     {
+        BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
+
         // GET api/TimeRegistrations
-        [HttpGet]
+        [HttpGet("GetAll")]
         public List<TimeRegistartion> Getall()
         {
-            BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             return timeRegistrationController.GetAll();
-
         }
 
         // GET api/TimeRegistration/5
-        [HttpGet("{id}")]
+        [HttpGet(("Get") + "{id}")]
         public TimeRegistartion Get(int id)
         {
-            BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
-            var timeRegistration = timeRegistrationController.Get(id);
-            return timeRegistration;
+            return timeRegistrationController.Get(id);
         }
         // POST api/TimeRegistration
-        [HttpPost]
+        [HttpPost("Post")]
         public void Post(TimeRegistartion timeRegistartion)
         {
-            BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             timeRegistrationController.Create(timeRegistartion);
         }
         // PUT api/TimeRegistration/5
-        [HttpPut]
+        [HttpPut("Put")]
         public void Put(TimeRegistartion timeRegistartion)
         {
-            BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             timeRegistrationController.Update(timeRegistartion);
         }
         // DELETE api/TimeRegistration/5
-        [HttpDelete("{id}")]
+        [HttpDelete(("Delete")+("{id}"))]
         public void Delete(int id)
         {
-            BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
             timeRegistrationController.Delete(id);
         }
-
     }
 }
