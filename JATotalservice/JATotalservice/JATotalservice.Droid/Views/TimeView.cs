@@ -27,10 +27,12 @@ namespace JATotalservice.Droid.Views
         Button timeSelectButton;
         NumberPicker hour;
         NumberPicker minute;
+        NumberPicker hour1;
+        NumberPicker minute1;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
+            SetupTime();
             //testTextView = FindViewById<TextView>(Resource.Id.testTextView);
             var som = FindViewById<Spinner>(Resource.Id.dropdown);
             Task task = new Task();
@@ -39,36 +41,43 @@ namespace JATotalservice.Droid.Views
             test.Add(new Task { name = "Ib" });
             test.Add(new Task { name = "Bo" });
             som.Adapter = new DropDownTaskAdapter(test, this);
-
-           
-
-            hour = FindViewById<NumberPicker>(Resource.Id.numberPickerHour);
-            minute = FindViewById<NumberPicker>(Resource.Id.numberPickerMinute);
-            hour.MaxValue = 23;
-            hour.MinValue = 0;
-            //hour.Value = DateTime.UtcNow;
-            minute.MaxValue = 59;
-            minute.MinValue = 0;
-            // minute.Value = this.time.Minute
             List<MaterialTask> materialTasks = new List<MaterialTask>();
-            MaterialTask materialTask = new MaterialTask()
+            for (int i = 0; i < 5; i++)
             {
-                Material = new Material
+                MaterialTask materialTask = new MaterialTask()
                 {
-                    name = "noget"
+                 
+                    Count = 200
 
-                },
-                Count = 200
-                
-            };
-            materialTasks.Add(materialTask);
+                };
+                materialTasks.Add(materialTask);
+            } 
             Materials = FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = new MaterialsListViewAdapter(materialTasks, this);
 
             SetupBindings();
         }
      
+        private void SetupTime()
+        {
+            hour = FindViewById<NumberPicker>(Resource.Id.numberPickerHour);
+            minute = FindViewById<NumberPicker>(Resource.Id.numberPickerMinute);
+            hour.MaxValue = 23;
+            hour.MinValue = 0;
+            hour.Value = DateTime.Now.Hour;
+            minute.MaxValue = 59;
+            minute.MinValue = 0;
+            minute.Value = DateTime.Now.Minute;
 
+            hour1 = FindViewById<NumberPicker>(Resource.Id.numberPickerHour2);
+            minute1 = FindViewById<NumberPicker>(Resource.Id.numberPickerMinute2);
+            hour1.MaxValue = 23;
+            hour1.MinValue = 0;
+            hour1.Value = DateTime.Now.Hour;
+            minute1.MaxValue = 59;
+            minute1.MinValue = 0;
+            minute1.Value = DateTime.Now.Minute;
+        }
         protected void SetupBindings()
         {
             var set = this.CreateBindingSet<TimeView, TimeViewModel>(); //Creates the binding between the view and viewModel

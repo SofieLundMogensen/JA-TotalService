@@ -49,8 +49,7 @@ namespace JATotalservice.Droid.Adapter
         {
             var view = convertView;
 
-            if (view == null)
-            {
+
                 view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MaterialsListView, parent, false);
 
                 
@@ -74,7 +73,7 @@ namespace JATotalservice.Droid.Adapter
                 // Material.Adapter = 
                 count.Text = "200";
 
-            }
+           
 
           
 
