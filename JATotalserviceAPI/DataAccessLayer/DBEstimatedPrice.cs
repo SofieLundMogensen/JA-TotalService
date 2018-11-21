@@ -17,7 +17,6 @@ namespace DataAccessLayer
             try
             {
                 conn.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Id`, `Estimatedtime`) VALUES (?,?)";
@@ -39,12 +38,10 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "DELETE FROM `EstimatedPrice` WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
-
                 cmd.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -61,14 +58,11 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-                
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "SELECT * FROM `EstimatedPrice` WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
-
                 MySqlDataReader reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
                     estimatedPrice.Id = reader.GetInt32(0);
@@ -92,11 +86,9 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "SELECT * FROM `EstimatedPrice`";
-
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -122,7 +114,6 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "UPDATE `EstimatedPrice` SET `Id`=@Id,`Estimatedtime`=@EstimatedTime WHERE Id = @Id";

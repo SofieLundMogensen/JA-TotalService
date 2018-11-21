@@ -9,12 +9,10 @@ namespace BusinessLogicLayer
     public class TimeRegistrationController : IController<TimeRegistartion>
     {
         IDB<TimeRegistartion> db = new DBTimeRegistration();
-
         public void Create(TimeRegistartion obj)
         {
             db.Create(obj);
         }
-
         public void Delete(int id)
         {
             db.Delete(id);
