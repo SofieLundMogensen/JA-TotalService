@@ -65,7 +65,17 @@ namespace JATotalservice.Core.ModelLayer
             {
                 var result = streamReader.ReadToEnd();
             }
+        }
+            public static async System.Threading.Tasks.Task putTimeInfoAsync(TimeRegistartion timeregistration1)
+            {
+                var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
 
+                string url1 = "http://jatotalservice.slund.info/api/TimeRegistration/Put";
+
+                var httpWebRequest1 = (HttpWebRequest)WebRequest.Create(url1);
+                httpWebRequest1.ContentType = "application/json";
+                httpWebRequest1.Method = "Put";
+            }
 
         }
     }
