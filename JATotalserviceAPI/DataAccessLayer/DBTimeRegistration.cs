@@ -26,7 +26,6 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("?TaskId", MySqlDbType.Int32).Value = obj.task.id;
                 cmd.Parameters.Add("?StartTime", MySqlDbType.DateTime).Value = obj.startTime;
                 cmd.Parameters.Add("?EmployeeId", MySqlDbType.Int32).Value = obj.employee.Id;
-
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -42,7 +41,6 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "DELETE FROM `TimeRegistration` WHERE Id = @Id";
@@ -62,7 +60,6 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 string sql = "SELECT * FROM `TimeRegistration` WHERE Id = " + id;
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader rdr = cmd.ExecuteReader();
@@ -82,7 +79,6 @@ namespace DataAccessLayer
             {
                 Console.WriteLine(ex.ToString());
             }
-
             connection.Close();
             return timeRegistartion;
         }
@@ -93,7 +89,6 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-                
                 string sql = "SELECT * FROM `TimeRegistration`";
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 MySqlDataReader rdr = cmd.ExecuteReader();
@@ -115,7 +110,6 @@ namespace DataAccessLayer
             {
                 Console.WriteLine(ex.ToString());
             }
-
             connection.Close();
             return timelist;
         }
@@ -125,7 +119,6 @@ namespace DataAccessLayer
             try
             {
                 connection.Open();
-
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
                 cmd.CommandText = "UPDATE `TimeRegistration` SET `Id`=@Id,`EndTime`=@EndTime,`TaskId`=@TaskId,`StartTime`=@StartTime,`EmployeeId`=@EmployeeId WHERE Id = @Id";
@@ -134,7 +127,6 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@TaskId", MySqlDbType.Int32).Value = obj.task.id;
                 cmd.Parameters.Add("@StartTime", MySqlDbType.DateTime).Value = obj.startTime;
                 cmd.Parameters.Add("@EmployeeId", MySqlDbType.Int32).Value = obj.employee.Id;
-
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
