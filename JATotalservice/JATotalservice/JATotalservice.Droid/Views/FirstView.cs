@@ -40,6 +40,7 @@ namespace JATotalservice.Droid.Views
             TimeRegistartionService.postTimeInfoAsync(tr);
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
+
             textView = FindViewById(Resource.Id.textView1) as TextView;
 
             FindViewById(Resource.Id.button1).Click += (o, e) =>

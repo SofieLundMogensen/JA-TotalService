@@ -66,18 +66,39 @@ namespace JATotalservice.Core.ModelLayer
                 var result = streamReader.ReadToEnd();
             }
         }
-            public static async System.Threading.Tasks.Task putTimeInfoAsync(TimeRegistartion timeregistration1)
+        public static async System.Threading.Tasks.Task putTimeInfoAsync(TimeRegistartion timeregistration1)
+        {
+            var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
+
+            string url1 = "http://jatotalservice.slund.info/api/TimeRegistration/Put";
+
+            var httpWebRequest1 = (HttpWebRequest)WebRequest.Create(url1);
+            httpWebRequest1.ContentType = "application/json";
+            httpWebRequest1.Method = "Put";
+
+            using (var streamWriter = new StreamWriter(httpWebRequest1.GetRequestStream()))
             {
-                var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
-
-                string url1 = "http://jatotalservice.slund.info/api/TimeRegistration/Put";
-
-                var httpWebRequest1 = (HttpWebRequest)WebRequest.Create(url1);
-                httpWebRequest1.ContentType = "application/json";
-                httpWebRequest1.Method = "Put";
+                streamWriter.Write(json1);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+            var httpResponse = (HttpWebResponse)httpWebRequest1.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+            }
+        }
+            public static void DeleteTimeInfo(int id)
+            {
+                RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Delete{id}");
+                IRestRequest request = new RestRequest(Method.DELETE);
+                request.AddUrlSegment("id", id.ToString());
+                client.Execute<TimeRegistartion>(request);
             }
 
-        }
+        public static TimeRegistartion getAll()
+
+
     }
 }
 
