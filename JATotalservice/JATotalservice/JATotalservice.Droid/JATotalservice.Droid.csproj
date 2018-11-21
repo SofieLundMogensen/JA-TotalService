@@ -87,6 +87,10 @@
     <Reference Include="Mono.Android.Export" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\JATotalserviceAPI\Model\ModelLayer.csproj">
+      <Project>{4A3F9FCD-65CA-4B8A-9A9F-56723FA4F20D}</Project>
+      <Name>ModelLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JATotalservice.Core\JATotalservice.Core.csproj">
       <Project>{5C3A1B1E-D2AD-4F46-B021-A51075345843}</Project>
       <Name>JATotalservice.Core</Name>
@@ -124,6 +128,8 @@
     <Compile Include="Adapter\DialogFragment.cs" />
     <Compile Include="Adapter\DropDownTaskAdapter.cs" />
     <Compile Include="Adapter\MaterialsAdapter.cs" />
+    <Compile Include="Adapter\MaterialsDropdownAdapter.cs" />
+    <Compile Include="Adapter\MaterialsListViewAdapter.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
@@ -177,6 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Clock.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\MaterialsListView.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

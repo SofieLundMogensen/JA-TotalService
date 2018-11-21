@@ -21,10 +21,12 @@ namespace JATotalservice.Droid.Views
     {
 
         protected override int LayoutResource => Resource.Layout.TimeView;
-
+        ListView Materials;
         TextView testTextView;
         TextView timeDisplay;
         Button timeSelectButton;
+        NumberPicker hour;
+        NumberPicker minute;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -38,24 +40,34 @@ namespace JATotalservice.Droid.Views
             test.Add(new Task { name = "Bo" });
             som.Adapter = new DropDownTaskAdapter(test, this);
 
-            timeDisplay = FindViewById<TextView>(Resource.Id.time_display);
-           timeSelectButton = FindViewById<Button>(Resource.Id.select_button);
+           
 
-            timeSelectButton.Click += TimeSelectOnClick;
+            hour = FindViewById<NumberPicker>(Resource.Id.numberPickerHour);
+            minute = FindViewById<NumberPicker>(Resource.Id.numberPickerMinute);
+            hour.MaxValue = 23;
+            hour.MinValue = 0;
+            //hour.Value = DateTime.UtcNow;
+            minute.MaxValue = 59;
+            minute.MinValue = 0;
+            // minute.Value = this.time.Minute
+            List<MaterialTask> materialTasks = new List<MaterialTask>();
+            MaterialTask materialTask = new MaterialTask()
+            {
+                Material = new Material
+                {
+                    name = "noget"
+
+                },
+                Count = 200
+                
+            };
+            materialTasks.Add(materialTask);
+            Materials = FindViewById<ListView>(Resource.Id.MaterialsListView);
+            Materials.Adapter = new MaterialsListViewAdapter(materialTasks, this);
 
             SetupBindings();
         }
-        void TimeSelectOnClick(object sender, EventArgs eventArgs)
-        {
-            TimePickerFragment frag = TimePickerFragment.NewInstance(
-                delegate (DateTime time)
-                {
-                    timeDisplay.Text = time.ToShortTimeString();
-                });
-        
-            frag.Show(FragmentManager, TimePickerFragment.TAG);
-           
-        }
+     
 
         protected void SetupBindings()
         {
