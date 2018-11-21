@@ -14,32 +14,32 @@ namespace ServiceAPI.Controllers
         BusinessLogicLayer.EstimatedPriceController estimatedPriceController = new BusinessLogicLayer.EstimatedPriceController();
 
         // POST api/EstimatedPrice
-        [HttpPost]
+        [HttpPost("Post")]
         public void Post(EstimatedPrice estimatedPrice)
         {
             estimatedPriceController.Create(estimatedPrice);
         }
 
         // DELETE api/EstimatedPrice
-        [HttpDelete("{id}")]
+        [HttpDelete(("Delete") + ("{id}"))]
         public void Delete(int id)
         {
             estimatedPriceController.Delete(id);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet(("Get") + ("{id}"))]
         public EstimatedPrice Get(int id)
         {
             return estimatedPriceController.Get(id);
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public List<EstimatedPrice> GetAll()
         {
             return estimatedPriceController.GetAll();
         }
 
-        [HttpPut]
+        [HttpPut("Put")]
         public void Update(EstimatedPrice estimatedPrice)
         {
             estimatedPriceController.Update(estimatedPrice);
