@@ -37,7 +37,7 @@ namespace JATotalservice.Droid.Views
             tr.task.timeRegistrations = new List<TimeRegistartion>();
             tr.task.description = "bla bla bla";
             tr.employee.Id = 1;
-            TimeRegistartionService.postTimeInfo(tr);
+            TimeRegistartionService.postTimeInfoAsync(tr);
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
