@@ -47,12 +47,22 @@ namespace JATotalservice.Droid.Adapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
+            return GetCustomView(position, convertView, parent, false);
+        }
+
+        private View GetCustomView(int position, View convertView, ViewGroup parent, bool Bool)
+        {
             var view = convertView;
+           
+            try
+            {
+                if (view == null)
+                {
+                    var inflater = LayoutInflater.From(context);
+                    view = convertView ?? inflater.Inflate((Bool ? Resource.Layout.SpinnerItemDropdown : Resource.Layout.MaterialsListView), parent, false);
 
-
-                view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MaterialsListView, parent, false);
-
-                
+                    //view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MaterialsListView, parent, false);
+                }
                 var Material = view.FindViewById<Spinner>(Resource.Id.dropdown);
                 var count = view.FindViewById<TextView>(Resource.Id.Text);
                 List<Material> tempMaterials = new List<Material>();
@@ -72,12 +82,14 @@ namespace JATotalservice.Droid.Adapter
                 Material.Adapter = new MaterialsDropdownAdapter(tempMaterials, context);
                 // Material.Adapter = 
                 count.Text = "200";
-
-           
-
-          
-
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+            finally { }
             return view;
+
         }
     }
 }
