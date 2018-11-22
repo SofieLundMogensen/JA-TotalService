@@ -23,13 +23,13 @@ namespace JATotalservice.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var dt = new DateTime(2010, 10, 12);
-            var dt1 = new DateTime(2011, 08, 06);
+            /*var dt = new DateTime(2010, 10, 12);   
+            var dt1 = new DateTime(2011, 08, 06);    
  
-            TimeRegistartion tr = new TimeRegistartion();
-            tr.startTime = dt;
+            TimeRegistartion tr = new TimeRegistartion();   
+            tr.startTime = dt; 
             tr.endTime = dt1;
-            tr.Id = 300;
+            tr.Id = 123456;
             tr.task = new ModelLayer.Task();
             tr.task.id = 1;
             tr.task.name = "snerydning";
@@ -59,6 +59,7 @@ namespace JATotalservice.Droid.Views
 
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
 
