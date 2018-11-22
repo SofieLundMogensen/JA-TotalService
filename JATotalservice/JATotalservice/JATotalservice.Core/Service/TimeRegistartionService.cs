@@ -7,7 +7,7 @@ using System.Text;
 using ModelLayer;
 using RestSharp;
 
-namespace JATotalservice.Core.ModelLayer
+namespace JATotalservice.Core.Service
 {
     public class TimeRegistartionService
     {
