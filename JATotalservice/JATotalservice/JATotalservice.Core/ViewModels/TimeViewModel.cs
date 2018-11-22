@@ -59,7 +59,7 @@ namespace JATotalservice.Core.ViewModels
         public async System.Threading.Tasks.Task PostTimeRegistration(TimeRegistartion timeRegistartion)
         {
             //Kalder timeregistration service og poster timeregistration
-            TimeRegistartionService.postTimeInfoAsync(timeRegistartion);
+            TimeRegistartionService.PostTimeInfoAsync(timeRegistartion);
             materialTasks.Clear();
             
         }

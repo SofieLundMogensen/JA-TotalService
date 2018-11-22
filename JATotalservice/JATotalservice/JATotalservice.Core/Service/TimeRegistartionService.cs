@@ -12,7 +12,7 @@ namespace JATotalservice.Core.Service
     public class TimeRegistartionService
     {
         private static readonly HttpClient _Client = new HttpClient();
-        
+
         public static TimeRegistartion getTimeInfo(int id)
         {
             RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Get{id}");
@@ -21,28 +21,26 @@ namespace JATotalservice.Core.Service
             return client.Execute<TimeRegistartion>(request).Data;
         }
 
-        public static async System.Threading.Tasks.Task postTimeInfoAsync(TimeRegistartion timeregistration)
+        public static void PostTimeInfoAsync(TimeRegistartion timeregistration)
         {
-         /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
-             var reguest = new RestRequest();
-             reguest.Method = Method.POST;
-             reguest.AddHeader("Accept", "application/json");
+            /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
+                var reguest = new RestRequest();
+                reguest.Method = Method.POST;
+                reguest.AddHeader("Accept", "application/json");
+
+                reguest.AddObject(timeregistration);
+                var response = client.Execute(reguest);
+               /* IRestRequest request = new RestRequest(Method.POST);
+                request.AddHeader("Accept", "application/Json");
+                request.AddObject(timeregistration);
+                request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer.ContentType = "text/Json";
+                var response = client.Execute(request);*/
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
             
-             reguest.AddObject(timeregistration);
-             var response = client.Execute(reguest);
-            /* IRestRequest request = new RestRequest(Method.POST);
-             request.AddHeader("Accept", "application/Json");
-             request.AddObject(timeregistration);
-             request.RequestFormat = DataFormat.Json;
-             request.JsonSerializer.ContentType = "text/Json";
-             var response = client.Execute(request);*/
-
-          var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
-
-
             string url = "http://jatotalservice.slund.info/api/TimeRegistration/Post";
-
-
+            
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
@@ -60,7 +58,7 @@ namespace JATotalservice.Core.Service
                 var result = streamReader.ReadToEnd();
             }
         }
-        public static void putTimeInfo(TimeRegistartion timeregistration1)
+        public static void PutTimeInfo(TimeRegistartion timeregistration1)
         {
             var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
 
@@ -82,19 +80,19 @@ namespace JATotalservice.Core.Service
                 var result = streamReader.ReadToEnd();
             }
         }
-            public static void DeleteTimeInfo(int id)
-            {
-                RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Delete{id}");
-                IRestRequest request = new RestRequest(Method.DELETE);
-                request.AddUrlSegment("id", id.ToString());
-                client.Execute<TimeRegistartion>(request);
-            }
+        public static void DeleteTimeInfo(int id)
+        {
+            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Delete{id}");
+            IRestRequest request = new RestRequest(Method.DELETE);
+            request.AddUrlSegment("id", id.ToString());
+            client.Execute<TimeRegistartion>(request);
+        }
 
         public static List<TimeRegistartion> GetAllTimeInfo()
         {
             RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/GetAll");
             IRestRequest request = new RestRequest(Method.GET);
-            return client.Execute <List<TimeRegistartion>>(request).Data;          
+            return client.Execute<List<TimeRegistartion>>(request).Data;
         }
 
     }
