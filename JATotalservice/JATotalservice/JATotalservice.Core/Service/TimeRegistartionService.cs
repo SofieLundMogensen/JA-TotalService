@@ -18,9 +18,7 @@ namespace JATotalservice.Core.Service
             RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Get{id}");
             IRestRequest request = new RestRequest(Method.GET);
             request.AddUrlSegment("id", id.ToString());
-            IRestResponse<TimeRegistartion> response = client.Execute<TimeRegistartion>(request);
-            TimeRegistartion timeRegistartion = response.Data;
-            return timeRegistartion;
+            return client.Execute<TimeRegistartion>(request).Data;
         }
 
         public static async System.Threading.Tasks.Task postTimeInfoAsync(TimeRegistartion timeregistration)
