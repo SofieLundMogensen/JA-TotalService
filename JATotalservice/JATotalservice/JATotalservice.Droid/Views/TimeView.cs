@@ -54,7 +54,7 @@ namespace JATotalservice.Droid.Views
             } 
             Materials = FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = new MaterialsListViewAdapter(materialTasks, this);
-
+            Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
             SetupBindings();
         }
      

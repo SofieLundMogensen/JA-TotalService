@@ -6,18 +6,41 @@
     android:minWidth="25px"  
     android:minHeight="25px"  
     android:paddingBottom="4dp"> 
+		<View 
+        android:id="@+id/centerShim"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"/>
 	 <TextView  
-        android:id="@+id/Text"  
-       
-        
-        android:text="Department"  
-        
+        android:id="@+id/Text1"  
+        android:text="Matrialer"  
         android:layout_width="wrap_content"  
-        android:layout_height="wrap_content"  
+        android:layout_height="wrap_content" 
+		
         android:paddingLeft="5dp" />  
+	<TextView  
+        android:id="@+id/Text2"  
+        android:text="Antal"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content" 
+		 android:layout_toRightOf="@+id/centerShim"
+        android:paddingLeft="5dp" /> 
    <Spinner
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:layout_below="@id/Text1"
 		android:id="@+id/dropdown" />
+
+	<EditText  
+        android:id="@+id/Text"  
+        android:text="4"   
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"
+		android:layout_toRightOf="@+id/centerShim"
+		android:layout_below="@id/Text2"
+        android:paddingLeft="5dp"
+	android:inputType="numberDecimal"
+		android:digits="0123456789"/>  
   
 </RelativeLayout> 

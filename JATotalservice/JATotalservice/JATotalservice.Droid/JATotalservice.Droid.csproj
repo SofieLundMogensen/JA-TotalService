@@ -130,6 +130,7 @@
     <Compile Include="Adapter\MaterialsAdapter.cs" />
     <Compile Include="Adapter\MaterialsDropdownAdapter.cs" />
     <Compile Include="Adapter\MaterialsListViewAdapter.cs" />
+    <Compile Include="Adapter\Utility.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />

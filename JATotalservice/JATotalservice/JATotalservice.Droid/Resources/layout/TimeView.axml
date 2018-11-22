@@ -35,12 +35,12 @@
           android:layout_toRightOf="@+id/dropdown"
 		/>
 	     <View 
-		  android:layout_height="1dp" 
-		android:id ="@+id/Spacer1"
+		  android:layout_height="2dp" 
+		  android:id ="@+id/Spacer1"
           android:layout_width="fill_parent" 
 		  android:layout_below="@id/Location"
-		android:layout_marginBottom="10dp" 
-  android:layout_marginTop="10dp" 
+		  android:layout_marginBottom="10dp" 
+          android:layout_marginTop="10dp" 
           android:background="#000" 
          />
   
@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 		        android:layout_below="@id/StartTid"
-		 android:layout_toLeftOf="@+id/centerShim"
+		        android:layout_toLeftOf="@+id/centerShim"
                 android:id="@+id/textView4" />
 	    <TextView
                 android:text="min"
@@ -72,20 +72,20 @@
         android:layout_centerHorizontal="true"/>
 			<NumberPicker
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="99.2dp"
 		        android:layout_below="@id/textView4"
 			    android:layout_toLeftOf="@+id/centerShim"
                 android:id="@+id/numberPickerHour" />
             
             <NumberPicker
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="99.2dp"
 		        android:layout_below="@id/textView5"
                 android:layout_toRightOf="@+id/centerShim"
                 android:id="@+id/numberPickerMinute" />
 		
 	  <View 
-		  android:layout_height="1dp" 
+		  android:layout_height="2dp" 
 		  android:id ="@+id/Spacer2"
           android:layout_width="fill_parent" 
 		  android:layout_below="@id/numberPickerMinute"
@@ -129,7 +129,7 @@
                 android:id="@+id/numberPickerMinute2" />
             
 		<View 
-		  android:layout_height="1dp" 
+		  android:layout_height="2dp" 
 		  android:id ="@+id/Spacer3"
           android:layout_width="fill_parent" 
 		  android:layout_below="@id/numberPickerMinute2"
@@ -156,6 +156,13 @@
 				local:fabSize="normal"
 				local:srcCompat="@drawable/ic_plus"/>
 	
+			<Button
+                android:text="Send"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+				android:layout_below="@id/Add"
+				android:layout_toRightOf="@+id/centerShim"
+                android:id="@+id/Submit" />
 	 </RelativeLayout>
     </ScrollView>
 		
