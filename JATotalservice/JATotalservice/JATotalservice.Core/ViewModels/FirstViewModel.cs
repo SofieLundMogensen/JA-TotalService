@@ -10,10 +10,6 @@ namespace JATotalservice.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
-
-
-
-
         public IMvxCommand navigateCommand => new MvxAsyncCommand(Some1Method);
 
         public FirstViewModel(IMvxNavigationService navigationService)

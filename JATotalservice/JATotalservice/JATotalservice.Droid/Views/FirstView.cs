@@ -8,6 +8,7 @@ using JATotalservice.Core.ModelLayer;
 using System;
 using ModelLayer;
 using System.Collections.Generic;
+using JATotalservice.Core.Service;
 
 namespace JATotalservice.Droid.Views
 {
@@ -38,6 +39,25 @@ namespace JATotalservice.Droid.Views
             tr.task.description = "bla bla bla";
             tr.employee.Id = 1;
             TimeRegistartionService.postTimeInfoAsync(tr);
+
+            EstimatedPrice estimatedPrice = new EstimatedPrice();
+            estimatedPrice.Id = 11;
+            estimatedPrice.estimatedTime = 987654321;
+            estimatedPrice.materials = null;
+            Console.WriteLine("------------------------POST-------------------------------------");
+            //EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
+            Console.WriteLine("----------------------------GET---------------------------------");
+            //var tt = EstimatedPriceService.GetEstimatedPrice(11);
+            Console.WriteLine("-------------------------------PUT------------------------------");
+            //estimatedPrice.estimatedTime = 99999999;
+            //EstimatedPriceService.PutEstimatedPrice(estimatedPrice);
+            Console.WriteLine("----------------------GETALL---------------------------------------");
+            var ttt = EstimatedPriceService.GetAllEstimatedPrices();
+            Console.WriteLine("----------------------------DELETE---------------------------------");
+            //EstimatedPriceService.DeleteEstimatedPrice(estimatedPrice.Id);
+            Console.WriteLine("-------------------------------------------------------------");
+
+
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
