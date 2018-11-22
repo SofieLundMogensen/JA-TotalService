@@ -56,7 +56,7 @@ namespace JATotalservice.Droid.Views
             Console.WriteLine("----------------------------DELETE---------------------------------");
             //EstimatedPriceService.DeleteEstimatedPrice(estimatedPrice.Id);
             Console.WriteLine("-------------------------------------------------------------");
-
+            */
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
