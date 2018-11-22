@@ -4,25 +4,30 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
-using JATotalservice.Core.ModelLayer;
+
 using System;
 using ModelLayer;
 using System.Collections.Generic;
 using JATotalservice.Core.Service;
+using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace JATotalservice.Droid.Views
 {
+
+    [MvxActivityPresentation]
     [Activity(Label = "View for FirstViewModel")]
-    public class FirstView : BaseView
+    public class FirstView : MvxAppCompatActivity<FirstViewModel>
     {
         TextView textView;
 
         //View button;
-        protected override int LayoutResource => Resource.Layout.FirstView;
+       // protected override int LayoutResource => Resource.Layout.FirstView;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            SetContentView(Resource.Layout.FirstView);
             /*var dt = new DateTime(2010, 10, 12);   
             var dt1 = new DateTime(2011, 08, 06);    
  
@@ -58,7 +63,7 @@ namespace JATotalservice.Droid.Views
             Console.WriteLine("-------------------------------------------------------------");
             */
 
-            SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+           // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
@@ -74,7 +79,7 @@ namespace JATotalservice.Droid.Views
             //t.navigateCommand.Execute();
 
             Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
-            navigateToTimeButton.Click += delegate { StartActivity(typeof(TimeView)); };
+            navigateToTimeButton.Click += delegate { ViewModel.navigateCommand.Execute(); };
 
             Button navigateToEstimateButton = FindViewById<Button>(Resource.Id.navigateToEstimateView);
             navigateToEstimateButton.Click += delegate { StartActivity(typeof(EstimateView)); };

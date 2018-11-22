@@ -32,6 +32,10 @@ namespace JATotalservice.Droid.Adapter
         {
            return position;
         }
+        public Task GetTask(int posistion)
+        {
+            return Tasks[posistion];
+        }
 
         public override long GetItemId(int position)
         {
@@ -45,9 +49,7 @@ namespace JATotalservice.Droid.Adapter
 
         private View GetCustomView(int position, View convertView, ViewGroup parent, bool dropdown)
         {
-
-            //Switch your layout as you like it
-
+            //Sætter layouter op
             var item = Tasks[position];
 
             var inflater = LayoutInflater.From(context);

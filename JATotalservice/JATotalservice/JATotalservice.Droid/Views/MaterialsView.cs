@@ -13,23 +13,26 @@ using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
 using ModelLayer;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace JATotalservice.Droid.Views
 {
-    [Activity(Label = "View for MaterialsViewModel")]
-    public class MaterialsView : BaseView
+    [MvxFragmentPresentation(typeof(FirstViewModel), Resource.Id.content_frame, true)]
+    [Register("JATotalservice.droid.views.MaterialsView")]
+    public class MaterialsView : BaseFragment<MaterialsViewModel>
     {
 
         List<Material> materials = new List<Material>();
         TextView testTextView;
         MaterialAdapter materialAdapter;
         private FloatingActionButton fabMain;
-     
-        protected override int LayoutResource => Resource.Layout.MaterialsView;
-        protected override void OnCreate(Bundle bundle)
-        {
 
-            base.OnCreate(bundle);
+        protected override int FragmentId => Resource.Layout.MaterialsView;
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            var view = base.OnCreateView(inflater, container, savedInstanceState);
+
+           
             Console.WriteLine("---------------------hejsa med dig, jeg er her---------------------");
             //  testTextView = FindViewById(Resource.Id.text) as TextView;
 
@@ -37,17 +40,18 @@ namespace JATotalservice.Droid.Views
             MaterialsViewModel materials = new MaterialsViewModel();
 
 
-            GridView gridview = FindViewById<GridView>(Resource.Id.gridview);
-            materialAdapter = new MaterialAdapter(materials.Materials, this);
+            GridView gridview = view.FindViewById<GridView>(Resource.Id.gridview);
+            materialAdapter = new MaterialAdapter(materials.Materials, view.Context);
 
             gridview.Adapter = materialAdapter;
 
 
-            fabMain = FindViewById<FloatingActionButton>(Resource.Id.fab_main);
+            fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             Material material = new Material { id = 200, name = "træ", price = 100, description = "noget" };
            fabMain.Click += delegate { materials.AddMaterial(material); gridview.Adapter = materialAdapter; };
 
             setupBindings();
+            return view;
 
         }
 

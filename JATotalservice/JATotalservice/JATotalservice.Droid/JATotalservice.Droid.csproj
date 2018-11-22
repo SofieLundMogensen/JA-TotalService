@@ -137,7 +137,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\EstimateView.cs" />
     <Compile Include="Views\FirstView.cs" />
-    <Compile Include="Views\BaseView.cs" />
+    <Compile Include="Views\BaseFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Views\MaterialsView.cs" />
     <Compile Include="Views\TimeView.cs" />
