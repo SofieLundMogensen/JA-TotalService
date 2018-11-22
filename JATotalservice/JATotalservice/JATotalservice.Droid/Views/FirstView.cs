@@ -4,7 +4,10 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
-
+using JATotalservice.Core.ModelLayer;
+using System;
+using ModelLayer;
+using System.Collections.Generic;
 
 namespace JATotalservice.Droid.Views
 {
@@ -19,7 +22,22 @@ namespace JATotalservice.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            
+            var dt = new DateTime(2010, 10, 12);
+            var dt1 = new DateTime(2011, 08, 06);
+ 
+            TimeRegistartion tr = new TimeRegistartion();
+            tr.startTime = dt;
+            tr.endTime = dt1;
+            tr.Id = 300;
+            tr.task = new ModelLayer.Task();
+            tr.task.id = 1;
+            tr.task.name = "snerydning";
+            tr.task.materials = new List<Material>();
+            tr.employee = new Employee();
+            tr.task.timeRegistrations = new List<TimeRegistartion>();
+            tr.task.description = "bla bla bla";
+            tr.employee.Id = 1;
+            TimeRegistartionService.postTimeInfoAsync(tr);
             SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
