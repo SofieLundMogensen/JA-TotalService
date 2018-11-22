@@ -25,11 +25,11 @@ namespace JATotalservice.Core.ModelLayer
 
         public static async System.Threading.Tasks.Task postTimeInfoAsync(TimeRegistartion timeregistration)
         {
-            /* RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
+         /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
              var reguest = new RestRequest();
              reguest.Method = Method.POST;
              reguest.AddHeader("Accept", "application/json");
-             reguest.Parameters.Clear();
+            
              reguest.AddObject(timeregistration);
              var response = client.Execute(reguest);
             /* IRestRequest request = new RestRequest(Method.POST);
@@ -39,7 +39,7 @@ namespace JATotalservice.Core.ModelLayer
              request.JsonSerializer.ContentType = "text/Json";
              var response = client.Execute(request);*/
 
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
+          var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
 
 
             string url = "http://jatotalservice.slund.info/api/TimeRegistration/Post";
@@ -51,8 +51,6 @@ namespace JATotalservice.Core.ModelLayer
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-
-
                 streamWriter.Write(json);
                 streamWriter.Flush();
                 streamWriter.Close();
@@ -96,7 +94,7 @@ namespace JATotalservice.Core.ModelLayer
 
         public static List<TimeRegistartion> GetAllTimeInfo()
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/api/TimeRegistration/GetAll");
+            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/GetAll");
             IRestRequest request = new RestRequest(Method.GET);
             return client.Execute <List<TimeRegistartion>>(request).Data;          
         }
