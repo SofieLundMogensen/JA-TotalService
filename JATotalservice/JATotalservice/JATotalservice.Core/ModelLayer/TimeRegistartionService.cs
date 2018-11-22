@@ -12,9 +12,7 @@ namespace JATotalservice.Core.ModelLayer
     public class TimeRegistartionService
     {
         private static readonly HttpClient _Client = new HttpClient();
-
-
-
+        
         public static TimeRegistartion getTimeInfo(int id)
         {
             RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Get{id}");
@@ -66,7 +64,7 @@ namespace JATotalservice.Core.ModelLayer
                 var result = streamReader.ReadToEnd();
             }
         }
-        public static async System.Threading.Tasks.Task putTimeInfoAsync(TimeRegistartion timeregistration1)
+        public static void putTimeInfo(TimeRegistartion timeregistration1)
         {
             var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
 
@@ -96,8 +94,12 @@ namespace JATotalservice.Core.ModelLayer
                 client.Execute<TimeRegistartion>(request);
             }
 
-        public static TimeRegistartion getAll()
-
+        public static List<TimeRegistartion> GetAllTimeInfo()
+        {
+            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/api/TimeRegistration/GetAll");
+            IRestRequest request = new RestRequest(Method.GET);
+            return client.Execute <List<TimeRegistartion>>(request).Data;          
+        }
 
     }
 }

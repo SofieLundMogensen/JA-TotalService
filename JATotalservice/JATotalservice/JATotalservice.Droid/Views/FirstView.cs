@@ -22,11 +22,11 @@ namespace JATotalservice.Droid.Views
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            var dt = new DateTime(2010, 10, 12);
-            var dt1 = new DateTime(2011, 08, 06);
+            /*var dt = new DateTime(2010, 10, 12);   TEST
+            var dt1 = new DateTime(2011, 08, 06);    
  
-            TimeRegistartion tr = new TimeRegistartion();
-            tr.startTime = dt;
+            TimeRegistartion tr = new TimeRegistartion();   
+            tr.startTime = dt; 
             tr.endTime = dt1;
             tr.Id = 300;
             tr.task = new ModelLayer.Task();
@@ -38,7 +38,7 @@ namespace JATotalservice.Droid.Views
             tr.task.description = "bla bla bla";
             tr.employee.Id = 1;
             TimeRegistartionService.postTimeInfoAsync(tr);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(false);*/ 
 
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
