@@ -12,26 +12,20 @@ namespace JATotalservice.Core.Service
     public class EstimatedPriceService
     {
         private static readonly HttpClient _Client = new HttpClient();
-        
+
+        static RestClient client = new RestClient("http://jatotalservice.slund.info/api/EstimatedPrice/");
+
         public static EstimatedPrice GetEstimatedPrice(int id)
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/EstimatedPrice/Get{id}");
-            IRestRequest request = new RestRequest(Method.GET);
+            IRestRequest request = new RestRequest("Get{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString()); //Tilføjer det rigtige id, som man får med ind i metoden
-            IRestResponse<EstimatedPrice> response = client.Execute<EstimatedPrice>(request); //Får et response fra api
-            return response.Data; //Returnerer dataen i obj format
+            return client.Execute<EstimatedPrice>(request).Data; //Får et response fra api, og laver det om til data og returnerer det
         }
 
         public static List<EstimatedPrice> GetAllEstimatedPrices()
         {
-            //RestClient client = new RestClient("http://jatotalservice.slund.info/api/EstimatedPrice/GetAll");
-            //IRestRequest request = new RestRequest(Method.GET);
-            //return client.Execute<List<EstimatedPrice>>(request).Data; //Får et response fra api, og returnerer dataen fra den.
-
-            var client = new RestClient("http://jatotalservice.slund.info/api/EstimatedPrice/");
             var request = new RestRequest("GetAll", Method.GET);
-            var queryResult = client.Execute<List<EstimatedPrice>>(request);
-            return queryResult.Data;
+            return client.Execute<List<EstimatedPrice>>(request).Data;
         }
         
         public static void PostEstimatedPrice(EstimatedPrice estimatedPrice)
@@ -88,8 +82,7 @@ namespace JATotalservice.Core.Service
 
         public static void DeleteEstimatedPrice(int id)
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/EstimatedPrice/Delete{id}");
-            IRestRequest request = new RestRequest(Method.DELETE);
+            IRestRequest request = new RestRequest("Delete{id}", Method.DELETE);
             request.AddUrlSegment("id", id.ToString()); //Tilføjer det rigtige id, som man får med ind i metoden
             client.Execute<EstimatedPrice>(request); //Sender den request
         }

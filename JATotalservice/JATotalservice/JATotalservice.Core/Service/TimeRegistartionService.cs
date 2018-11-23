@@ -13,10 +13,11 @@ namespace JATotalservice.Core.Service
     {
         private static readonly HttpClient _Client = new HttpClient();
 
+        static RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/");
+
         public static TimeRegistartion getTimeInfo(int id)
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Get{id}");
-            IRestRequest request = new RestRequest(Method.GET);
+            IRestRequest request = new RestRequest("Get{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
             return client.Execute<TimeRegistartion>(request).Data;
         }
@@ -82,16 +83,14 @@ namespace JATotalservice.Core.Service
         }
         public static void DeleteTimeInfo(int id)
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Delete{id}");
-            IRestRequest request = new RestRequest(Method.DELETE);
+            IRestRequest request = new RestRequest("Delete{id}", Method.DELETE);
             request.AddUrlSegment("id", id.ToString());
             client.Execute<TimeRegistartion>(request);
         }
 
         public static List<TimeRegistartion> GetAllTimeInfo()
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/GetAll");
-            IRestRequest request = new RestRequest(Method.GET);
+            IRestRequest request = new RestRequest("GetAll", Method.GET);
             return client.Execute<List<TimeRegistartion>>(request).Data;
         }
 

@@ -28,40 +28,43 @@ namespace JATotalservice.Droid.Views
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.FirstView);
-            /*var dt = new DateTime(2010, 10, 12);   
-            var dt1 = new DateTime(2011, 08, 06);    
- 
-            TimeRegistartion tr = new TimeRegistartion();   
-            tr.startTime = dt; 
-            tr.endTime = dt1;
-            tr.Id = 123456;
-            tr.task = new ModelLayer.Task();
-            tr.task.id = 1;
-            tr.task.name = "snerydning";
-            tr.task.materials = new List<Material>();
-            tr.employee = new Employee();
-            tr.task.timeRegistrations = new List<TimeRegistartion>();
-            tr.task.description = "bla bla bla";
-            tr.employee.Id = 1;
-            TimeRegistartionService.postTimeInfoAsync(tr);
+            //var dt = new DateTime(2010, 10, 12);   
+            //var dt1 = new DateTime(2011, 08, 06);    
 
-            EstimatedPrice estimatedPrice = new EstimatedPrice();
-            estimatedPrice.Id = 11;
-            estimatedPrice.estimatedTime = 987654321;
-            estimatedPrice.materials = null;
-            Console.WriteLine("------------------------POST-------------------------------------");
-            //EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
-            Console.WriteLine("----------------------------GET---------------------------------");
+            //TimeRegistartion tr = new TimeRegistartion();   
+            //tr.startTime = dt; 
+            //tr.endTime = dt1;
+            //tr.Id = 123456;
+            //tr.task = new ModelLayer.Task();
+            //tr.task.id = 1;
+            //tr.task.name = "snerydning";
+            //tr.task.materials = new List<Material>();
+            //tr.employee = new Employee();
+            //tr.task.timeRegistrations = new List<TimeRegistartion>();
+            //tr.task.description = "bla bla bla";
+            //tr.employee.Id = 1;
+            //TimeRegistartionService.postTimeInfoAsync(tr);
+            //var ttt = TimeRegistartionService.GetAllTimeInfo();
+            //var tt = TimeRegistartionService.getTimeInfo(300);
+            //TimeRegistartionService.DeleteTimeInfo(300);
+
+            //EstimatedPrice estimatedPrice = new EstimatedPrice();
+            //estimatedPrice.Id = 11;
+            //estimatedPrice.estimatedTime = 987654321;
+            //estimatedPrice.materials = null;
+            //Console.WriteLine("------------------------POST-------------------------------------");
+            ////EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
+            //Console.WriteLine("----------------------------GET---------------------------------");
             //var tt = EstimatedPriceService.GetEstimatedPrice(11);
-            Console.WriteLine("-------------------------------PUT------------------------------");
-            //estimatedPrice.estimatedTime = 99999999;
-            //EstimatedPriceService.PutEstimatedPrice(estimatedPrice);
-            Console.WriteLine("----------------------GETALL---------------------------------------");
-            var ttt = EstimatedPriceService.GetAllEstimatedPrices();
-            Console.WriteLine("----------------------------DELETE---------------------------------");
-            //EstimatedPriceService.DeleteEstimatedPrice(estimatedPrice.Id);
-            Console.WriteLine("-------------------------------------------------------------");
-            */
+            //Console.WriteLine("-------------------------------PUT------------------------------");
+            ////estimatedPrice.estimatedTime = 99999999;
+            ////EstimatedPriceService.PutEstimatedPrice(estimatedPrice);
+            //Console.WriteLine("----------------------GETALL---------------------------------------");
+            //var ttt = EstimatedPriceService.GetAllEstimatedPrices();
+            //Console.WriteLine("----------------------------DELETE---------------------------------");
+            //EstimatedPriceService.DeleteEstimatedPrice(123456789);
+            //Console.WriteLine("-------------------------------------------------------------");
+            
 
            // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
