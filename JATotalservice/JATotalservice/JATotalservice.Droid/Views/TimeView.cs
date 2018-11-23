@@ -38,14 +38,13 @@ namespace JATotalservice.Droid.Views
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
             //Set up time spinners
-            SetupTime(); 
+            SetupTime();
 
             //task drop down liste, create, land listen on itemselected
             TaskDropDown = view.FindViewById<Spinner>(Resource.Id.dropdown);
             TaskDropDown.Adapter = new DropDownTaskAdapter(ViewModel.Tasks, view.Context);
-        
+
             TaskDropDown.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-            
 
             //Floating botton add material
             var add = view.FindViewById<FloatingActionButton>(Resource.Id.Add);
@@ -64,15 +63,16 @@ namespace JATotalservice.Droid.Views
             SetupBindings();
             return view;
         }
+
         private void AddMaterial()
         {
-
             //Adds a material to the MaterialTask list
             MaterialTask materialTask = new MaterialTask();
             ViewModel.AddMaterials(materialTask);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
         }
+
         private void sendData(Context context)
         {
             //Sends object timeregistartion to Viewmodel
@@ -82,29 +82,30 @@ namespace JATotalservice.Droid.Views
             var hourE = hour1.Value;
             var minE = minute1.Value;
             var date = DateTime.Now;
-            timeRegistartion.startTime = new DateTime(date.Year, date.Month, date.Day, hourS, minS, 00);
+            timeRegistartion.startTime = new DateTime(date.Year, date.Month, date.Day, hourS, minS, 00); //He last parameter is sceond, and we dont use that, so we ar setting it to 0
             timeRegistartion.endTime = new DateTime(date.Year, date.Month, date.Day, hourE, minE, 00);
             timeRegistartion.task = task;
             timeRegistartion.Id = 1; //TODO: Slettes når vi har fundet ud af db auto id
-            //TODO: Koble de valgte matrialer på med antal
-            
+                                     //TODO: Koble de valgte matrialer på med antal
+
             timeRegistartion.employee = new Employee { Id = 1 }; //TODO: Fjernes når vi har styr på en employee - for nu er den presat
 
             ViewModel.PostTime.Execute(timeRegistartion);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
 
-            Toast.MakeText(context, "Det er sendt", ToastLength.Long).Show();
+            Toast.MakeText(context, "Det er sendt", ToastLength.Long).Show(); //Det er den lille sorte popup nede i bunden, ligesom en allert på iOS
 
         }
         private void spinner_ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
         {
             //tjekker hvilket task der er valgt og sætter den til at være = task
-          task = ViewModel.Tasks[e.Position];
+            //En task er den opgave der bliver udført for kunden, som medarbejderen vælger og registrere brugt tid til
+            task = ViewModel.Tasks[e.Position];
         }
         private void SetupTime()
         {
-            //Til timepicker - sætter hvad interval klokken skal køre
+            //Til timepicker - bestemmer hvilke værdier man kan vælge mellem på timePickeren
             hour = view.FindViewById<NumberPicker>(Resource.Id.numberPickerHour);
             minute = view.FindViewById<NumberPicker>(Resource.Id.numberPickerMinute);
             hour.MaxValue = 23;
@@ -125,7 +126,7 @@ namespace JATotalservice.Droid.Views
         protected void SetupBindings()
         {
             var set = this.CreateBindingSet<TimeView, TimeViewModel>(); //Creates the binding between the view and viewModel
-           // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
+                                                                        // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
             set.Apply();
         }
     }

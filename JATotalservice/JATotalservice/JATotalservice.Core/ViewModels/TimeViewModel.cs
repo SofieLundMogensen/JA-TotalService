@@ -14,8 +14,8 @@ namespace JATotalservice.Core.ViewModels
     {
         List<ModelLayer.Task> tasks;
         List<MaterialTask> materialTasks;
-        private readonly IMvxNavigationService _navigationService;
-        public IMvxCommand PostTime => new MvxAsyncCommand<TimeRegistartion>(PostTimeRegistration);
+        //private readonly IMvxNavigationService _navigationService;
+        public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
        
         public List<ModelLayer.Task> Tasks
         {
@@ -27,6 +27,7 @@ namespace JATotalservice.Core.ViewModels
             get { return materialTasks; }
             set { SetProperty(ref materialTasks, value); }
         }
+
         public TimeViewModel()
         {
             //Kalder alle tasks
@@ -37,9 +38,7 @@ namespace JATotalservice.Core.ViewModels
             {
                 MaterialTask materialTask = new MaterialTask()
                 {
-
                     Count = 200
-
                 };
                 materialTasks.Add(materialTask);
             }
@@ -56,12 +55,11 @@ namespace JATotalservice.Core.ViewModels
             Tasks = tasks;
         }
 
-        public async System.Threading.Tasks.Task PostTimeRegistration(TimeRegistartion timeRegistartion)
+        public void PostTimeRegistration(TimeRegistartion timeRegistartion)
         {
             //Kalder timeregistration service og poster timeregistration
-            TimeRegistartionService.PostTimeInfoAsync(timeRegistartion);
+            TimeRegistartionService.PostTimeInfo(timeRegistartion);
             materialTasks.Clear();
-            
         }
         public void AddMaterials(MaterialTask materialTask)
         {

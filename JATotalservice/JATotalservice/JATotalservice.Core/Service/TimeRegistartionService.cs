@@ -22,7 +22,7 @@ namespace JATotalservice.Core.Service
             return client.Execute<TimeRegistartion>(request).Data;
         }
 
-        public static void PostTimeInfoAsync(TimeRegistartion timeregistration)
+        public static void PostTimeInfo(TimeRegistartion timeregistration)
         {
             /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
                 var reguest = new RestRequest();
