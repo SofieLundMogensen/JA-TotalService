@@ -14,6 +14,7 @@ namespace DataAccessLayer
 
         public bool Create(Task obj)
         {
+            bool succes;
             MySqlConnection connection = new MySqlConnection(connStr);
             try
             {
@@ -25,19 +26,22 @@ namespace DataAccessLayer
                     cmd.CommandText = "INSERT INTO `TaskMaterial`(`TaskId`, `MaterialId`, `Amount`) VALUES (?,?,?)";
                     cmd.Parameters.Add("?TaskId", MySqlDbType.Int32).Value = obj.id;
                     
-                    cmd.Parameters.Add("?MaterialId", MySqlDbType.Int32).Value = element.Item1;
+                    cmd.Parameters.Add("?MaterialId", MySqlDbType.Int32).Value = element.Item1.id;
                     cmd.Parameters.Add("?Amount", MySqlDbType.Int32).Value = element.Item2;
                     
                     cmd.ExecuteNonQuery();
+
                 }
+                succes = true;
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+                succes = false;
             }
             connection.Close();
-            return true;
+            return succes;
         }
 
         public void Delete(int id)
