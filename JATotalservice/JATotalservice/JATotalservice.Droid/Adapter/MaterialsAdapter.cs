@@ -41,7 +41,7 @@ namespace JATotalservice.Droid.Adapter
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-
+            //sætter udsennet på Gridviewt
             Button button = null;
             if (convertView == null)
             {

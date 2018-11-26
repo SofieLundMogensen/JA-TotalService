@@ -24,8 +24,6 @@ namespace JATotalservice.Droid.Adapter
             this.materials = materials;
             this.context = context;
         }
-
-
         public override MaterialTask this[int position]
         {
             get
@@ -44,52 +42,43 @@ namespace JATotalservice.Droid.Adapter
         {
             return position;
         }
-
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             return GetCustomView(position, convertView, parent, false);
         }
-
         private View GetCustomView(int position, View convertView, ViewGroup parent, bool Bool)
         {
+            //Opsætning af hvordan listen skal se ud
             var view = convertView;
-           
-            try
+
+
+            if (view == null)
             {
-                if (view == null)
-                {
-                    var inflater = LayoutInflater.From(context);
-                    view = convertView ?? inflater.Inflate((Bool ? Resource.Layout.SpinnerItemDropdown : Resource.Layout.MaterialsListView), parent, false);
-
-                    //view = LayoutInflater.From(parent.Context).Inflate(Resource.Layout.MaterialsListView, parent, false);
-                }
-                var Material = view.FindViewById<Spinner>(Resource.Id.dropdown);
-                var count = view.FindViewById<TextView>(Resource.Id.Text);
-                List<Material> tempMaterials = new List<Material>();
-
-                for (int i = 1; i <= 10; i++)
-                {
-
-                    Material material = new Material
-                    {
-                        id = i,
-                        name = "item" + i,
-                        description = "jaja",
-                        price = 200
-                    };
-                    tempMaterials.Add(material);
-                }
-                Material.Adapter = new MaterialsDropdownAdapter(tempMaterials, context);
-                // Material.Adapter = 
-                count.Text = "200";
+                var inflater = LayoutInflater.From(context);
+                view = convertView ?? inflater.Inflate((Bool ? Resource.Layout.SpinnerItemDropdown : Resource.Layout.MaterialsListView), parent, false);
             }
-            catch (Exception ex)
+            var Material = view.FindViewById<Spinner>(Resource.Id.dropdown);
+            var count = view.FindViewById<TextView>(Resource.Id.Text);
+
+            //TODO: Have mulige materialer med ud fra viewet?? eller finde en måde at kalde dem på?
+            List<Material> tempMaterials = new List<Material>();
+
+            for (int i = 1; i <= 10; i++)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                Material material = new Material
+                {
+                    id = i,
+                    name = "item" + i,
+                    description = "jaja",
+                    price = 200
+                };
+                tempMaterials.Add(material);
             }
-            finally { }
+            //Sætter adapter på en ny liste i listen
+            Material.Adapter = new MaterialsDropdownAdapter(tempMaterials, context);
+            count.Text = "200";
+
             return view;
-
         }
     }
 }

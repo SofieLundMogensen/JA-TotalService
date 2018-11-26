@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MvvmCross.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace JATotalservice.Core.ViewModels
 {
-    class EstimateViewModel
+    public class EstimateViewModel : MvxViewModel
     {
     }
 }

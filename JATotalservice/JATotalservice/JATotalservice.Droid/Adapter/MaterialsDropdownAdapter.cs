@@ -45,13 +45,10 @@ namespace JATotalservice.Droid.Adapter
         private View GetCustomView(int position, View convertView, ViewGroup parent, bool dropdown)
         {
 
-            //Switch your layout as you like it
-
+            //sætter hvordan spinner/Dropdown skal se ud
             var item = Materials[position];
-
             var inflater = LayoutInflater.From(context);
             var view = convertView ?? inflater.Inflate((dropdown ? Resource.Layout.SpinnerItemDropdown : Resource.Layout.SpinnerItemText), parent, false);
-
             var text = view.FindViewById<TextView>(Resource.Id.text);
 
             if (text != null)

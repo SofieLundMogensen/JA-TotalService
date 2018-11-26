@@ -33,7 +33,7 @@ namespace JATotalservice.Core.ViewModels
 
         public async Task Some1Method()
         {
-            await _navigationService.Navigate<MaterialsViewModel>();
+            await _navigationService.Navigate<TimeViewModel>();
         }
         
 

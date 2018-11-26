@@ -7,44 +7,41 @@ using System.Text;
 using ModelLayer;
 using RestSharp;
 
-namespace JATotalservice.Core.ModelLayer
+namespace JATotalservice.Core.Service
 {
     public class TimeRegistartionService
     {
         private static readonly HttpClient _Client = new HttpClient();
-        
+
+        static RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/");
+
         public static TimeRegistartion getTimeInfo(int id)
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Get{id}");
-            IRestRequest request = new RestRequest(Method.GET);
+            IRestRequest request = new RestRequest("Get{id}", Method.GET);
             request.AddUrlSegment("id", id.ToString());
-            IRestResponse<TimeRegistartion> response = client.Execute<TimeRegistartion>(request);
-            TimeRegistartion timeRegistartion = response.Data;
-            return timeRegistartion;
+            return client.Execute<TimeRegistartion>(request).Data;
         }
 
-        public static async System.Threading.Tasks.Task postTimeInfoAsync(TimeRegistartion timeregistration)
+        public static void PostTimeInfo(TimeRegistartion timeregistration)
         {
-         /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
-             var reguest = new RestRequest();
-             reguest.Method = Method.POST;
-             reguest.AddHeader("Accept", "application/json");
+            /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
+                var reguest = new RestRequest();
+                reguest.Method = Method.POST;
+                reguest.AddHeader("Accept", "application/json");
+
+                reguest.AddObject(timeregistration);
+                var response = client.Execute(reguest);
+               /* IRestRequest request = new RestRequest(Method.POST);
+                request.AddHeader("Accept", "application/Json");
+                request.AddObject(timeregistration);
+                request.RequestFormat = DataFormat.Json;
+                request.JsonSerializer.ContentType = "text/Json";
+                var response = client.Execute(request);*/
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
             
-             reguest.AddObject(timeregistration);
-             var response = client.Execute(reguest);
-            /* IRestRequest request = new RestRequest(Method.POST);
-             request.AddHeader("Accept", "application/Json");
-             request.AddObject(timeregistration);
-             request.RequestFormat = DataFormat.Json;
-             request.JsonSerializer.ContentType = "text/Json";
-             var response = client.Execute(request);*/
-
-          var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
-
-
             string url = "http://jatotalservice.slund.info/api/TimeRegistration/Post";
-
-
+            
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
@@ -62,7 +59,7 @@ namespace JATotalservice.Core.ModelLayer
                 var result = streamReader.ReadToEnd();
             }
         }
-        public static void putTimeInfo(TimeRegistartion timeregistration1)
+        public static void PutTimeInfo(TimeRegistartion timeregistration1)
         {
             var json1 = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration1);
 
@@ -84,19 +81,17 @@ namespace JATotalservice.Core.ModelLayer
                 var result = streamReader.ReadToEnd();
             }
         }
-            public static void DeleteTimeInfo(int id)
-            {
-                RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Delete{id}");
-                IRestRequest request = new RestRequest(Method.DELETE);
-                request.AddUrlSegment("id", id.ToString());
-                client.Execute<TimeRegistartion>(request);
-            }
+        public static void DeleteTimeInfo(int id)
+        {
+            IRestRequest request = new RestRequest("Delete{id}", Method.DELETE);
+            request.AddUrlSegment("id", id.ToString());
+            client.Execute<TimeRegistartion>(request);
+        }
 
         public static List<TimeRegistartion> GetAllTimeInfo()
         {
-            RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/GetAll");
-            IRestRequest request = new RestRequest(Method.GET);
-            return client.Execute <List<TimeRegistartion>>(request).Data;          
+            IRestRequest request = new RestRequest("GetAll", Method.GET);
+            return client.Execute<List<TimeRegistartion>>(request).Data;
         }
 
     }
