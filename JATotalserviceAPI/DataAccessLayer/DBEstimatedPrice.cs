@@ -19,8 +19,8 @@ namespace DataAccessLayer
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Id`, `Estimatedtime`) VALUES (?,?)";
-                cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
+                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`) VALUES (?)";
+                //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
                 cmd.Parameters.Add("?Estimatedtime", MySqlDbType.Int32).Value = obj.estimatedTime;
                 cmd.ExecuteNonQuery();
             }
