@@ -8,6 +8,6 @@ namespace ModelLayer
     {
         public int Id { get; set; }
         public int estimatedTime { get; set; }
-        public List<Material> materials { get; set; }
+        public List<Tuple<Material, int>> materials { get; set; }
     }
 }

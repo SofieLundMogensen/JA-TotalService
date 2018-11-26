@@ -11,6 +11,6 @@ namespace ModelLayer
         public string description { get; set; }
         public bool isComplete { get; set; }
         public List<TimeRegistartion> timeRegistrations { get; set; }
-        public List<Material> materials { get; set; }
+        public List<Tuple<Material, int>> materials { get; set; }
     }
 }
