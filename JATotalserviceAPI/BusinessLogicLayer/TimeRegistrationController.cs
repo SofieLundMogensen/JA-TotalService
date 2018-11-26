@@ -9,9 +9,12 @@ namespace BusinessLogicLayer
     public class TimeRegistrationController : IController<TimeRegistartion>
     {
         IDB<TimeRegistartion> db = new DBTimeRegistration();
+        TaskMaterialController taskMaterialController = new TaskMaterialController();
+
         public void Create(TimeRegistartion obj)
         {
             db.Create(obj);
+            taskMaterialController.Create(obj.task);
         }
         public void Delete(int id)
         {
