@@ -20,8 +20,8 @@ namespace DataAccessLayer
 
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "INSERT INTO `TimeRegistration`(`Id`, `EndTime`, `TaskId`, `StartTime`, `EmployeeId`) VALUES(?,?,?,?,?)";
-                cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
+                cmd.CommandText = "INSERT INTO `TimeRegistration`(`EndTime`, `TaskId`, `StartTime`, `EmployeeId`) VALUES(?,?,?,?)";
+                //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
                 cmd.Parameters.Add("?EndTime", MySqlDbType.DateTime).Value = obj.endTime;
                 cmd.Parameters.Add("?TaskId", MySqlDbType.Int32).Value = obj.task.id;
                 cmd.Parameters.Add("?StartTime", MySqlDbType.DateTime).Value = obj.startTime;
