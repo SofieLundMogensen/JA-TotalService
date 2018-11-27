@@ -51,11 +51,16 @@ namespace JATotalservice.Droid.Views
             add.Click += delegate { AddMaterial(); };
 
             //MaterialList 
-            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialTasks, view.Context);
+            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
             Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
 
+            // var f = materialsListViewAdapter.materials;
+            //  materialsListViewAdapter.Material.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(ItemSelected);
+            // materialsListViewAdapter.
+
+            
             //Send Timeregistration
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
             sendTimeRegistration.Click += delegate { sendData(view.Context); };
@@ -67,10 +72,10 @@ namespace JATotalservice.Droid.Views
         private void AddMaterial()
         {
             //Adds a material to the MaterialTask list
-            MaterialTask materialTask = new MaterialTask();
-            ViewModel.AddMaterials(materialTask);
-            Materials.Adapter = materialsListViewAdapter;
-            Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
+            
+            ViewModel.AddMaterials(Tuple.Create(new Material { id = 1}, 1));
+          //Materials.Adapter = materialsListViewAdapter;
+         Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
         }
 
         private void sendData(Context context)
@@ -85,7 +90,10 @@ namespace JATotalservice.Droid.Views
             timeRegistartion.startTime = new DateTime(date.Year, date.Month, date.Day, hourS, minS, 00); //He last parameter is sceond, and we dont use that, so we ar setting it to 0
             timeRegistartion.endTime = new DateTime(date.Year, date.Month, date.Day, hourE, minE, 00);
             timeRegistartion.task = task;
-            timeRegistartion.Id = 1; //TODO: Slettes når vi har fundet ud af db auto id
+
+            var MaterialsAmount = materialsListViewAdapter.materials;
+            ViewModel.MaterialsAmount = MaterialsAmount;
+
                                      //TODO: Koble de valgte matrialer på med antal
 
             timeRegistartion.employee = new Employee { Id = 1 }; //TODO: Fjernes når vi har styr på en employee - for nu er den presat
@@ -103,6 +111,14 @@ namespace JATotalservice.Droid.Views
             //En task er den opgave der bliver udført for kunden, som medarbejderen vælger og registrere brugt tid til
             task = ViewModel.Tasks[e.Position];
         }
+        private void ItemSelected(object sender, AdapterView.ItemSelectedEventArgs e)
+        {
+            //tjekker hvilket task der er valgt og sætter den til at være = task
+            //En task er den opgave der bliver udført for kunden, som medarbejderen vælger og registrere brugt tid til
+           // task = ViewModel.Tasks[e.Position];
+        }
+
+
         private void SetupTime()
         {
             //Til timepicker - bestemmer hvilke værdier man kan vælge mellem på timePickeren
@@ -126,7 +142,8 @@ namespace JATotalservice.Droid.Views
         protected void SetupBindings()
         {
             var set = this.CreateBindingSet<TimeView, TimeViewModel>(); //Creates the binding between the view and viewModel
-                                                                        // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
+                 //set.Bind(Materials).For(m => m.)
+            // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
             set.Apply();
         }
     }

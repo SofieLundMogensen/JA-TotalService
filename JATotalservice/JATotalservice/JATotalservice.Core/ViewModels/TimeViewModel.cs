@@ -13,7 +13,7 @@ namespace JATotalservice.Core.ViewModels
     public class TimeViewModel : MvxViewModel
     {
         List<ModelLayer.Task> tasks;
-        List<MaterialTask> materialTasks;
+        List<Tuple<Material, int>> materialsAmounts;
         //private readonly IMvxNavigationService _navigationService;
         public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
        
@@ -22,30 +22,23 @@ namespace JATotalservice.Core.ViewModels
             get { return tasks; }
             set { SetProperty(ref tasks, value); }
         }
-        public List<MaterialTask> MaterialTasks
+        public List<Tuple<Material, int>> MaterialsAmount
         {
-            get { return materialTasks; }
-            set { SetProperty(ref materialTasks, value); }
+            get { return materialsAmounts; }
+            set { SetProperty(ref materialsAmounts, value); }
         }
 
         public TimeViewModel()
         {
             //Kalder alle tasks
             GetTasks();
-            //TODO: Slettes på et tidpunkt
-            MaterialTasks = new List<MaterialTask>();
-            for (int i = 0; i < 2; i++)
-            {
-                MaterialTask materialTask = new MaterialTask()
-                {
-                    Count = 200
-                };
-                materialTasks.Add(materialTask);
-            }
+
+            MaterialsAmount = new List<Tuple<Material, int>>();
         }
 
         public void GetTasks()
         {
+
             //TODO: KALD Service - Kald de forskellige opgaver fra service
             ModelLayer.Task task = new ModelLayer.Task();
             var tasks = new List<ModelLayer.Task>();
@@ -57,14 +50,15 @@ namespace JATotalservice.Core.ViewModels
 
         public void PostTimeRegistration(TimeRegistartion timeRegistartion)
         {
+            timeRegistartion.task.materials = MaterialsAmount;
             //Kalder timeregistration service og poster timeregistration
             TimeRegistartionService.PostTimeInfo(timeRegistartion);
-            materialTasks.Clear();
+            materialsAmounts.Clear();
         }
-        public void AddMaterials(MaterialTask materialTask)
+        public void AddMaterials(Tuple<Material, int> materialAmount)
         {
             //tilføjer en materialertask til matrialertask listen
-            MaterialTasks.Add(materialTask);
+            materialsAmounts.Add(materialAmount);
         }
 
     }
