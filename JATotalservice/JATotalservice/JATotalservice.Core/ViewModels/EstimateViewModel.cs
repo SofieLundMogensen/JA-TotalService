@@ -12,6 +12,7 @@ namespace JATotalservice.Core.ViewModels
     {
         //public IMvxCommand PostEstimated => new MvxCommand<EstimatedPrice>(PostEstimatedPrice);
         List<Material> materials;
+        List<MaterialTask> materialTasks;
 
         List<Tuple<Material, int>> materialsAmounts;
         public List<Material> Materials
@@ -25,10 +26,31 @@ namespace JATotalservice.Core.ViewModels
             set { SetProperty(ref materialsAmounts, value); }
         }
 
+        public List<MaterialTask> MaterialTasks
+        {
+            get { return materialTasks; }
+            set { SetProperty(ref materialTasks, value); }
+        }
 
         public EstimateViewModel()
         {
             GetMaterials();
+
+            MaterialTasks = new List<MaterialTask>();
+            for (int i = 0; i < 2; i++)
+            {
+                MaterialTask materialTask = new MaterialTask()
+                {
+                    Count = 200
+                };
+                materialTasks.Add(materialTask);
+            }
+        }
+
+        public void AddMaterials(MaterialTask materialTask)
+        {
+            //tilføjer en materialertask til matrialertask listen
+            MaterialTasks.Add(materialTask);
         }
 
         public void GetMaterials()

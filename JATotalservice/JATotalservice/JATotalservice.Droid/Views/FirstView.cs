@@ -82,10 +82,10 @@ namespace JATotalservice.Droid.Views
             //t.navigateCommand.Execute();
 
             Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
-            navigateToTimeButton.Click += delegate { ViewModel.navigateCommand.Execute(); };
+            navigateToTimeButton.Click += delegate { ViewModel.NavigateToTimeRegistrationCommand.Execute(); };
 
             Button navigateToEstimateButton = FindViewById<Button>(Resource.Id.navigateToEstimateView);
-            navigateToEstimateButton.Click += delegate { StartActivity(typeof(EstimateView)); };
+            navigateToEstimateButton.Click += delegate { ViewModel.NavigateToEstimatePriceCommand.Execute(); };
         }
     }
 }

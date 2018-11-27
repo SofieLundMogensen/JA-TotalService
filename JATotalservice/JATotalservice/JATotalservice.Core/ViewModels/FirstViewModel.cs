@@ -10,8 +10,8 @@ namespace JATotalservice.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
-        public IMvxCommand navigateCommand => new MvxAsyncCommand(Some1Method);
-
+        public IMvxCommand NavigateToTimeRegistrationCommand => new MvxAsyncCommand(NavigateToTimeRegistration);
+        public IMvxCommand NavigateToEstimatePriceCommand => new MvxAsyncCommand(NavigateToEstimatePrice);
         public FirstViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -31,11 +31,16 @@ namespace JATotalservice.Core.ViewModels
             await base.Initialize();
         }
 
-        public async Task Some1Method()
+        public async Task NavigateToTimeRegistration()
         {
             await _navigationService.Navigate<TimeViewModel>();
         }
         
+        public async Task NavigateToEstimatePrice()
+        {
+            await _navigationService.Navigate<EstimateViewModel>();
+        }
+
 
         string hello = "Hello MvvmCross";
         public string Hello

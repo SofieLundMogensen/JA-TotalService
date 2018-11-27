@@ -24,6 +24,7 @@ namespace JATotalservice.Droid.Views
     {
 
         protected override int FragmentId => Resource.Layout.TimeView;
+
         ListView Materials;
         Button sendTimeRegistration;
         Task task;
@@ -34,6 +35,7 @@ namespace JATotalservice.Droid.Views
         Spinner TaskDropDown;
         View view;
         MaterialsListViewAdapter materialsListViewAdapter;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
