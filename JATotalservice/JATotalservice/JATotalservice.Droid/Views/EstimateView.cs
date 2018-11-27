@@ -22,6 +22,7 @@ namespace JATotalservice.Droid.Views
     {
         protected override int FragmentId => Resource.Layout.EstimateView;
 
+        Button sendTimeRegistration;
         NumberPicker estimatedTimeNumberPicker;
 
         ListView Materials;
@@ -37,9 +38,11 @@ namespace JATotalservice.Droid.Views
             add.Click += delegate { AddMaterial(); };
 
             //MaterialList 
-            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialTasks, view.Context);
-            Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView);
-            Materials.Adapter = materialsListViewAdapter;
+            //Der er ikke gjort brug af bindings fordi det kan man ikke gøre på lister
+            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialTasks, view.Context); //Laver en ny adapter til listen, og får dataen med fra viewModellen, da det er den som laver cellerne
+            Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView); //Finder listviewet fra designet
+            Materials.Adapter = materialsListViewAdapter; //Sætter adapteren på listview'et
+            //Det er den der opdatere listen sådan den ser pæn ud ihenhold til højde ol.
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
 
             //Setup for estimated time picker
@@ -47,10 +50,22 @@ namespace JATotalservice.Droid.Views
             estimatedTimeNumberPicker.MinValue = 0;
             estimatedTimeNumberPicker.MaxValue = 1000;
 
+            //Send Timeregistration
+            sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
+            sendTimeRegistration.Click += delegate { CalculatePriceButtonPressed(view.Context); };
 
             return view;
         }
 
+        private void CalculatePriceButtonPressed(Context context)
+        {
+            EstimatedPrice estimatedPrice = new EstimatedPrice();
+            estimatedPrice.estimatedTime = estimatedTimeNumberPicker.Value;
+            
+            int calculatedPrice = ViewModel.PostEstimatedPrice(estimatedPrice);
+
+            Toast.MakeText(context, "Det vil koste " + calculatedPrice + "kroner", ToastLength.Long).Show();
+        }
 
         private void AddMaterial()
         {

@@ -45,8 +45,6 @@
 				android:background="#000" 
 			/>
 
-			
-
 			<TextView
                 android:text="Estimeret Tid:"
                 android:layout_width="match_parent"
