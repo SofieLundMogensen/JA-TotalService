@@ -101,8 +101,11 @@ namespace JATotalservice.Droid.Adapter
             {
                 if (Int32.TryParse(count.Text, out int pharsedAmount)) //Tjekker om det angivne antal kan formateres om til en int
                     {
-                    TimeViewModel.MaterialsAmount.Add(Tuple.Create(materials[position].Item1, pharsedAmount)); //Tilføjer den nye tuple
-                    TimeViewModel.MaterialsAmount.Remove(materials[position]); //Fjerne den gamle, da man ikke kan ændre på en tuple
+                    
+                    //TimeViewModel.MaterialsAmount.Add(Tuple.Create(materials[position].Item1, pharsedAmount)); //Tilføjer den nye tuple
+                    //TimeViewModel.MaterialsAmount.Remove(materials[position]); //Fjerne den gamle, da man ikke kan ændre på en tuple
+
+                    TimeViewModel.MaterialsAmount[position] = Tuple.Create(materials[position].Item1, pharsedAmount); //Tilføjer den nye tuple
                 }
 
             };
