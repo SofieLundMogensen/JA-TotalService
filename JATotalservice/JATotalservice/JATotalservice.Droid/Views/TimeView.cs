@@ -71,11 +71,14 @@ namespace JATotalservice.Droid.Views
 
         private void AddMaterial()
         {
+           // ViewModel.MaterialsAmount = materialsListViewAdapter.materials;
             //Adds a material to the MaterialTask list
             
             ViewModel.AddMaterials(Tuple.Create(new Material { id = 1}, 1));
-          //Materials.Adapter = materialsListViewAdapter;
-         Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
+           materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
+           
+            Materials.Adapter = materialsListViewAdapter;
+            Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
         }
 
         private void sendData(Context context)
@@ -91,8 +94,8 @@ namespace JATotalservice.Droid.Views
             timeRegistartion.endTime = new DateTime(date.Year, date.Month, date.Day, hourE, minE, 00);
             timeRegistartion.task = task;
 
-            var MaterialsAmount = materialsListViewAdapter.materials;
-            ViewModel.MaterialsAmount = MaterialsAmount;
+            //var MaterialsAmount = materialsListViewAdapter.materials;
+            //ViewModel.MaterialsAmount = MaterialsAmount;
 
                                      //TODO: Koble de valgte matrialer på med antal
 

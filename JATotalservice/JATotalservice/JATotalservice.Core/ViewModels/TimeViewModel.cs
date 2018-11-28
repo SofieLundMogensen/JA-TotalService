@@ -53,12 +53,12 @@ namespace JATotalservice.Core.ViewModels
             timeRegistartion.task.materials = MaterialsAmount;
             //Kalder timeregistration service og poster timeregistration
             TimeRegistartionService.PostTimeInfo(timeRegistartion);
-            materialsAmounts.Clear();
+            MaterialsAmount.Clear();
         }
         public void AddMaterials(Tuple<Material, int> materialAmount)
         {
             //tilføjer en materialertask til matrialertask listen
-            materialsAmounts.Add(materialAmount);
+            MaterialsAmount.Add(materialAmount);
         }
 
     }

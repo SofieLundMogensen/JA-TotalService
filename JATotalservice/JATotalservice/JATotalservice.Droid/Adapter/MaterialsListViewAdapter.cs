@@ -15,13 +15,14 @@ using static Android.Support.V7.Widget.RecyclerView;
 
 namespace JATotalservice.Droid.Adapter
 {
-    public class MaterialsListViewAdapter :  BaseAdapter<Tuple<Material, int>>
+    public class MaterialsListViewAdapter : BaseAdapter<Tuple<Material, int>>
     {
         List<Material> tempMaterials;
         public Spinner Material;
         public List<Tuple<Material, int>> materials;
         Context context;
         TimeViewModel TimeViewModel;
+        int selected;
         public MaterialsListViewAdapter(List<Tuple<Material, int>> materials, Context context, TimeViewModel timeViewModel)
         {
             this.TimeViewModel = timeViewModel;
@@ -36,7 +37,7 @@ namespace JATotalservice.Droid.Adapter
             }
         }
 
-       
+
         public override int Count
         {
             get
@@ -56,6 +57,7 @@ namespace JATotalservice.Droid.Adapter
         {
             //Opsætning af hvordan listen skal se ud
             var view = convertView;
+
 
 
             if (view == null)
@@ -80,35 +82,63 @@ namespace JATotalservice.Droid.Adapter
                 };
                 tempMaterials.Add(material);
             }
+            //materials[position].Item1.id
+
             //Sætter adapter på en ny liste i listen
             Material.Adapter = new MaterialsDropdownAdapter(tempMaterials, context);
-           // Material.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner_ItemSelected);
-            Material.ItemSelected += delegate { spinner_ItemSelected(position); };
+            selected = tempMaterials.FindIndex(m => m.id == materials[position].Item1.id);
+
+            Material.ItemSelected += (object sender, AdapterView.ItemSelectedEventArgs e) =>
+            {            
+                var M = tempMaterials[e.Position];
+                TimeViewModel.MaterialsAmount[position].Item1.id = M.id;
+            };
             count.Text = materials[position].Item2.ToString();
-            count.AfterTextChanged += delegate {
+            count.AfterTextChanged += delegate
+            {
                 TimeViewModel.MaterialsAmount.Add(Tuple.Create(materials[position].Item1, Int32.Parse(count.Text)));
                 TimeViewModel.MaterialsAmount.Remove(materials[position]);
             };
+            
+
+            Material.SetSelection(selected);
             return view;
         }
 
-      
-            private void spinner_ItemSelected(int pos)
+
+      /*  private void spinner_ItemSelected(int pos)
         {
+           // var MaterialId = materials[pos].Item1.id;
+
+
+           // var posM = tempMaterials.FindIndex(m => m.id == MaterialId);
+
+            //Hvad er den er - item 1 eller item 2
+            selected = tempMaterials.FindIndex(m => m.id == materials[pos].Item1.id);
+
+            var tes = Material.SelectedItemId;
+
+            //Den vi vælger
             int MPos = int.Parse(Material.SelectedItemId.ToString());
-            
-            var M = tempMaterials[MPos];
+
+            var t = Material.SelectedItemPosition;
+
+          
+                var M = tempMaterials[MPos];
+                TimeViewModel.MaterialsAmount[pos].Item1.id = M.id;
+           
 
 
-            var testt = TimeViewModel.MaterialsAmount[pos];
-            TimeViewModel.MaterialsAmount[pos].Item1.id = M.id;
+          
 
-            /*
-            var count = TimeViewModel.MaterialsAmount;
-            TimeViewModel.MaterialsAmount.Add(Tuple.Create(M, testt.Item2));
-            TimeViewModel.MaterialsAmount.Remove(testt);
-            var countafter = TimeViewModel.MaterialsAmount;*/
 
-        }
+            var testt = materials[pos];
+         
+            //materials.Add(Tuple.Create(M, testt.Item2));
+            //materials.Remove(testt);
+
+
+
+        }*/
     }
 }
