@@ -55,11 +55,7 @@ namespace JATotalservice.Droid.Views
             Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
-
-            // var f = materialsListViewAdapter.materials;
-            //  materialsListViewAdapter.Material.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(ItemSelected);
-            // materialsListViewAdapter.
-
+            
             
             //Send Timeregistration
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
@@ -71,11 +67,10 @@ namespace JATotalservice.Droid.Views
 
         private void AddMaterial()
         {
-           // ViewModel.MaterialsAmount = materialsListViewAdapter.materials;
             //Adds a material to the MaterialTask list
             
             ViewModel.AddMaterials(Tuple.Create(new Material { id = 1}, 1));
-           materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
+            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
            
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?

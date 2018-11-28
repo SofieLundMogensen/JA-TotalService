@@ -24,8 +24,7 @@ namespace JATotalservice.Core.ViewModels
             get { return materialsAmounts; }
             set { SetProperty(ref materialsAmounts, value); }
         }
-
-
+        
         public EstimateViewModel()
         {
             GetMaterials();
