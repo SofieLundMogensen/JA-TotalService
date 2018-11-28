@@ -9,9 +9,10 @@ namespace BusinessLogicLayer
     public class EstimatedPriceController : IController<EstimatedPrice>
     {
         IDB<EstimatedPrice> db = new DBEstimatedPrice();
+
         public void Create(EstimatedPrice obj)
         {
-            var estimatedPrice = db.Create(obj);
+            db.Create(obj);
         }
         public void Delete(int id)
         {
