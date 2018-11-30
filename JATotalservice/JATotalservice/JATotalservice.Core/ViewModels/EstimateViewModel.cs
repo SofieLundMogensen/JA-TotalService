@@ -12,6 +12,7 @@ namespace JATotalservice.Core.ViewModels
     {
         //public IMvxCommand PostEstimated => new MvxCommand<EstimatedPrice>(PostEstimatedPrice);
         List<Material> materials;
+        List<MaterialTask> materialTasks;
 
         List<Tuple<Material, int>> materialsAmounts;
         public List<Material> Materials
