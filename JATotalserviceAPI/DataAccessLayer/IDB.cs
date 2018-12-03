@@ -10,6 +10,6 @@ namespace BusinessLogicLayer
         T Get(int id);
         List<T> GetAll();
         bool Update(T obj);
-        void Delete(int id);
+        bool Delete(int id);
     }
 }

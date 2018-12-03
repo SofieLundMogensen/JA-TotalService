@@ -6,29 +6,33 @@ using System.Text;
 
 namespace BusinessLogicLayer
 {
-    public class EstimatedPriceController : IController<EstimatedPrice>
+    public class MaterialController : IController<Material>
     {
-        IDB<EstimatedPrice> db = new DBEstimatedPrice();
-
-        public bool Create(EstimatedPrice obj)
+        IDB<Material> db = new DBMaterial();
+       
+        public bool Create(Material obj)
         {
             return db.Create(obj);
         }
+
         public bool Delete(int id)
         {
-           return db.Delete(id);
+            return db.Delete(id);
         }
-        public EstimatedPrice Get(int id)
+
+        public Material Get(int id)
         {
             return db.Get(id);
         }
-        public List<EstimatedPrice> GetAll()
+
+        public List<Material> GetAll()
         {
             return db.GetAll();
         }
-        public bool Update(EstimatedPrice obj)
+
+        public bool Update(Material obj)
         {
-           return db.Update(obj);
+            return db.Update(obj);
         }
     }
 }

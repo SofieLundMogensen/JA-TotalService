@@ -15,16 +15,16 @@ namespace ServiceAPI.Controllers
 
         // POST api/EstimatedPrice
         [HttpPost("Post")]
-        public void Post(EstimatedPrice estimatedPrice)
+        public bool Post(EstimatedPrice estimatedPrice)
         {
-            estimatedPriceController.Create(estimatedPrice);
+            return estimatedPriceController.Create(estimatedPrice);
         }
 
         // DELETE api/EstimatedPrice
         [HttpDelete(("Delete") + ("{id}"))]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            estimatedPriceController.Delete(id);
+            return estimatedPriceController.Delete(id);
         }
 
         [HttpGet(("Get") + ("{id}"))]
@@ -40,9 +40,9 @@ namespace ServiceAPI.Controllers
         }
 
         [HttpPut("Put")]
-        public void Update(EstimatedPrice estimatedPrice)
+        public bool Update(EstimatedPrice estimatedPrice)
         {
-            estimatedPriceController.Update(estimatedPrice);
+            return estimatedPriceController.Update(estimatedPrice);
         }
     }
 }

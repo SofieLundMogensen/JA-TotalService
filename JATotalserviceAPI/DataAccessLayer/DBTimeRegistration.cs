@@ -14,6 +14,7 @@ namespace DataAccessLayer
 
         public bool Create(TimeRegistartion obj)
         {
+            bool succes = false;
             try
             {
                 connection.Open();
@@ -27,17 +28,19 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("?StartTime", MySqlDbType.DateTime).Value = obj.startTime;
                 cmd.Parameters.Add("?EmployeeId", MySqlDbType.Int32).Value = obj.employee.Id;
                 cmd.ExecuteNonQuery();
+                succes = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
             connection.Close();
-            return true;
+            return succes;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
+            bool succes = false;
             try
             {
                 connection.Open();
@@ -46,12 +49,14 @@ namespace DataAccessLayer
                 cmd.CommandText = "DELETE FROM `TimeRegistration` WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
                 cmd.ExecuteNonQuery();
+                succes = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
             connection.Close();
+            return succes;
         }
 
         public TimeRegistartion Get(int id)
@@ -116,6 +121,7 @@ namespace DataAccessLayer
 
         public bool Update(TimeRegistartion obj)
         {
+            bool succes = false;
             try
             {
                 connection.Open();
@@ -128,13 +134,14 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@StartTime", MySqlDbType.DateTime).Value = obj.startTime;
                 cmd.Parameters.Add("@EmployeeId", MySqlDbType.Int32).Value = obj.employee.Id;
                 cmd.ExecuteNonQuery();
+                succes = true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
             connection.Close();
-            return true;
+            return succes;
         }
     }
 }
