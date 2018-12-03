@@ -57,7 +57,7 @@ namespace Test
             DBMaterial DbMaterial = new DBMaterial();
             var update = new Material();
             update.id = 2;
-            update.name = "Stone";
+            update.name = "Sten";
             update.price = 200;
 
             //Act
@@ -72,7 +72,7 @@ namespace Test
         {
             //Arrange
             DBMaterial material = new DBMaterial();
-            int id = 4; //OPS - Sæt ny værdi inden test køres eller bliver intet slettet
+            int id = 7; //OPS - Sæt ny værdi inden test køres eller bliver intet slettet
 
             //Act
             var succes = material.Delete(id);
