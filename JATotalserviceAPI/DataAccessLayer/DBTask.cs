@@ -25,7 +25,7 @@ namespace DataAccessLayer
                 cmd.CommandText = "INSERT INTO `Task`(`Name`,`Description`,`isComplete`) VALUES (?,?,?)";
                 //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
                 cmd.Parameters.Add("?Name", MySqlDbType.String).Value = obj.name;
-                //Simple assignation
+                //Konventere bit om til en boolean
                 cmd.Parameters.Add("@isComplete", MySqlDbType.Bit);
                 var booleanValue = Convert.ToBoolean(cmd.Parameters["@isComplete"].Value);
                 cmd.Parameters["@isComplete"].Value = booleanValue;
