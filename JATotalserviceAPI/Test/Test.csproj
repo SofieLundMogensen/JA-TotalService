@@ -70,6 +70,7 @@
     <Compile Include="EstimatedPriceTest.cs" />
     <Compile Include="MaterialTest.cs" />
     <Compile Include="TaskMaterialTest.cs" />
+    <Compile Include="TaskTest.cs" />
     <Compile Include="TimeRegistrationTestcs.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
