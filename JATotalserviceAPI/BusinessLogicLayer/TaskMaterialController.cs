@@ -10,12 +10,12 @@ namespace BusinessLogicLayer
     {
         IDB<Task> db = new DBTaskMaterial();
 
-        public void Create(Task obj)
+        public bool Create(Task obj)
         {
-            db.Create(obj);
+           return db.Create(obj);
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace BusinessLogicLayer
             throw new NotImplementedException();
         }
 
-        public void Update(Task obj)
+        public bool Update(Task obj)
         {
             throw new NotImplementedException();
         }

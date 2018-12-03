@@ -11,14 +11,22 @@ namespace BusinessLogicLayer
         IDB<TimeRegistartion> db = new DBTimeRegistration();
         TaskMaterialController taskMaterialController = new TaskMaterialController();
 
-        public void Create(TimeRegistartion obj)
+        public bool Create(TimeRegistartion obj)
         {
-            db.Create(obj);
-            taskMaterialController.Create(obj.task);
+           
+            var succes = db.Create(obj);
+            if (succes)
+            {
+               taskMaterialController.Create(obj.task);
+            }
+            return succes;
+          
+          
         }
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            db.Delete(id);
+           return db.Delete(id);
+             
         }
 
         public TimeRegistartion Get(int id)
@@ -33,9 +41,10 @@ namespace BusinessLogicLayer
             //TODO: Get Task and Employee, kan først gøres engang når der er lavet DBLag til dem
         }
 
-        public void Update(TimeRegistartion obj)
+        public bool Update(TimeRegistartion obj)
         {
-            db.Update(obj);
+           return db.Update(obj);
+           
         }
     }
 }

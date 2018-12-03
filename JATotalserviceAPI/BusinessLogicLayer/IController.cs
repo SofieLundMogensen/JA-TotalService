@@ -6,10 +6,10 @@ namespace BusinessLogicLayer
 {
     interface IController<T>
     {
-        void Create(T obj);
+        bool Create(T obj);
         T Get(int id);
         List<T> GetAll();
-        void Update(T obj);
-        void Delete(int id);
+        bool Update(T obj);
+        bool Delete(int id);
     }
 }

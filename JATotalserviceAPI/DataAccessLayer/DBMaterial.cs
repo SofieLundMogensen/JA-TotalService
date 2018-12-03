@@ -7,11 +7,13 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public class DBEstimatedPrice : IDB<EstimatedPrice>
+
+    public class DBMaterial :IDB<Material>
     {
+
         string connStr = "server=mysql85.unoeuro.com;user=slund_info;database=slund_info_db_jatotalservice;port=3306;password=14Unicorn01";
 
-        public bool Create(EstimatedPrice obj)
+        public bool Create(Material obj)
         {
             bool succes = false;
             MySqlConnection conn = new MySqlConnection(connStr);
@@ -20,9 +22,11 @@ namespace DataAccessLayer
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`) VALUES (?)";
+                cmd.CommandText = "INSERT INTO `Material`(`Name`, `Price`, `Description`) VALUES (?,?,?)";
                 //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
-                cmd.Parameters.Add("?Estimatedtime", MySqlDbType.Int32).Value = obj.estimatedTime;
+                cmd.Parameters.Add("?Name", MySqlDbType.String).Value = obj.name;
+                cmd.Parameters.Add("?Price", MySqlDbType.Double).Value = obj.price;
+                cmd.Parameters.Add("?Description", MySqlDbType.String).Value = obj.description;
                 cmd.ExecuteNonQuery();
                 succes = true;
             }
@@ -36,14 +40,14 @@ namespace DataAccessLayer
 
         public bool Delete(int id)
         {
-            MySqlConnection connection = new MySqlConnection(connStr);
             bool succes = false;
+            MySqlConnection connection = new MySqlConnection(connStr);
             try
             {
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "DELETE FROM `EstimatedPrice` WHERE Id = @Id";
+                cmd.CommandText = "DELETE FROM `Material` WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
                 cmd.ExecuteNonQuery();
                 succes = true;
@@ -56,23 +60,24 @@ namespace DataAccessLayer
             return succes;
         }
 
-        public EstimatedPrice Get(int id)
+        public Material Get(int id)
         {
             MySqlConnection connection = new MySqlConnection(connStr);
-            EstimatedPrice estimatedPrice = new EstimatedPrice();
+            Material material = new Material();
             try
             {
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT * FROM `EstimatedPrice` WHERE Id = @Id";
+                cmd.CommandText = "SELECT * FROM `Material` WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    estimatedPrice.Id = reader.GetInt32(0);
-                    estimatedPrice.estimatedTime = reader.GetInt32(1);
-                    estimatedPrice.materials = null;
+                    material.id = reader.GetInt32(0);
+                    material.name = reader.GetString(1);
+                    material.price = reader.GetFloat(2);
+                    material.description = reader.GetString(3);
                 }
                 reader.Close();
             }
@@ -81,39 +86,40 @@ namespace DataAccessLayer
                 Console.WriteLine(e.ToString());
             }
             connection.Close();
-            return estimatedPrice;
+            return material;
         }
 
-        public List<EstimatedPrice> GetAll()
+        public List<Material> GetAll()
         {
             MySqlConnection connection = new MySqlConnection(connStr);
-            List<EstimatedPrice> estimatedPriceList = new List<EstimatedPrice>();
+            List<Material> materials = new List<Material>();
             try
             {
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT * FROM `EstimatedPrice`";
+                cmd.CommandText = "SELECT * FROM `Material`";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    EstimatedPrice estimatedPrice = new EstimatedPrice();
-                    estimatedPrice.Id = reader.GetInt32(0);
-                    estimatedPrice.estimatedTime = reader.GetInt32(1);
-                    estimatedPrice.materials = null;
-                    estimatedPriceList.Add(estimatedPrice);
+                    Material material = new Material();
+                    material.id = reader.GetInt32(0);
+                    material.name = reader.GetString(1);
+                    material.price = reader.GetFloat(2);
+                    material.description = reader.GetString(3);
+                    materials.Add(material);
                 }
                 reader.Close();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
             connection.Close();
-            return estimatedPriceList;
+            return materials;
         }
 
-        public bool Update(EstimatedPrice obj)
+        public bool Update(Material obj)
         {
             MySqlConnection connection = new MySqlConnection(connStr);
             bool succes = false;
@@ -122,10 +128,12 @@ namespace DataAccessLayer
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "UPDATE `EstimatedPrice` SET `Id`=@Id,`Estimatedtime`=@EstimatedTime WHERE Id = @Id";
-                cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = obj.Id;
-                cmd.Parameters.Add("@EstimatedTime", MySqlDbType.Int32).Value = obj.estimatedTime;
-
+               
+                cmd.CommandText = " UPDATE `Material` SET `Id`=@Id,`Name`=@Name,`Price`=@Price,`Description`=@Description WHERE Id = @Id";
+                cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = obj.id;
+                cmd.Parameters.Add("@Name", MySqlDbType.String).Value = obj.name;
+                cmd.Parameters.Add("@Price", MySqlDbType.Double).Value = obj.price;
+                cmd.Parameters.Add("@Description", MySqlDbType.String).Value = obj.description;
                 cmd.ExecuteNonQuery();
                 succes = true;
             }
@@ -134,7 +142,7 @@ namespace DataAccessLayer
                 Console.WriteLine(e.ToString());
             }
             connection.Close();
-            return false;
+            return succes;
         }
     }
 }
