@@ -7,31 +7,35 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public class DBEstimatedPrice : IDB<EstimatedPrice>
+    public class DBEstimatedPrice
     {
         string connStr = "server=mysql85.unoeuro.com;user=slund_info;database=slund_info_db_jatotalservice;port=3306;password=14Unicorn01";
 
-        public bool Create(EstimatedPrice obj)
+        public int Create(EstimatedPrice obj)
         {
-            bool succes = false;
+            
             MySqlConnection conn = new MySqlConnection(connStr);
             try
             {
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`) VALUES (?)";
+                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`) VALUES (?);" + "SELECT last_insert_id();";
                 //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
                 cmd.Parameters.Add("?Estimatedtime", MySqlDbType.Int32).Value = obj.estimatedTime;
-                cmd.ExecuteNonQuery();
-                succes = true;
+                //cmd.ExecuteNonQuery();
+
+                return Convert.ToInt32(cmd.ExecuteScalar());
+
+                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
             conn.Close();
-            return succes;
+
+            return -1;
         }
 
         public bool Delete(int id)

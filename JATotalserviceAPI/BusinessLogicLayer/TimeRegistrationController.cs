@@ -17,9 +17,9 @@ namespace BusinessLogicLayer
             var succes = db.Create(obj);
             if (succes)
             {
-               taskMaterialController.Create(obj.task);
+               return taskMaterialController.Create(obj.task);
             }
-            return succes;
+            return false;
           
           
         }

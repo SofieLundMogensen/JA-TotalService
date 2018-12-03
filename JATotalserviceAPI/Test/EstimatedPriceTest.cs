@@ -18,7 +18,7 @@ namespace Test
             //Arrange
             DBEstimatedPrice estimatedPrice = new DBEstimatedPrice();
             var create = new EstimatedPrice();
-            create.Id = 666;
+            //create.Id = 666;
             create.estimatedTime = 60;
             create.materials = null;
 
@@ -26,7 +26,7 @@ namespace Test
             var sucess = estimatedPrice.Create(create);
 
             //Assert
-            Assert.IsTrue(sucess);
+            Assert.AreNotEqual(-1, sucess);
         }
 
         [TestMethod]

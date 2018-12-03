@@ -7,34 +7,34 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    public class DBTaskMaterial : IDB<Task>
+    public class DBEstimatedPriceMaterial : IDB<EstimatedPrice>
     {
 
         string connStr = "server=mysql85.unoeuro.com;user=slund_info;database=slund_info_db_jatotalservice;port=3306;password=14Unicorn01";
 
-        public bool Create(Task obj)
+        public bool Create(EstimatedPrice obj)
         {
             bool succes;
             MySqlConnection connection = new MySqlConnection(connStr);
             try
             {
                 connection.Open();
-                foreach (var element in obj.materials)
+
+                foreach(var element in obj.materials)
                 {
                     MySqlCommand cmd = new MySqlCommand();
                     cmd.Connection = connection;
-                    cmd.CommandText = "INSERT INTO `TaskMaterial`(`TaskId`, `MaterialId`, `Amount`) VALUES (?,?,?)";
-                    cmd.Parameters.Add("?TaskId", MySqlDbType.Int32).Value = obj.id;
+                    cmd.CommandText = "INSERT INTO `EstimatedPriceMaterial`(`MaterialId`, `EstimatedPriceId`, `Amount`) VALUES (?,?,?)";
                     cmd.Parameters.Add("?MaterialId", MySqlDbType.Int32).Value = element.Item1.id;
+                    cmd.Parameters.Add("?EstimatedPriceId", MySqlDbType.Int32).Value = obj.Id;
                     cmd.Parameters.Add("?Amount", MySqlDbType.Int32).Value = element.Item2;
-                    
+
                     cmd.ExecuteNonQuery();
-
                 }
-                succes = true;
 
+                succes = true;
             }
-            catch (Exception e)
+            catch(Exception e)
             {
                 Console.WriteLine(e.ToString());
                 succes = false;
@@ -48,17 +48,17 @@ namespace DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public Task Get(int id)
+        public EstimatedPrice Get(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Task> GetAll()
+        public List<EstimatedPrice> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Task obj)
+        public bool Update(EstimatedPrice obj)
         {
             throw new NotImplementedException();
         }

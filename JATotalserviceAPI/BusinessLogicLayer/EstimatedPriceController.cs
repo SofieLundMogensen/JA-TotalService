@@ -8,11 +8,17 @@ namespace BusinessLogicLayer
 {
     public class EstimatedPriceController : IController<EstimatedPrice>
     {
-        IDB<EstimatedPrice> db = new DBEstimatedPrice();
-
+        DBEstimatedPrice db = new DBEstimatedPrice();
+        EstimatedPriceMaterialController estimatedPriceMaterialController = new EstimatedPriceMaterialController();
         public bool Create(EstimatedPrice obj)
         {
-            return db.Create(obj);
+            var succes = db.Create(obj);
+            obj.Id = succes;
+            if (succes != -1)
+            {
+                return estimatedPriceMaterialController.Create(obj);
+            }
+            return false;
         }
         public bool Delete(int id)
         {
