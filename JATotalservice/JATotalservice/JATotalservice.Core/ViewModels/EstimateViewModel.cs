@@ -25,10 +25,18 @@ namespace JATotalservice.Core.ViewModels
             get { return materialsAmounts; }
             set { SetProperty(ref materialsAmounts, value); }
         }
-        
+
+        public List<MaterialTask> MaterialTasks
+        {
+            get { return materialTasks; }
+            set { SetProperty(ref materialTasks, value); }
+        }
+
         public EstimateViewModel()
         {
             GetMaterials();
+
+            MaterialsAmount = new List<Tuple<Material, int>>();
         }
 
         public void GetMaterials()
@@ -53,11 +61,16 @@ namespace JATotalservice.Core.ViewModels
         }
         public int PostEstimatedPrice(EstimatedPrice estimatedPrice)
         {
+            estimatedPrice.materials = MaterialsAmount;
+            
             //Kalder EstimatedPrice service og poster Estimated price til db
             EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
 
             //Kalder GetPrice metode
             var price = getPrice(estimatedPrice);
+
+            MaterialsAmount.Clear();
+
             return price;
         }
         public int getPrice(EstimatedPrice estimatedPrice)
