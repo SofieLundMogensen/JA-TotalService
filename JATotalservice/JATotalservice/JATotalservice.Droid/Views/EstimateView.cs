@@ -62,8 +62,8 @@ namespace JATotalservice.Droid.Views
         {
             EstimatedPrice estimatedPrice = new EstimatedPrice();
             estimatedPrice.estimatedTime = estimatedTimeNumberPicker.Value;
-            
-            int calculatedPrice = ViewModel.PostEstimatedPrice(estimatedPrice);
+
+            double calculatedPrice = ViewModel.CalculatePrice(estimatedPrice);
             
             Toast.MakeText(context, "Det vil koste " + calculatedPrice + "kroner", ToastLength.Long).Show();
         }

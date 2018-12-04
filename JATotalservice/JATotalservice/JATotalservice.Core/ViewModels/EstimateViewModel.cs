@@ -82,5 +82,11 @@ namespace JATotalservice.Core.ViewModels
             return EstimedTimePrice;
         }
 
+        public double CalculatePrice(EstimatedPrice estimatedPrice)
+        {
+            estimatedPrice.materials = MaterialsAmount;
+            return EstimatedPriceService.CalculatePrice(estimatedPrice);
+        }
+
     }
 }

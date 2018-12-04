@@ -86,5 +86,37 @@ namespace JATotalservice.Core.Service
             request.AddUrlSegment("id", id.ToString()); //Tilføjer det rigtige id, som man får med ind i metoden
             client.Execute<EstimatedPrice>(request); //Sender den request
         }
+
+        public static double CalculatePrice(EstimatedPrice estimatedPrice)
+        {
+            double returnPrice = 0;
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(estimatedPrice);
+
+            string url = "http://jatotalservice.slund.info/api/EstimatedPrice/CalculatePrice";
+
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+
+            //Sending the request
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                streamWriter.Write(json);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            //Getting the response
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+
+                var returnString = streamReader.ReadToEnd().Replace('.', ','); //Converterer . til , for ellers kan den ikke konvertere returprisen ordentligt
+                double.TryParse(returnString, out returnPrice);
+            }
+
+            return returnPrice;
+        }
     }
 }
