@@ -12,6 +12,7 @@ namespace JATotalservice.Core.ViewModels
 
         public IMvxCommand NavigateToTimeRegistrationCommand => new MvxAsyncCommand(NavigateToTimeRegistration);
         public IMvxCommand NavigateToEstimatePriceCommand => new MvxAsyncCommand(NavigateToEstimatePrice);
+        public IMvxCommand NavigateToMaterialsCommand => new MvxAsyncCommand(NavigateToMaterials);
         public FirstViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -34,6 +35,11 @@ namespace JATotalservice.Core.ViewModels
         public async Task NavigateToTimeRegistration()
         {
             await _navigationService.Navigate<TimeViewModel>();
+        }
+
+        public async Task NavigateToMaterials()
+        {
+            await _navigationService.Navigate<MaterialsViewModel>();
         }
         
         public async Task NavigateToEstimatePrice()

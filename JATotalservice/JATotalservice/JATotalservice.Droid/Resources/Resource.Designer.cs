@@ -6337,7 +6337,7 @@ namespace JATotalservice.Droid
 			public const int navigateToEstimateView = 2131296403;
 			
 			// aapt resource value: 0x7f090091
-			public const int navigateToNextView = 2131296401;
+			public const int navigateToMaterialsView = 2131296401;
 			
 			// aapt resource value: 0x7f090092
 			public const int navigateToTimeView = 2131296402;
