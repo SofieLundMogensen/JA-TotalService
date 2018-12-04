@@ -44,5 +44,11 @@ namespace ServiceAPI.Controllers
         {
             return estimatedPriceController.Update(estimatedPrice);
         }
+
+        [HttpPost("CalculatePrice")]
+        public double CalculatePrice(EstimatedPrice estimatedPrice)
+        {
+            return estimatedPriceController.CalculatePrice(estimatedPrice);
+        }
     }
 }

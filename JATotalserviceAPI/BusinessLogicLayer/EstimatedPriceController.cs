@@ -10,6 +10,8 @@ namespace BusinessLogicLayer
     {
         DBEstimatedPrice db = new DBEstimatedPrice();
         EstimatedPriceMaterialController estimatedPriceMaterialController = new EstimatedPriceMaterialController();
+        MaterialController materialController = new MaterialController();
+
         public bool Create(EstimatedPrice obj)
         {
             var succes = db.Create(obj);
@@ -35,6 +37,22 @@ namespace BusinessLogicLayer
         public bool Update(EstimatedPrice obj)
         {
            return db.Update(obj);
+        }
+
+        public double CalculatePrice(EstimatedPrice estimatedPrice)
+        {
+            double returnPrice = 0;
+            double hourPrice = 300;
+
+            returnPrice += hourPrice * estimatedPrice.estimatedTime; //Finder timeprisen på opgaven
+
+            foreach (var item in estimatedPrice.materials)
+            {
+                Material material = materialController.Get(item.Item1.id); //Henter den nye version af materiale
+                returnPrice += material.price * item.Item2; //Udregner prisen med antal materialer
+            }
+            
+            return returnPrice;
         }
     }
 }
