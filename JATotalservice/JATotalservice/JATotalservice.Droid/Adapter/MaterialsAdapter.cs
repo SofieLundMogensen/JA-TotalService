@@ -51,7 +51,7 @@ namespace JATotalservice.Droid.Adapter
                 button.SetBackgroundColor(Color.DarkGray);
                 button.SetTextColor(Color.White);
                 button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
-                
+                Console.WriteLine(Materials[position].name);
                 button.Click += delegate { Toast.MakeText(context, "" + button.Text, ToastLength.Short).Show(); };
                 
             }

@@ -37,18 +37,16 @@ namespace JATotalservice.Droid.Views
             //  testTextView = FindViewById(Resource.Id.text) as TextView;
 
 
-            MaterialsViewModel materials = new MaterialsViewModel();
-
 
             GridView gridview = view.FindViewById<GridView>(Resource.Id.gridview);
-            materialAdapter = new MaterialAdapter(materials.Materials, view.Context);
+            materialAdapter = new MaterialAdapter(ViewModel.Materials, view.Context);
 
             gridview.Adapter = materialAdapter;
 
 
             fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             Material material = new Material { id = 200, name = "træ", price = 100, description = "noget" };
-           fabMain.Click += delegate { materials.AddMaterial(material); gridview.Adapter = materialAdapter; };
+           fabMain.Click += delegate { ViewModel.PostMaterial(material); gridview.Adapter = materialAdapter; };
 
             setupBindings();
             return view;
