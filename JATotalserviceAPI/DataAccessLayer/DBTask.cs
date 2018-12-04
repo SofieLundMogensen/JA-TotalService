@@ -81,8 +81,8 @@ namespace DataAccessLayer
                 {
                     task.id = reader.GetInt32(0);
                     task.name = reader.GetString(1);
-                    task.isComplete = reader.GetBoolean(2);
-                    task.description = reader.GetString(3);
+                    task.description = reader.GetString(2);
+                    task.isComplete = reader.GetBoolean(3);
                 }
                 reader.Close();
             }
@@ -110,8 +110,10 @@ namespace DataAccessLayer
                     Task task = new Task();
                     task.id = reader.GetInt32(0);
                     task.name = reader.GetString(1);
-                    task.isComplete = reader.GetBoolean(2);
-                    task.description = reader.GetString(3);
+                    task.description = reader.GetString(2);
+                    task.isComplete = reader.GetBoolean(3);
+                  
+                   
                     tasks.Add(task);
                 }
                 reader.Close();
