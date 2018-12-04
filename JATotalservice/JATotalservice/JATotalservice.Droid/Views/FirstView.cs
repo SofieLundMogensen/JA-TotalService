@@ -64,9 +64,15 @@ namespace JATotalservice.Droid.Views
             //Console.WriteLine("----------------------------DELETE---------------------------------");
             //EstimatedPriceService.DeleteEstimatedPrice(123456789);
             //Console.WriteLine("-------------------------------------------------------------");
-            
+           /* Material m = new Material
+            {
+                name = "wood",
+                description = "noget træ",
+                price = 300
+            };
+            MaterialService.PostMaterial(m); */
 
-           // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+            // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
