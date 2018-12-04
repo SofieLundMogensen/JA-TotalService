@@ -28,21 +28,21 @@ namespace ServiceAPI.Controllers
         }
         // POST api/TimeRegistration
         [HttpPost("Post")]
-        public void Post(TimeRegistartion timeRegistartion)
+        public bool Post(TimeRegistartion timeRegistartion)
         {
-            timeRegistrationController.Create(timeRegistartion);
+            return timeRegistrationController.Create(timeRegistartion);
         }
         // PUT api/TimeRegistration/5
         [HttpPut("Put")]
-        public void Put(TimeRegistartion timeRegistartion)
+        public bool Put(TimeRegistartion timeRegistartion)
         {
-            timeRegistrationController.Update(timeRegistartion);
+            return timeRegistrationController.Update(timeRegistartion);
         }
         // DELETE api/TimeRegistration/5
         [HttpDelete(("Delete")+("{id}"))]
-        public void Delete(int id)
+        public bool Delete(int id)
         {
-            timeRegistrationController.Delete(id);
+           return timeRegistrationController.Delete(id);
         }
     }
 }
