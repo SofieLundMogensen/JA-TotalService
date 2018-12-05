@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace JATotalservice.Droid
 {
-    class Dialog_Sign : DialogFragment
+    class Dialog_Sign : Android.Support.V4.App.DialogFragment
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

@@ -27,7 +27,8 @@ namespace JATotalservice.Droid.Views
         MaterialAdapter materialAdapter;
         private FloatingActionButton fabMain;
         private Dialog_Sign dialogSign;
-        private FragmentManager FM;
+
+        private Android.Support.V4.App.FragmentManager transaction;
         protected override int FragmentId => Resource.Layout.MaterialsView;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -45,15 +46,22 @@ namespace JATotalservice.Droid.Views
             gridview.Adapter = materialAdapter;
 
             dialogSign = new Dialog_Sign();
-            fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
+
+            transaction = this.FragmentManager;
+
+           fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             Material material = new Material { id = 200, name = "træ", price = 100, description = "noget" };
             fabMain.Click += (object sender, EventArgs e) =>
              {
-                 dialogSign.Show(FM, "fkekfme");
-                 //var transaction = FragmentManager.BeginTransaction();
-                 //var dialogSign = new Dialog_Sign();
-                 //dialogSign.Show(transaction, "Dialog fragment");
-                 //ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
+
+                 //FM = FragmentManager.BeginTransaction();
+                 //FM.BeginTransaction();
+                 //dialogSign.Show(FM, "fkekfme");
+                   
+                 //transaction.BeginTransaction();
+                 var dialogSign = new Dialog_Sign();
+                 dialogSign.Show(transaction, "Dialog fragment");
+                 ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
 
              };
             setupBindings();

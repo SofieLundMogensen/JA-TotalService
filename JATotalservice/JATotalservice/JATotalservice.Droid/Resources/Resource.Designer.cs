@@ -6039,8 +6039,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090010
 			public const int MvxBindingTagUnique = 2131296272;
 			
-			// aapt resource value: 0x7f090086
-			public const int Spacer1 = 2131296390;
+			// aapt resource value: 0x7f090087
+			public const int Spacer1 = 2131296391;
 			
 			// aapt resource value: 0x7f0900b8
 			public const int Spacer2 = 2131296440;
@@ -6270,8 +6270,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090041
 			public const int @fixed = 2131296321;
 			
-			// aapt resource value: 0x7f090083
-			public const int form_layout = 2131296387;
+			// aapt resource value: 0x7f090084
+			public const int form_layout = 2131296388;
 			
 			// aapt resource value: 0x7f090099
 			public const int gridview = 2131296409;
@@ -6507,11 +6507,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090013
 			public const int tabMode = 2131296275;
 			
-			// aapt resource value: 0x7f090085
-			public const int taskNameEditText = 2131296389;
+			// aapt resource value: 0x7f090086
+			public const int taskNameEditText = 2131296390;
 			
-			// aapt resource value: 0x7f090084
-			public const int taskTextView = 2131296388;
+			// aapt resource value: 0x7f090085
+			public const int taskTextView = 2131296389;
 			
 			// aapt resource value: 0x7f0900b0
 			public const int text = 2131296432;
@@ -6525,8 +6525,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090053
 			public const int textSpacerNoTitle = 2131296339;
 			
-			// aapt resource value: 0x7f090087
-			public const int textView1 = 2131296391;
+			// aapt resource value: 0x7f090083
+			public const int textView1 = 2131296387;
 			
 			// aapt resource value: 0x7f0900b4
 			public const int textView4 = 2131296436;
