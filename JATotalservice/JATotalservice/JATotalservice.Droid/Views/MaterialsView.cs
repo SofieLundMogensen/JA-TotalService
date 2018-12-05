@@ -46,7 +46,7 @@ namespace JATotalservice.Droid.Views
 
             fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             Material material = new Material { id = 200, name = "træ", price = 100, description = "noget" };
-           fabMain.Click += delegate { ViewModel.PostMaterial(material); gridview.Adapter = materialAdapter; };
+           fabMain.Click += delegate { ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context); };
 
             setupBindings();
             return view;
@@ -57,7 +57,7 @@ namespace JATotalservice.Droid.Views
         {
             var set = this.CreateBindingSet<MaterialsView, MaterialsViewModel>();
 
-            set.Bind(materialAdapter).For(m => m.Materials).To(vm => vm.Materials);
+            //set.Bind(materialAdapter).For(m => m.Materials).To(vm => vm.Materials);
 
             set.Apply();
         }
