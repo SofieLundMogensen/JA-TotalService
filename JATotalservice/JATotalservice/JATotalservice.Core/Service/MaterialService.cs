@@ -29,30 +29,13 @@ namespace JATotalservice.Core.Service
         }
 
         public static void PostMaterial(Material material)
-        {
+        {           
+            IRestRequest request = new RestRequest("Post", Method.POST);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(material);
-
-            string url = "http://jatotalservice.slund.info/api/Material/Post";
-         
-
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-
-            //Sending the request
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            //Getting the response
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+            bool test = Convert.ToBoolean(response.Content);
         }
 
         public static void PutMaterial(Material material)
