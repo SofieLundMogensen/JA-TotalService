@@ -12,12 +12,12 @@ using Android.Widget;
 
 namespace JATotalservice.Droid
 {
-    class Dialog_Sign : Android.Support.V4.App.DialogFragment
+    class DialogMaterial : Android.Support.V4.App.DialogFragment
     {
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
 
-            var view = inflater.Inflate(Resource.Layout.Dialog_Sign, container, false);
+            var view = inflater.Inflate(Resource.Layout.DialogMaterial, container, false);
             this.Dialog.SetTitle("fefwe");
           
             return view;

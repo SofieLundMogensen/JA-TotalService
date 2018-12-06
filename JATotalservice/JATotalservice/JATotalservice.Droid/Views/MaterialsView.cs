@@ -26,7 +26,7 @@ namespace JATotalservice.Droid.Views
         TextView testTextView;
         MaterialAdapter materialAdapter;
         private FloatingActionButton fabMain;
-        private Dialog_Sign dialogSign;
+        private DialogMaterial dialogSign;
 
         private Android.Support.V4.App.FragmentManager transaction;
         protected override int FragmentId => Resource.Layout.MaterialsView;
@@ -45,7 +45,7 @@ namespace JATotalservice.Droid.Views
 
             gridview.Adapter = materialAdapter;
 
-            dialogSign = new Dialog_Sign();
+            dialogSign = new DialogMaterial();
 
             transaction = this.FragmentManager;
 
@@ -59,7 +59,7 @@ namespace JATotalservice.Droid.Views
                  //dialogSign.Show(FM, "fkekfme");
                    
                  //transaction.BeginTransaction();
-                 var dialogSign = new Dialog_Sign();
+                 var dialogSign = new DialogMaterial();
                  dialogSign.Show(transaction, "Dialog fragment");
                  
                  ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);

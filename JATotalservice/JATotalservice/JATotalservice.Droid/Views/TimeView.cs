@@ -64,7 +64,7 @@ namespace JATotalservice.Droid.Views
             sendTimeRegistration.Click += (object sender, EventArgs e) =>
             {
                 Android.Support.V4.App.FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                Dialog_Sign dialogSign = new Dialog_Sign();
+                DialogMaterial dialogSign = new DialogMaterial();
             };
             SetupBindings();
             return view;

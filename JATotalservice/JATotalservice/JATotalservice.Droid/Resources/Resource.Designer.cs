@@ -6792,7 +6792,7 @@ namespace JATotalservice.Droid
 			public const int design_text_input_password_icon = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int Dialog_Sign = 2130968618;
+			public const int DialogMaterial = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
 			public const int EstimateView = 2130968619;

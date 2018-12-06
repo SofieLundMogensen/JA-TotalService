@@ -132,7 +132,7 @@
     <Compile Include="Adapter\MaterialsDropdownAdapter.cs" />
     <Compile Include="Adapter\MaterialsListViewAdapter.cs" />
     <Compile Include="Adapter\Utility.cs" />
-    <Compile Include="Dialog_Sign.cs" />
+    <Compile Include="Adapter\DialogMaterial.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
@@ -191,7 +191,7 @@
     <AndroidResource Include="Resources\layout\MaterialsListView.axml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Dialog_Sign.axml">
+    <AndroidResource Include="Resources\layout\DialogMaterial.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
