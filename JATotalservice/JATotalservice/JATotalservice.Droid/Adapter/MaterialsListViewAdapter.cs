@@ -79,19 +79,16 @@ namespace JATotalservice.Droid.Adapter
             Material = view.FindViewById<Spinner>(Resource.Id.dropdown);
             var count = view.FindViewById<TextView>(Resource.Id.Text);
 
-            //TODO: Have mulige materialer med ud fra viewet?? eller finde en måde at kalde dem på?
-            tempMaterials = new List<Material>();
+            var tt = ViewModel as TimeViewModel;
+            var ff = ViewModel as EstimateViewModel;
 
-            for (int i = 1; i <= 2; i++)
+            if (ff != null)
             {
-                Material material = new Material
-                {
-                    id = i,
-                    name = "item" + i,
-                    description = "jaja",
-                    price = 200
-                };
-                tempMaterials.Add(material);
+                tempMaterials = ff.Materials;
+            }
+            else if (tt != null)
+            {
+                tempMaterials = tt.Materials;
             }
 
             //Sætter adapter på en ny liste i listen
@@ -102,8 +99,8 @@ namespace JATotalservice.Droid.Adapter
             {
                 var M = tempMaterials[e.Position];
                 //ViewModel.MaterialsAmount[position].Item1.id = M.id;
-                var tt = ViewModel as TimeViewModel;
-                var ff = ViewModel as EstimateViewModel;
+                //var tt = ViewModel as TimeViewModel;
+                //var ff = ViewModel as EstimateViewModel;
                 if (tt != null)
                 {
                     tt.MaterialsAmount[position].Item1.id = M.id;
@@ -113,21 +110,21 @@ namespace JATotalservice.Droid.Adapter
                     ff.MaterialsAmount[position].Item1.id = M.id;
                 }
 
-                
+
             };
 
             count.Text = materials[position].Item2.ToString();
             count.AfterTextChanged += delegate
             {
                 if (Int32.TryParse(count.Text, out int pharsedAmount)) //Tjekker om det angivne antal kan formateres om til en int
-                    {
-                    
+                {
+
                     //TimeViewModel.MaterialsAmount.Add(Tuple.Create(materials[position].Item1, pharsedAmount)); //Tilføjer den nye tuple
                     //TimeViewModel.MaterialsAmount.Remove(materials[position]); //Fjerne den gamle, da man ikke kan ændre på en tuple
 
                     //ViewModel.MaterialsAmount[position] = Tuple.Create(materials[position].Item1, pharsedAmount); //Tilføjer den nye tuple
-                    var tt = ViewModel as TimeViewModel;
-                    var ff = ViewModel as EstimateViewModel;
+                    //var tt = ViewModel as TimeViewModel;
+                  //  var ff = ViewModel as EstimateViewModel;
                     if (tt != null)
                     {
                         tt.MaterialsAmount[position] = Tuple.Create(materials[position].Item1, pharsedAmount);

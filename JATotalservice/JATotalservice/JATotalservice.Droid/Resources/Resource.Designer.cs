@@ -6027,6 +6027,12 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09008b
 			public const int Add = 2131296395;
 			
+			// aapt resource value: 0x7f0900bf
+			public const int Employee = 2131296447;
+			
+			// aapt resource value: 0x7f0900be
+			public const int EmployeeId = 2131296446;
+			
 			// aapt resource value: 0x7f0900b2
 			public const int Location = 2131296434;
 			
@@ -6318,8 +6324,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09004a
 			public const int list_item = 2131296330;
 			
-			// aapt resource value: 0x7f0900bf
-			public const int masked = 2131296447;
+			// aapt resource value: 0x7f0900c1
+			public const int masked = 2131296449;
 			
 			// aapt resource value: 0x7f0900a1
 			public const int media_actions = 2131296417;
@@ -6591,8 +6597,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09000e
 			public const int view_offset_helper = 2131296270;
 			
-			// aapt resource value: 0x7f0900be
-			public const int visible = 2131296446;
+			// aapt resource value: 0x7f0900c0
+			public const int visible = 2131296448;
 			
 			// aapt resource value: 0x7f090029
 			public const int withText = 2131296297;

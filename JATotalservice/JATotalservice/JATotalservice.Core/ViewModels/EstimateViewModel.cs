@@ -41,16 +41,8 @@ namespace JATotalservice.Core.ViewModels
 
         public void GetMaterials()
         {
-            //TODO: Get all Materials??? mangler servicelag...
-            Materials = new List<Material>();
-            for (int i = 0; i < 2; i++)
-            {
-                Material material = new Material()
-                {
-                    name = "Noget" + 1
-                };
-                Materials.Add(material);
-            }
+
+            Materials = MaterialService.GetAllMaterials();
         }
 
         public void AddMaterials(int amount, Material material)

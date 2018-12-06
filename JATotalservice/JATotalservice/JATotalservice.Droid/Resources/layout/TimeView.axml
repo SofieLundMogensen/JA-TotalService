@@ -139,12 +139,31 @@
           android:background="#000" 
          />
 
+<TextView
+				android:text="Medarbejder id:"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:layout_below="@id/Spacer3"
+				android:id="@+id/EmployeeId" 
+			/>
 
+			<EditText
+				
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:layout_marginBottom="10dp"
+				android:layout_below="@id/EmployeeId"
+				android:id="@+id/Employee" 
+			android:inputType="numberDecimal"
+		android:digits="0123456789"/>  
 	<ListView  
         android:id="@+id/MaterialsListView"  
         android:layout_width="match_parent"  
         android:layout_height="wrap_content" 
-		android:layout_below="@id/Spacer3"/>
+		android:layout_below="@id/Employee"/>
 					
 			
 	<android.support.design.widget.FloatingActionButton
