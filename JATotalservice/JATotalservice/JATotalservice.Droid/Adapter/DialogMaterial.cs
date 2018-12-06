@@ -21,20 +21,46 @@ namespace JATotalservice.Droid
         TextView materialDescription;
         Material material;
         double materialDouble;
-        
+        string title;
         public event EventHandler<DialogEventArgs> DialogClosed;
+        EditText Name;
+        EditText Description;
+        EditText Price;
 
+
+        public DialogMaterial(string title, Material material)
+        {
+            this.material = material;
+            this.title = title;
+        }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
 
             var view = inflater.Inflate(Resource.Layout.DialogMaterial, container, false);
-            this.Dialog.SetTitle("Opret Materiale");
-            material = new Material();
+            var text = view.FindViewById<TextView>(Resource.Id.Header);
+            text.Text = title;
+            var button = view.FindViewById<Button>(Resource.Id.submit);
+            button.Text = title;
+
+            Name = view.FindViewById<EditText>(Resource.Id.name);
+            Description = view.FindViewById<EditText>(Resource.Id.description);
+            Price = view.FindViewById<EditText>(Resource.Id.price);
+
+            Name.Text = material.name;
+            Description.Text = material.description;
+            Price.Text = material.price.ToString();
+
+
+            this.Dialog.SetTitle(title);
+            
+            //material = new Material();
 
             materialName = view.FindViewById<TextView>(Resource.Id.name);
             materialDescription = view.FindViewById<TextView>(Resource.Id.description);
             materialPrice = view.FindViewById<TextView>(Resource.Id.price);
-            opretBtn = view.FindViewById<Button>(Resource.Id.button1);
+            opretBtn = view.FindViewById<Button>(Resource.Id.submit);
+
+
 
             opretBtn.Click += delegate (object sender, EventArgs e)
             {

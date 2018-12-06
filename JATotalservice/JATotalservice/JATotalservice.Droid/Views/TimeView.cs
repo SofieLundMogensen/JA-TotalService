@@ -57,15 +57,11 @@ namespace JATotalservice.Droid.Views
             Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
-            
-            
+
             //Send Timeregistration
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
-            sendTimeRegistration.Click += (object sender, EventArgs e) =>
-            {
-                Android.Support.V4.App.FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                DialogMaterial dialogSign = new DialogMaterial();
-            };
+            sendTimeRegistration.Click += delegate { sendData(view.Context); };
+
             SetupBindings();
             return view;
         }

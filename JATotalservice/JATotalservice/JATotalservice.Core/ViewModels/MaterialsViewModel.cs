@@ -41,6 +41,12 @@ namespace JATotalservice.Core.ViewModels
             Materials.Add(material);
             MaterialService.PostMaterial(material);
         }
+        public void Edit(Material material)
+        {
+            //Adds the material to the list of materials
+            
+            MaterialService.PutMaterial(material);
+        }
 
         //Function that gets a list of materials from api, and returns a list of materials
         public void GetMaterials()

@@ -41,20 +41,21 @@ namespace JATotalservice.Droid.Views
             material = new Material();
 
             gridview = view.FindViewById<GridView>(Resource.Id.gridview);
+            transaction = this.FragmentManager;
 
-            materialAdapter = new MaterialAdapter(ViewModel.Materials, view.Context);
+            materialAdapter = new MaterialAdapter(ViewModel, ViewModel.Materials, view.Context, transaction);
             gridview.Adapter = materialAdapter;
 
-            dialogSign = new DialogMaterial();
+           
 
-            transaction = this.FragmentManager;
+
 
             fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             fabMain.Click += (object sender, EventArgs e) =>
             {
-                 var dialogMaterial = new DialogMaterial();
-                 dialogMaterial.DialogClosed += OnDialogClosed;
-                 dialogMaterial.Show(transaction, "Dialog fragment");
+                var dialogMaterial = new DialogMaterial("Opret material", new Material { });
+                dialogMaterial.DialogClosed += OnDialogClosed;
+                dialogMaterial.Show(transaction, "Dialog fragment");
             };
 
             SetupBindings();
@@ -73,9 +74,9 @@ namespace JATotalservice.Droid.Views
         {
             material = e.ReturnValue;
 
-            ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
+            ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel, ViewModel.Materials, view.Context, transaction);
         }
-        
+
     }
 
 }
