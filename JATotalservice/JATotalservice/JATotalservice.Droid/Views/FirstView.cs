@@ -78,6 +78,15 @@ namespace JATotalservice.Droid.Views
             //EstimatedPriceService.CalculatePrice(estimatedPrice);
            
             // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
+           /* Material m = new Material
+            {
+                name = "wood",
+                description = "noget træ",
+                price = 300
+            };
+            MaterialService.PostMaterial(m); */
+
+            // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
@@ -86,11 +95,14 @@ namespace JATotalservice.Droid.Views
             textView.Text = "Dennis er awesome";
 
             FirstViewModel t = new FirstViewModel();
-            Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
-            navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view
-            //navigateToMaterialsButton.Click += delegate { t.navigateCommand.Execute(); };
-            
+            //Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
+            //navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view
+                                                                                                   //navigateToMaterialsButton.Click += delegate { t.navigateCommand.Execute(); };
+
             //t.navigateCommand.Execute();
+
+            Button navigateToMaterialButton = FindViewById<Button>(Resource.Id.navigateToMaterialsView);
+            navigateToMaterialButton.Click += delegate { ViewModel.NavigateToMaterialsCommand.Execute(); };
 
             Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
             navigateToTimeButton.Click += delegate { ViewModel.NavigateToTimeRegistrationCommand.Execute(); };

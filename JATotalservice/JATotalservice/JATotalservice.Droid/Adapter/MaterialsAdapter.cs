@@ -15,9 +15,9 @@ using ModelLayer;
 
 namespace JATotalservice.Droid.Adapter
 {
-    public class MaterialAdapter : BaseAdapter
+    public class MaterialAdapter : BaseAdapter<Material>
     {
-       public List<Material> Materials;
+        public List<Material> Materials;
         Context context;
 
         public MaterialAdapter(List<Material> Materials, Context context)
@@ -26,6 +26,13 @@ namespace JATotalservice.Droid.Adapter
             this.context = context;
         }
 
+        public override Material this[int position]
+        {
+            get
+            {
+                return Materials[position];
+            }
+        }
         public override int Count
         { get { return Materials.Count; } }
 
@@ -43,20 +50,17 @@ namespace JATotalservice.Droid.Adapter
         {
             //sætter udsennet på Gridviewt
             Button button = null;
-            if (convertView == null)
-            {
-                button = new Button(context);
-                button.LayoutParameters = new GridView.LayoutParams(300, 300);
-                button.SetPadding(8,8,8,8);
-                button.SetBackgroundColor(Color.DarkGray);
-                button.SetTextColor(Color.White);
-                button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
-                
-                button.Click += delegate { Toast.MakeText(context, "" + button.Text, ToastLength.Short).Show(); };
-                
-            }
-            else
-                button = (Button)convertView;
+
+            button = new Button(context);
+            button.LayoutParameters = new GridView.LayoutParams(300, 300);
+            button.SetPadding(8, 8, 8, 8);
+            button.SetBackgroundColor(Color.DarkGray);
+            button.SetTextColor(Color.White);
+            button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
+            Console.WriteLine(Materials[position].name);
+            button.Click += delegate { Toast.MakeText(context, "" + button.Text, ToastLength.Short).Show(); };
+
+
             return button;
         }
     }

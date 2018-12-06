@@ -1,9 +1,11 @@
-﻿using ModelLayer;
-
+﻿using JATotalservice.Core.Service;
+using ModelLayer;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using JATotalservice.Core.Service;
 
 namespace JATotalservice.Core.ViewModels
 {
@@ -38,34 +40,46 @@ namespace JATotalservice.Core.ViewModels
             GetMaterials();
         }
         
-        public void AddMaterial(Material material)
+        public void PostMaterial(Material material)
         {
             //Adds the material to the list of materials
             Materials.Add(material);
+            MaterialService.PostMaterial(material);
         }
 
         //Function that gets a list of materials from api, and returns a list of materials
         public void GetMaterials()
         {
-            List<Material> tempMaterials = new List<Material>();
-           
-            for (int i = 1; i <= 10; i++)
-            {
+            
+            //List<Material> tempMaterials = new List<Material>();
 
-                Material material = new Material
-                {
-                    id = i,
-                    name = "item" + i,
-                    description = "jaja",
-                    price = 200
-                };
-                tempMaterials.Add(material);
-            }
+            //for (int i = 1; i <= 10; i++)
+            //{
+
+            //    Material material = new Material
+            //    {
+            //        id = i,
+            //        name = "item" + i,
+            //        description = "jaja",
+            //        price = 200
+            //    };
+            //    tempMaterials.Add(material);
+            //}
 
 
             //TODO: Call api and get the list of materials 
 
-            Materials = tempMaterials;
+            Materials = MaterialService.GetAllMaterials();
         }
+
+        public static void DeleteMaterial()
+        {
+            MaterialService.DeleteMaterial(3);
+        }
+        
+        //public static void PutMaterial()
+        //{
+        //    MaterialService.PutMaterial();
+        //}
     }
 }

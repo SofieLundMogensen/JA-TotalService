@@ -46,7 +46,7 @@
                 android:text="Navigate to materials"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/navigateToNextView" />
+                android:id="@+id/navigateToMaterialsView" />
 			<Button
 				android:text="Naviagate to time"
 				android:layout_width="match_parent"
