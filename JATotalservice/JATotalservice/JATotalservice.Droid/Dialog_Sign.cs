@@ -19,6 +19,7 @@ namespace JATotalservice.Droid
 
             var view = inflater.Inflate(Resource.Layout.Dialog_Sign, container, false);
             this.Dialog.SetTitle("fefwe");
+          
             return view;
         }
 

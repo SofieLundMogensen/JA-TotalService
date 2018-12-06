@@ -61,6 +61,7 @@ namespace JATotalservice.Droid.Views
                  //transaction.BeginTransaction();
                  var dialogSign = new Dialog_Sign();
                  dialogSign.Show(transaction, "Dialog fragment");
+                 
                  ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
 
              };
