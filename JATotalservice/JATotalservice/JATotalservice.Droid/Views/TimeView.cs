@@ -61,8 +61,11 @@ namespace JATotalservice.Droid.Views
             
             //Send Timeregistration
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
-            sendTimeRegistration.Click += delegate { sendData(view.Context); };
-
+            sendTimeRegistration.Click += (object sender, EventArgs e) =>
+            {
+                Android.Support.V4.App.FragmentTransaction transaction = FragmentManager.BeginTransaction();
+                DialogMaterial dialogSign = new DialogMaterial();
+            };
             SetupBindings();
             return view;
         }
