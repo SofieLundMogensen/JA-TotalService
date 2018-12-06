@@ -27,27 +27,22 @@ namespace JATotalservice.Droid.Views
         MaterialAdapter materialAdapter;
         private FloatingActionButton fabMain;
         private DialogMaterial dialogSign;
-        private Material tomMaterial;
+        private Material material;
         GridView gridview;
         View view;
+
         private Android.Support.V4.App.FragmentManager transaction;
         protected override int FragmentId => Resource.Layout.MaterialsView;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            tomMaterial = new Material();
-            Console.WriteLine("---------------------hejsa med dig, jeg er her---------------------");
-            //  testTextView = FindViewById(Resource.Id.text) as TextView;
-
-
+            material = new Material();
 
             gridview = view.FindViewById<GridView>(Resource.Id.gridview);
 
-
-
             materialAdapter = new MaterialAdapter(ViewModel.Materials, view.Context);
-
             gridview.Adapter = materialAdapter;
 
             dialogSign = new DialogMaterial();
@@ -56,29 +51,19 @@ namespace JATotalservice.Droid.Views
 
             fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             fabMain.Click += (object sender, EventArgs e) =>
-             {
-
-                 //FM = FragmentManager.BeginTransaction();
-                 //FM.BeginTransaction();
-                 //dialogSign.Show(FM, "fkekfme");
-
-                 //transaction.BeginTransaction();
+            {
                  var dialogMaterial = new DialogMaterial();
                  dialogMaterial.DialogClosed += OnDialogClosed;
                  dialogMaterial.Show(transaction, "Dialog fragment");
+            };
 
-
-
-             };
-            setupBindings();
+            SetupBindings();
             return view;
-
         }
 
-        internal void setupBindings()
+        internal void SetupBindings()
         {
             var set = this.CreateBindingSet<MaterialsView, MaterialsViewModel>();
-
             //set.Bind(materialAdapter).For(m => m.Materials).To(vm => vm.Materials);
 
             set.Apply();
@@ -86,16 +71,11 @@ namespace JATotalservice.Droid.Views
 
         void OnDialogClosed(object sender, DialogEventArgs e)
         {
-            tomMaterial = e.ReturnValue;
+            material = e.ReturnValue;
 
-            ViewModel.PostMaterial(tomMaterial); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
+            ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel.Materials, view.Context);
         }
-
-        //    private void DialogQuantity_DialogClosed(object sender, EventArgs e)
-        //{
-
-        //    //stuff to do
-        //}
+        
     }
 
 }

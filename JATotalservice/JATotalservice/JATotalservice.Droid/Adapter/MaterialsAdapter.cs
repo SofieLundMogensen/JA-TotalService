@@ -19,6 +19,7 @@ namespace JATotalservice.Droid.Adapter
     {
         public List<Material> Materials;
         Context context;
+        private Material material = new Material();
 
         public MaterialAdapter(List<Material> Materials, Context context)
         {
@@ -28,13 +29,12 @@ namespace JATotalservice.Droid.Adapter
 
         public override Material this[int position]
         {
-            get
-            {
-                return Materials[position];
-            }
+            get { return Materials[position]; }
         }
         public override int Count
-        { get { return Materials.Count; } }
+        {
+            get { return Materials.Count; }
+        }
 
         public override Java.Lang.Object GetItem(int position)
         {
@@ -58,10 +58,10 @@ namespace JATotalservice.Droid.Adapter
             button.SetTextColor(Color.White);
             button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
             Console.WriteLine(Materials[position].name);
-            button.Click += delegate { Toast.MakeText(context, "" + button.Text, ToastLength.Short).Show(); };
-
-
+            button.Click += delegate { Toast.MakeText(context, Materials[position].description, ToastLength.Short).Show(); };
+            
             return button;
         }
+        
     }
 }

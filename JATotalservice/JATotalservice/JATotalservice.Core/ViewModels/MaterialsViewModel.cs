@@ -16,11 +16,6 @@ namespace JATotalservice.Core.ViewModels
             base.Prepare();
         }
 
-        //public override async Task Initialize()
-        //{
-        //    await base.Initialize();
-        //}
-
         List<Material> materials;
         string hello = "Virker det her?";
 
@@ -50,25 +45,7 @@ namespace JATotalservice.Core.ViewModels
         //Function that gets a list of materials from api, and returns a list of materials
         public void GetMaterials()
         {
-            
-            //List<Material> tempMaterials = new List<Material>();
-
-            //for (int i = 1; i <= 10; i++)
-            //{
-
-            //    Material material = new Material
-            //    {
-            //        id = i,
-            //        name = "item" + i,
-            //        description = "jaja",
-            //        price = 200
-            //    };
-            //    tempMaterials.Add(material);
-            //}
-
-
-            //TODO: Call api and get the list of materials 
-
+          
             Materials = MaterialService.GetAllMaterials();
         }
 

@@ -21,12 +21,14 @@ namespace JATotalservice.Droid
         TextView materialDescription;
         Material material;
         double materialDouble;
+        
+        public event EventHandler<DialogEventArgs> DialogClosed;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
 
             var view = inflater.Inflate(Resource.Layout.DialogMaterial, container, false);
-            this.Dialog.SetTitle("fefwe");
+            this.Dialog.SetTitle("Opret Materiale");
             material = new Material();
 
             materialName = view.FindViewById<TextView>(Resource.Id.name);
@@ -34,31 +36,18 @@ namespace JATotalservice.Droid
             materialPrice = view.FindViewById<TextView>(Resource.Id.price);
             opretBtn = view.FindViewById<Button>(Resource.Id.button1);
 
-
-       
-
-
-
             opretBtn.Click += delegate (object sender, EventArgs e)
-            {
-                jifjewijf();
-            };
-
-            void jifjewijf()
             {
                 material.name = materialName.Text;
                 material.description = materialDescription.Text;
-                var MP = materialPrice.Text.Replace('.', ',');
-                double.TryParse(MP, out materialDouble);
+                double.TryParse(materialPrice.Text.Replace('.', ','), out materialDouble); //Converterer string fra user til en double
                 material.price = materialDouble;
                 this.Dismiss();
-            }
+            };
 
             return view;
         }
-
-        public event EventHandler<DialogEventArgs> DialogClosed;
-
+        
         public override void OnDismiss(IDialogInterface dialog)
         {
             base.OnDismiss(dialog);
@@ -69,36 +58,13 @@ namespace JATotalservice.Droid
 
         }
 
-
-
-
-
-
-
-
-
-      // public event EventHandler DialogClosed;
-
-        //public override void OnDismiss(IDialogInterface dialog)
-        // {
-        //     base.OnDismiss(dialog);
-        //     if (DialogClosed != null)
-        //     {
-        //         DialogClosed(this, null);
-        //     }
-        // }
-        ////public override void OnActivityCreated(Bundle savedInstanceState)
-        ////{
-        ////    Dialog.Window.RequestFeature(WindowFeatures.NoTitle);
-        ////    base.OnActivityCreated(savedInstanceState);
-        ////    Dialog.Window.Attributes.WindowAnimations = Resource.Style.dialog_animation;
-        //}
     }
 }
-         public class DialogEventArgs
-        {
-            //you can put other properties here that may be relevant to check from activity
-            //for example: if a cancel button was clicked, other text values, etc.
 
-            public Material ReturnValue { get; set; }
-        } 
+//Klasse til at fortælle hvad vi vil dende retur med dismiss på dialig
+public class DialogEventArgs
+{
+    //you can put other properties here that may be relevant to check from activity
+    //for example: if a cancel button was clicked, other text values, etc.
+    public Material ReturnValue { get; set; }
+}
