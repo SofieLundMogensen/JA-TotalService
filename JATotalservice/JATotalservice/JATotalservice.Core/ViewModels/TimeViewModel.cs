@@ -13,10 +13,15 @@ namespace JATotalservice.Core.ViewModels
     public class TimeViewModel : MvxViewModel
     {
         List<ModelLayer.Task> tasks;
+        List<Material> materials;
         List<Tuple<Material, int>> materialsAmounts;
         //private readonly IMvxNavigationService _navigationService;
         public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
-       
+        public List<Material> Materials
+        {
+            get { return materials; }
+            set { SetProperty(ref materials, value); }
+        }
         public List<ModelLayer.Task> Tasks
         {
             get { return tasks; }
@@ -32,7 +37,7 @@ namespace JATotalservice.Core.ViewModels
         {
             //Kalder alle tasks
             GetTasks();
-
+            GetMaterials();
             MaterialsAmount = new List<Tuple<Material, int>>();
         }
 
@@ -61,5 +66,10 @@ namespace JATotalservice.Core.ViewModels
             MaterialsAmount.Add(materialAmount);
         }
 
+        public void GetMaterials()
+        {
+           Materials = MaterialService.GetAllMaterials();
+        
+        }
     }
 }

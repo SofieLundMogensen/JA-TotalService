@@ -24,40 +24,12 @@ namespace JATotalservice.Core.Service
 
         public static void PostTimeInfo(TimeRegistartion timeregistration)
         {
-            /*   RestClient client = new RestClient("http://jatotalservice.slund.info/api/TimeRegistration/Post");
-                var reguest = new RestRequest();
-                reguest.Method = Method.POST;
-                reguest.AddHeader("Accept", "application/json");
-
-                reguest.AddObject(timeregistration);
-                var response = client.Execute(reguest);
-               /* IRestRequest request = new RestRequest(Method.POST);
-                request.AddHeader("Accept", "application/Json");
-                request.AddObject(timeregistration);
-                request.RequestFormat = DataFormat.Json;
-                request.JsonSerializer.ContentType = "text/Json";
-                var response = client.Execute(request);*/
-
+            IRestRequest request = new RestRequest("Post", Method.POST);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
-            
-            string url = "http://jatotalservice.slund.info/api/TimeRegistration/Post";
-            
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+            bool test = Convert.ToBoolean(response.Content);
         }
         public static void PutTimeInfo(TimeRegistartion timeregistration1)
         {
