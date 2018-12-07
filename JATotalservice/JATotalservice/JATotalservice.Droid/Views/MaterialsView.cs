@@ -43,12 +43,14 @@ namespace JATotalservice.Droid.Views
             gridview = view.FindViewById<GridView>(Resource.Id.gridview);
             transaction = this.FragmentManager;
 
-            materialAdapter = new MaterialAdapter(ViewModel, ViewModel.Materials, view.Context, transaction);
+            materialAdapter = new MaterialAdapter(this, ViewModel, ViewModel.Materials, view.Context, transaction);
+
+            materialAdapter.NotifyDataSetChanged();
+           // materialAdapter.UpdateList += test;
+
             gridview.Adapter = materialAdapter;
 
-           
-
-
+            
 
             fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
             fabMain.Click += (object sender, EventArgs e) =>
@@ -69,12 +71,16 @@ namespace JATotalservice.Droid.Views
 
             set.Apply();
         }
+        public void UpdateList()
+        {
+            gridview.Adapter = new MaterialAdapter(this, ViewModel, ViewModel.Materials, view.Context, transaction);
+        }
 
         void OnDialogClosed(object sender, DialogEventArgs e)
         {
             material = e.ReturnValue;
 
-            ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(ViewModel, ViewModel.Materials, view.Context, transaction);
+            ViewModel.PostMaterial(material); gridview.Adapter = new MaterialAdapter(this, ViewModel, ViewModel.Materials, view.Context, transaction);
         }
 
     }

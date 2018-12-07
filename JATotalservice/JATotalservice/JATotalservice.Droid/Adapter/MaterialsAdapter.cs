@@ -11,6 +11,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
+using JATotalservice.Droid.Views;
 using Java.Lang;
 using ModelLayer;
 
@@ -24,13 +25,17 @@ namespace JATotalservice.Droid.Adapter
         Context context;
         private Material material = new Material();
         MaterialsViewModel materialsViewModel;
+        public event EventHandler UpdateList;
+        MaterialsView materialsView;
 
-        public MaterialAdapter(MaterialsViewModel materialViewModel, List<Material> Materials, Context context, Android.Support.V4.App.FragmentManager fragmentManager)
+
+        public MaterialAdapter(MaterialsView materialsView, MaterialsViewModel materialViewModel, List<Material> Materials, Context context, Android.Support.V4.App.FragmentManager fragmentManager)
         {
             this.materialsViewModel = materialViewModel;
             this.Materials = Materials;
             this.context = context;
             this.transaction = fragmentManager;
+            this.materialsView = materialsView;
         }
 
         public override Material this[int position]
@@ -68,14 +73,21 @@ namespace JATotalservice.Droid.Adapter
 
             button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
             Console.WriteLine(Materials[position].name);
-            button.Click += delegate {
+            button.Click += delegate
+            {
 
                 var dialogMaterial = new DialogMaterial("Ændre", Materials[position]);
-                dialogMaterial.DialogClosed +=  (object sender, DialogEventArgs e) => { materialsViewModel.Materials[position] = e.ReturnValue; materialsViewModel.Edit(e.ReturnValue); };
+                dialogMaterial.DialogClosed += (object sender, DialogEventArgs e) =>
+                {
+                    materialsViewModel.Materials[position] = e.ReturnValue; materialsViewModel.Edit(e.ReturnValue);
+                    materialsView.UpdateList();                     
+                };
                 dialogMaterial.Show(transaction, "Dialog fragment");
             };
 
             return button;
         }
+
+
     }
 }
