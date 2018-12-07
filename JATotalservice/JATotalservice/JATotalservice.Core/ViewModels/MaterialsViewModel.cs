@@ -17,19 +17,13 @@ namespace JATotalservice.Core.ViewModels
         }
 
         List<Material> materials;
-        string hello = "Virker det her?";
 
         public List<Material> Materials
         {
             get { return materials; }
             set { SetProperty(ref materials, value); }
         }
-
-        public string Hello
-        {
-            get { return hello; }
-            set { SetProperty(ref hello, value); }
-        }
+        
         public MaterialsViewModel()
         {
             GetMaterials();
@@ -43,26 +37,20 @@ namespace JATotalservice.Core.ViewModels
         }
         public void Edit(Material material)
         {
-            //Adds the material to the list of materials
-            
+            //Puts the material into the database
             MaterialService.PutMaterial(material);
         }
 
         //Function that gets a list of materials from api, and returns a list of materials
         public void GetMaterials()
         {
-          
             Materials = MaterialService.GetAllMaterials();
         }
 
-        public static void DeleteMaterial()
-        {
-            MaterialService.DeleteMaterial(3);
-        }
-        
-        //public static void PutMaterial()
+        //public static void DeleteMaterial()
         //{
-        //    MaterialService.PutMaterial();
+        //    MaterialService.DeleteMaterial(3);
         //}
+
     }
 }

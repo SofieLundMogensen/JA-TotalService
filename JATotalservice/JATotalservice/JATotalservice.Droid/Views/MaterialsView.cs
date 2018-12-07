@@ -25,7 +25,7 @@ namespace JATotalservice.Droid.Views
         List<Material> materials = new List<Material>();
         TextView testTextView;
         MaterialAdapter materialAdapter;
-        private FloatingActionButton fabMain;
+        private FloatingActionButton addButton;
         private DialogMaterial dialogSign;
         private Material material;
         GridView gridview;
@@ -41,19 +41,18 @@ namespace JATotalservice.Droid.Views
             material = new Material();
 
             gridview = view.FindViewById<GridView>(Resource.Id.gridview);
+            addButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
+
             transaction = this.FragmentManager;
 
             materialAdapter = new MaterialAdapter(this, ViewModel, ViewModel.Materials, view.Context, transaction);
 
             materialAdapter.NotifyDataSetChanged();
-           // materialAdapter.UpdateList += test;
 
             gridview.Adapter = materialAdapter;
-
             
-
-            fabMain = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
-            fabMain.Click += (object sender, EventArgs e) =>
+            //What to do when you press the add button
+            addButton.Click += (object sender, EventArgs e) =>
             {
                 var dialogMaterial = new DialogMaterial("Opret material", new Material { });
                 dialogMaterial.DialogClosed += OnDialogClosed;

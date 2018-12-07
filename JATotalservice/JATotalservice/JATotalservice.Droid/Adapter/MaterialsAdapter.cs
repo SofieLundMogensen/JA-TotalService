@@ -27,8 +27,7 @@ namespace JATotalservice.Droid.Adapter
         MaterialsViewModel materialsViewModel;
         public event EventHandler UpdateList;
         MaterialsView materialsView;
-
-
+        
         public MaterialAdapter(MaterialsView materialsView, MaterialsViewModel materialViewModel, List<Material> Materials, Context context, Android.Support.V4.App.FragmentManager fragmentManager)
         {
             this.materialsViewModel = materialViewModel;
@@ -67,10 +66,7 @@ namespace JATotalservice.Droid.Adapter
             button.SetPadding(8, 8, 8, 8);
             button.SetBackgroundColor(Color.DarkGray);
             button.SetTextColor(Color.White);
-
-
-
-
+            
             button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
             Console.WriteLine(Materials[position].name);
             button.Click += delegate
@@ -87,7 +83,6 @@ namespace JATotalservice.Droid.Adapter
 
             return button;
         }
-
-
+        
     }
 }

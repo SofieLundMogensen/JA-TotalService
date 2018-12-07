@@ -26,8 +26,7 @@ namespace JATotalservice.Droid
         EditText Name;
         EditText Description;
         EditText Price;
-
-
+        
         public DialogMaterial(string title, Material material)
         {
             this.material = material;
@@ -35,7 +34,6 @@ namespace JATotalservice.Droid
         }
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-
             var view = inflater.Inflate(Resource.Layout.DialogMaterial, container, false);
             var text = view.FindViewById<TextView>(Resource.Id.Header);
             text.Text = title;
@@ -49,19 +47,15 @@ namespace JATotalservice.Droid
             Name.Text = material.name;
             Description.Text = material.description;
             Price.Text = material.price.ToString();
-
-
+            
             this.Dialog.SetTitle(title);
             
-            //material = new Material();
-
             materialName = view.FindViewById<TextView>(Resource.Id.name);
             materialDescription = view.FindViewById<TextView>(Resource.Id.description);
             materialPrice = view.FindViewById<TextView>(Resource.Id.price);
             opretBtn = view.FindViewById<Button>(Resource.Id.submit);
-
-
-
+            
+            //What to do when you click on opret button, when creating a new material
             opretBtn.Click += delegate (object sender, EventArgs e)
             {
                 material.name = materialName.Text;
