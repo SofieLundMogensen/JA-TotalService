@@ -13,6 +13,7 @@ using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
 using ModelLayer;
 using MvvmCross.Binding.BindingContext;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace JATotalservice.Droid.Views
@@ -21,6 +22,9 @@ namespace JATotalservice.Droid.Views
     [Register("JATotalservice.droid.views.MaterialsView")]
     public class MaterialsView : BaseFragment<MaterialsViewModel>
     {
+
+
+
 
         List<Material> materials = new List<Material>();
         TextView testTextView;
@@ -33,10 +37,14 @@ namespace JATotalservice.Droid.Views
 
         private Android.Support.V4.App.FragmentManager transaction;
         protected override int FragmentId => Resource.Layout.MaterialsView;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
+
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            _toolbar.Title = "Materialer";
 
             material = new Material();
 
@@ -50,7 +58,7 @@ namespace JATotalservice.Droid.Views
             materialAdapter.NotifyDataSetChanged();
 
             gridview.Adapter = materialAdapter;
-            
+
             //What to do when you press the add button
             addButton.Click += (object sender, EventArgs e) =>
             {

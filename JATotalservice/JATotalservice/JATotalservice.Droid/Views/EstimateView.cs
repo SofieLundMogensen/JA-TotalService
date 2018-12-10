@@ -28,11 +28,14 @@ namespace JATotalservice.Droid.Views
 
         ListView Materials;
         MaterialsListViewAdapter materialsListViewAdapter;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            _toolbar.Title = "Pris overslag";
 
             //Floating botton add material
             var add = view.FindViewById<FloatingActionButton>(Resource.Id.Add);

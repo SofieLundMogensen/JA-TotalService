@@ -36,9 +36,14 @@ namespace JATotalservice.Droid.Views
         View view;
         MaterialsListViewAdapter materialsListViewAdapter;
         EditText employeeId;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
+
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
+
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            _toolbar.Title = "Tidsregistering";
             //Set up time spinners
             SetupTime();
 
@@ -71,10 +76,10 @@ namespace JATotalservice.Droid.Views
         private void AddMaterial()
         {
             //Adds a material to the MaterialTask list
-            
-            ViewModel.AddMaterials(Tuple.Create(new Material { id = 1}, 1));
+
+            ViewModel.AddMaterials(Tuple.Create(new Material { id = 1 }, 1));
             materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
-           
+
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
         }
@@ -91,7 +96,7 @@ namespace JATotalservice.Droid.Views
             timeRegistartion.startTime = new DateTime(date.Year, date.Month, date.Day, hourS, minS, 00); //He last parameter is sceond, and we dont use that, so we ar setting it to 0
             timeRegistartion.endTime = new DateTime(date.Year, date.Month, date.Day, hourE, minE, 00);
             timeRegistartion.task = task;
-            timeRegistartion.employee = new Employee {  };
+            timeRegistartion.employee = new Employee { };
             timeRegistartion.employee.Id = int.Parse(employeeId.Text);
             //var MaterialsAmount = materialsListViewAdapter.materials;
             //ViewModel.MaterialsAmount = MaterialsAmount;
@@ -117,7 +122,7 @@ namespace JATotalservice.Droid.Views
         {
             //tjekker hvilket task der er valgt og sætter den til at være = task
             //En task er den opgave der bliver udført for kunden, som medarbejderen vælger og registrere brugt tid til
-           // task = ViewModel.Tasks[e.Position];
+            // task = ViewModel.Tasks[e.Position];
         }
 
 
@@ -144,8 +149,8 @@ namespace JATotalservice.Droid.Views
         protected void SetupBindings()
         {
             var set = this.CreateBindingSet<TimeView, TimeViewModel>(); //Creates the binding between the view and viewModel
-                 //set.Bind(Materials).For(m => m.)
-            // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
+                                                                        //set.Bind(Materials).For(m => m.)
+                                                                        // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
             set.Apply();
         }
     }

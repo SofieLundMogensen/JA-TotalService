@@ -31,4 +31,8 @@
     <!-- Support library compatibility -->
     <item name="elevation">0dp</item>
   </style>
+  <style name="Toolbar">
+    <item name="android:layout_height">?attr/actionBarSize</item>
+    <item name="android:background">?attr/colorPrimary</item>
+  </style>
 </resources>

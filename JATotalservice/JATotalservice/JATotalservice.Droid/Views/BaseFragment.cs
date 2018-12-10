@@ -13,7 +13,7 @@ namespace JATotalservice.Droid.Views
     public abstract class BaseFragment : MvxFragment
     {
         private Toolbar _toolbar;
-        private MvxActionBarDrawerToggle _drawerToggle;
+        //private MvxActionBarDrawerToggle _drawerToggle;
 
         public MvxAppCompatActivity ParentActivity
         {
@@ -30,7 +30,8 @@ namespace JATotalservice.Droid.Views
             var view = this.BindingInflate(FragmentId, null);
 
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-        /*    if (_toolbar != null)
+        /*
+        if (_toolbar != null)
             {
                 ParentActivity.SetSupportActionBar(_toolbar);
                 ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -54,16 +55,16 @@ namespace JATotalservice.Droid.Views
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            if (_toolbar != null)
-                _drawerToggle.OnConfigurationChanged(newConfig);
+            //if (_toolbar != null)
+               // _drawerToggle.OnConfigurationChanged(newConfig);
         }
 
-        public override void OnActivityCreated(Bundle savedInstanceState)
+       /* public override void OnActivityC/reated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            if (_toolbar != null)
-                _drawerToggle.SyncState();
-        }
+           // if (_toolbar != null)
+               // _drawerToggle.SyncState();
+        }*/
     }
 
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel
