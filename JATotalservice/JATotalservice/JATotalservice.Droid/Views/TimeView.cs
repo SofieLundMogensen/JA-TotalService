@@ -35,7 +35,7 @@ namespace JATotalservice.Droid.Views
         Spinner TaskDropDown;
         View view;
         MaterialsListViewAdapter materialsListViewAdapter;
-
+        EditText employeeId;
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
@@ -57,15 +57,13 @@ namespace JATotalservice.Droid.Views
             Materials = view.FindViewById<ListView>(Resource.Id.MaterialsListView);
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
-            
-            
+
+            employeeId = view.FindViewById<EditText>(Resource.Id.Employee);
+
             //Send Timeregistration
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
-            sendTimeRegistration.Click += (object sender, EventArgs e) =>
-            {
-                Android.Support.V4.App.FragmentTransaction transaction = FragmentManager.BeginTransaction();
-                DialogMaterial dialogSign = new DialogMaterial();
-            };
+            sendTimeRegistration.Click += delegate { sendData(view.Context); };
+
             SetupBindings();
             return view;
         }
@@ -93,13 +91,14 @@ namespace JATotalservice.Droid.Views
             timeRegistartion.startTime = new DateTime(date.Year, date.Month, date.Day, hourS, minS, 00); //He last parameter is sceond, and we dont use that, so we ar setting it to 0
             timeRegistartion.endTime = new DateTime(date.Year, date.Month, date.Day, hourE, minE, 00);
             timeRegistartion.task = task;
-
+            timeRegistartion.employee = new Employee {  };
+            timeRegistartion.employee.Id = int.Parse(employeeId.Text);
             //var MaterialsAmount = materialsListViewAdapter.materials;
             //ViewModel.MaterialsAmount = MaterialsAmount;
 
-                                     //TODO: Koble de valgte matrialer på med antal
+            //TODO: Koble de valgte matrialer på med antal
 
-            timeRegistartion.employee = new Employee { Id = 1 }; //TODO: Fjernes når vi har styr på en employee - for nu er den presat
+            //timeRegistartion.employee = new Employee { Id = 1 }; //TODO: Fjernes når vi har styr på en employee - for nu er den presat
 
             ViewModel.PostTime.Execute(timeRegistartion);
             Materials.Adapter = materialsListViewAdapter;

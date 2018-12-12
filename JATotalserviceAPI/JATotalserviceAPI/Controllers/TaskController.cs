@@ -15,7 +15,7 @@ namespace ServiceAPI.Controllers
 
         // Get api/Tasks
         [HttpGet("GetAll")]
-         public List<Task> GetAll()
+        public List<Task> GetAll()
         {
             return taskcontroller.GetAll();
         }
@@ -29,7 +29,7 @@ namespace ServiceAPI.Controllers
 
         // POST api/Task
         [HttpPost("Post")]
-            public bool Post(Task task)
+        public bool Post(Task task)
         {
             return taskcontroller.Create(task);
         }
@@ -42,10 +42,10 @@ namespace ServiceAPI.Controllers
         }
 
         // Delete api/Task
-        [HttpDelete(("Delete")+("{id}"))]
+        [HttpDelete(("Delete") + ("{id}"))]
         public bool Delete(int id)
         {
-        return taskcontroller.Delete(id);
+            return taskcontroller.Delete(id);
         }
     }
 }

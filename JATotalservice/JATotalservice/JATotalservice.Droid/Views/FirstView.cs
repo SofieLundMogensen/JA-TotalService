@@ -64,6 +64,20 @@ namespace JATotalservice.Droid.Views
             //Console.WriteLine("----------------------------DELETE---------------------------------");
             //EstimatedPriceService.DeleteEstimatedPrice(123456789);
             //Console.WriteLine("-------------------------------------------------------------");
+
+            //EstimatedPrice estimatedPrice = new EstimatedPrice();
+            //estimatedPrice.Id = 11;
+            //estimatedPrice.estimatedTime = 10;
+            //Material material = new Material();
+            //material.id = 1;
+            //List<Tuple<Material, int>> listen = new List<Tuple<Material, int>>();
+            //var tt = Tuple.Create(material, 1);
+            //listen.Add(tt);
+            //estimatedPrice.materials = listen;
+
+            //EstimatedPriceService.CalculatePrice(estimatedPrice);
+           
+            // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
            /* Material m = new Material
             {
                 name = "wood",
