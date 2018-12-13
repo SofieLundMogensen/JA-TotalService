@@ -11,22 +11,46 @@ namespace JATotalservice.WPF.Helpers
 {
     class PDFHelper
     {
-
-        public void CreatePDF()
+        
+        public void CreatePDF(ModelLayer.Task task)
         {
-            Console.WriteLine("-----------------------Hej med dig, jeg er mega sej-----------------");
-            Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
-            PdfWriter w = PdfWriter.GetInstance(doc, new FileStream("File.pdf", FileMode.Create));
+            if (task != null)
+            {
+                Document doc = new Document(PageSize.A4, 20, 20, 42, 35);
+                PdfWriter w = PdfWriter.GetInstance(doc, new FileStream(task.name + ".pdf", FileMode.Create));
+                
+                doc.Open();
+                doc.AddAuthor("?");
+                doc.AddCreator("Visual Studio");
+                doc.AddSubject("PDF File");
+                doc.AddTitle(task.name);
 
-            iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph("Det her pdf generering virker bare");
-            doc.Open();
-            doc.AddAuthor("Dennis");
-            doc.AddCreator("Visual Studio");
-            doc.AddSubject("PDF File");
-            doc.AddTitle("Title");
-            doc.Add(p);
-            doc.Add(p);
-            doc.Close();
+                Paragraph name = new Paragraph("Opgave: " + task.name);
+                doc.Add(name);
+                doc.Add(Chunk.NEWLINE);
+
+                Paragraph isComplete = new Paragraph("Færdig: " + task.isComplete);
+                doc.Add(isComplete);
+                doc.Add(Chunk.NEWLINE);
+
+                foreach (var item in task.timeRegistrations)
+                {
+                    Paragraph p = new Paragraph("Starttid: " + item.startTime.ToString() + "   Sluttid: " + item.endTime.ToString());
+                    doc.Add(p);
+                }
+                doc.Add(Chunk.NEWLINE);
+
+                foreach (var item in task.materials)
+                {
+                    Paragraph p = new Paragraph("Type: " + item.Item1.name + "   antal: " + item.Item2);
+                    doc.Add(p);
+                }
+
+
+                
+                doc.Close();
+            }
+            
         }
     }
 }

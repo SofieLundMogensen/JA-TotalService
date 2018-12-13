@@ -64,7 +64,7 @@ namespace JATotalservice.WPF.Views
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
             
-            pDFHelper.CreatePDF();
+            pDFHelper.CreatePDF(taskViewModel.Task);
         }
 
         
