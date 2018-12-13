@@ -1,5 +1,6 @@
 ﻿using JATotalservice.Core.Service;
 using ModelLayer;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ namespace JATotalservice.Core.ViewModels
 {
     public class TaskViewModel : MvxViewModel
     {
+        
         public override void Prepare()
         {
             base.Prepare();

@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModelLayer;
+using JATotalservice.WPF.Helpers;
+
 namespace JATotalservice.WPF.Views
 {
     /// <summary>
@@ -26,6 +28,7 @@ namespace JATotalservice.WPF.Views
     public partial class TasksView : MvxWpfView
     {
         TaskViewModel taskViewModel;
+        PDFHelper pDFHelper = new PDFHelper();
         public TasksView()
         {
             taskViewModel = new TaskViewModel();
@@ -68,19 +71,8 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("-----------------------Hej med dig, jeg er mega sej-----------------");
-           /*Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
-            PdfWriter w = PdfWriter.GetInstance(doc, new FileStream("File.pdf", FileMode.Create));
-
-            iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph("Det her pdf generering virker bare");
-            doc.Open();
-            doc.AddAuthor("Dennis");
-            doc.AddCreator("Visual Studio");
-            doc.AddSubject("PDF File");
-            doc.AddTitle("Title");
-            doc.Add(p);
-            doc.Add(p);
-            doc.Close();*/
+            
+            pDFHelper.CreatePDF(taskViewModel.Task);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
