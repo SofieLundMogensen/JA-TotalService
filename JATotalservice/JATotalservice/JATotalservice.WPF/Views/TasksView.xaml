@@ -9,7 +9,7 @@
     <Grid>
         
         
-        <ListView Margin="10,10,549,10" Name="Tasks" SelectionChanged="Tasks_SelectionChanged"  ItemsSource="{Binding Tasks}" >
+        <ListView Margin="10,57,549,10" Name="Tasks" SelectionChanged="Tasks_SelectionChanged"  ItemsSource="{Binding Tasks}" >
            
             <ListView.View>
                 <GridView>
@@ -20,6 +20,7 @@
             </ListView.View>
         </ListView>
         <Label Name="Name" Content="Label" HorizontalAlignment="Left" Margin="298,42,0,0" VerticalAlignment="Top"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="725,27,0,0" VerticalAlignment="Top" Width="75" Name="PrintFaktura"/>
 
     </Grid>
 </views:MvxWpfView>
