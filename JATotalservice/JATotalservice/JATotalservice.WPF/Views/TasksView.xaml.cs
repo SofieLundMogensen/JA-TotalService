@@ -17,8 +17,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModelLayer;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 namespace JATotalservice.WPF.Views
 {
@@ -63,20 +61,10 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("-----------------------Hej med dig, jeg er mega sej-----------------");
-            Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
-            PdfWriter w = PdfWriter.GetInstance(doc, new FileStream("File.pdf", FileMode.Create));
-
-            iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph("Det her pdf generering virker bare");
-            doc.Open();
-            doc.AddAuthor("Dennis");
-            doc.AddCreator("Visual Studio");
-            doc.AddSubject("PDF File");
-            doc.AddTitle("Title");
-            doc.Add(p);
-            doc.Add(p);
-            doc.Close();
+            taskViewModel.CreatePDFCommand.Execute();
         }
+
+        
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
