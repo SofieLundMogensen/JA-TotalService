@@ -33,20 +33,24 @@ namespace JATotalservice.WPF.Helpers
                 doc.Add(isComplete);
                 doc.Add(Chunk.NEWLINE);
 
-                foreach (var item in task.timeRegistrations)
+                if (task.timeRegistrations != null && task.timeRegistrations.Count > 0)
                 {
-                    Paragraph p = new Paragraph("Starttid: " + item.startTime.ToString() + "   Sluttid: " + item.endTime.ToString());
-                    doc.Add(p);
+                    foreach (var item in task.timeRegistrations)
+                    {
+                        Paragraph p = new Paragraph("Starttid: " + item.startTime.ToString() + "   Sluttid: " + item.endTime.ToString());
+                        doc.Add(p);
+                    }
+                    doc.Add(Chunk.NEWLINE);
                 }
-                doc.Add(Chunk.NEWLINE);
-
-                foreach (var item in task.materials)
+                
+                if (task.materials != null && task.materials.Count > 0)
                 {
-                    Paragraph p = new Paragraph("Type: " + item.Item1.name + "   antal: " + item.Item2);
-                    doc.Add(p);
+                    foreach (var item in task.materials)
+                    {
+                        Paragraph p = new Paragraph("Type: " + item.Item1.name + "   antal: " + item.Item2);
+                        doc.Add(p);
+                    }
                 }
-
-
                 
                 doc.Close();
             }
