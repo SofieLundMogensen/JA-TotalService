@@ -59,7 +59,21 @@ namespace JATotalservice.WPF.Views
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
-            Popup.IsOpen = true;
+            PopupCreate.IsOpen = true;
+        }
+
+        private void CreateTask_Click(object sender, RoutedEventArgs e)
+        {
+
+            ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
+           
+            taskViewModel.PostTask(task);
+            PopupCreate.IsOpen = false;
+        }
+
+        private void AnnullCreate_Click(object sender, RoutedEventArgs e)
+        {
+            PopupCreate.IsOpen = false;
         }
     }
 }

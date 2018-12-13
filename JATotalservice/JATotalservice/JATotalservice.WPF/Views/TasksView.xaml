@@ -14,7 +14,7 @@
                 <GridView>
                     <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="Færdig" Width="100" DisplayMemberBinding="{Binding isComplete}" />
-                  
+
                 </GridView>
             </ListView.View>
         </ListView>
@@ -39,12 +39,16 @@
         </ListView>
         <Button Name="Create" Content="Opret" HorizontalAlignment="Left" Margin="11,27,0,0" VerticalAlignment="Top" Width="75" Click="Create_Click"/>
 
-        <Popup Name="Popup" HorizontalAlignment="Left"   
-            VerticalAlignment="Stretch" Width="200" Height="200"   
-         IsOpen="True" Placement="Center"  >
-            <Grid HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Background="LightBlue">
-                <Button Content="Opret" HorizontalAlignment="Left" Margin="115,170,0,0" VerticalAlignment="Top" Width="75"/>
-                <Button Content="Annuller" HorizontalAlignment="Left" Margin="35,170,0,0" VerticalAlignment="Top" Width="75"/>
+        <Popup Name="PopupCreate" HorizontalAlignment="Left"   
+            VerticalAlignment="Stretch" Width="322" Height="300"   
+         IsOpen="False" Placement="Center"  >
+            <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="322" Background="LightGray">
+                <Button Content="Opret" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Click="CreateTask_Click"/>
+                <Button Content="Annuller" HorizontalAlignment="Left" Margin="157,259,0,0" VerticalAlignment="Top" Width="75" Name="AnnullCreate" Click="AnnullCreate_Click"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="TaskName"/>
+                <Label Content="Opgave navn:" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+                <Label Content="Beskrivelse" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="TaskDescription"/>
 
             </Grid>
 

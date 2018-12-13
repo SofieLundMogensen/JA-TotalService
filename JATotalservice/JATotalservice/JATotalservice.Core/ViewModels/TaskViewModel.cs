@@ -36,6 +36,7 @@ namespace JATotalservice.Core.ViewModels
         public void PostTask(Task task)
         {
             //Post her
+            //husk at getliste forfra
            
         }
         public void Edit(Task task)
