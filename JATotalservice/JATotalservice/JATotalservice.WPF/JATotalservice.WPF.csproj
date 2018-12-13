@@ -69,6 +69,12 @@
     <Compile Include="Views\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MaterialsView.xaml.cs">
+      <DependentUpon>MaterialsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TasksView.xaml.cs">
+      <DependentUpon>TasksView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +90,14 @@
     <Page Include="Views\FirstView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MaterialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TasksView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +131,10 @@
     <Resource Include="MvvmCross.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\JATotalserviceAPI\Model\ModelLayer.csproj">
+      <Project>{4a3f9fcd-65ca-4b8a-9a9f-56723fa4f20d}</Project>
+      <Name>ModelLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JATotalservice.Core\JATotalservice.Core.csproj">
       <Project>{5C3A1B1E-D2AD-4F46-B021-A51075345843}</Project>
       <Name>JATotalservice.Core</Name>

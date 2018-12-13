@@ -8,16 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Margin="12,0,12,0">
-            <TextBlock Text="SubTotal" />
-            <TextBox Text="{Binding SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBlock Text="Generosity" />
-            <Slider Value="{Binding Generosity,Mode=TwoWay}" 
-                    SmallChange="1" 
-                    LargeChange="10" 
-                    Minimum="0" 
-                    Maximum="100" />
-            <TextBlock Text="Tip to leave" />
+ 
             <TextBlock Text="{Binding Hello}" />
+            <Button Command="{Binding NavigateToMaterialsCommand}" Width="100" Height="100" Content="Material"/>
+            <Button Command="{Binding NavigateToMaterialsCommand}" Width="100" Height="100" Content="Tidsregistering"/>
+            <Button Command="{Binding NavigateToTasksCommand}" Width="100" Height="100" Content="Opgaver"/>
         </StackPanel>
     </Grid>
 </views:MvxWpfView>
