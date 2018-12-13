@@ -55,9 +55,10 @@ namespace JATotalservice.Core.ViewModels
 
         public void PostTimeRegistration(TimeRegistartion timeRegistartion)
         {
+            
             timeRegistartion.task.materials = MaterialsAmount;
             //Kalder timeregistration service og poster timeregistration
-            TimeRegistartionService.PostTimeInfo(timeRegistartion);
+            var didSucced = TimeRegistartionService.PostTimeInfo(timeRegistartion);
             MaterialsAmount.Clear();
         }
         public void AddMaterials(Tuple<Material, int> materialAmount)

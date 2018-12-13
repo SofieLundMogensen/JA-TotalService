@@ -51,29 +51,17 @@ namespace JATotalservice.Core.ViewModels
             var Material = Tuple.Create(material, amount);
             MaterialsAmount.Add(Material);
         }
-        public int PostEstimatedPrice(EstimatedPrice estimatedPrice)
+        public void PostEstimatedPrice(EstimatedPrice estimatedPrice)
         {
             estimatedPrice.materials = MaterialsAmount;
             
             //Kalder EstimatedPrice service og poster Estimated price til db
-            EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
-
-            //Kalder GetPrice metode
-            var price = getPrice(estimatedPrice);
+            var didsucced = EstimatedPriceService.PostEstimatedPrice(estimatedPrice);
 
             MaterialsAmount.Clear();
-
-            return price;
-        }
-        public int getPrice(EstimatedPrice estimatedPrice)
-        {
-            int TimePrice = 300;
-            var EstimedTimePrice = estimatedPrice.estimatedTime * TimePrice;
-            //TODO: MANGLER UDREGNING AF MATRIALER...
             
-            return EstimedTimePrice;
         }
-
+        
         public double CalculatePrice(EstimatedPrice estimatedPrice)
         {
             estimatedPrice.materials = MaterialsAmount;

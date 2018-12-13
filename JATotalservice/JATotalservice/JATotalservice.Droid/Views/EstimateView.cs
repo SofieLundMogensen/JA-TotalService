@@ -71,16 +71,11 @@ namespace JATotalservice.Droid.Views
             double calculatedPrice = ViewModel.CalculatePrice(estimatedPrice);
             
             Toast.MakeText(context, "Det vil koste " + calculatedPrice + "kroner", ToastLength.Long).Show();
+
         }
 
         private void AddMaterial()
         {
-            ////Adds a material to the MaterialTask list
-            //MaterialTask materialTask = new MaterialTask();
-            //ViewModel.AddMaterials(materialTask);
-            //Materials.Adapter = materialsListViewAdapter;
-            //Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?
-
             //Adds a material to the MaterialTask list
 
             ViewModel.AddMaterials(1, new Material { id = 1});

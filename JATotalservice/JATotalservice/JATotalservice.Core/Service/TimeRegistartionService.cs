@@ -22,14 +22,14 @@ namespace JATotalservice.Core.Service
             return client.Execute<TimeRegistartion>(request).Data;
         }
 
-        public static void PostTimeInfo(TimeRegistartion timeregistration)
+        public static bool PostTimeInfo(TimeRegistartion timeregistration)
         {
             IRestRequest request = new RestRequest("Post", Method.POST);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(timeregistration);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
-            bool test = Convert.ToBoolean(response.Content);
+            return Convert.ToBoolean(response.Content);
         }
         public static void PutTimeInfo(TimeRegistartion timeregistration1)
         {

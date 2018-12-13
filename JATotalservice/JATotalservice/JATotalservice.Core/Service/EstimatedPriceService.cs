@@ -28,14 +28,14 @@ namespace JATotalservice.Core.Service
             return client.Execute<List<EstimatedPrice>>(request).Data;
         }
         
-        public static void PostEstimatedPrice(EstimatedPrice estimatedPrice)
+        public static bool PostEstimatedPrice(EstimatedPrice estimatedPrice)
         {
             IRestRequest request = new RestRequest("Post", Method.POST);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(estimatedPrice);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
-            bool test = Convert.ToBoolean(response.Content);
+            return Convert.ToBoolean(response.Content);
         }
 
         public static void PutEstimatedPrice(EstimatedPrice estimatedPrice)
@@ -73,6 +73,7 @@ namespace JATotalservice.Core.Service
 
         public static double CalculatePrice(EstimatedPrice estimatedPrice)
         {
+
             double returnPrice = 0;
 
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(estimatedPrice);

@@ -15,16 +15,16 @@ namespace BusinessLogicLayer
         public bool Create(EstimatedPrice obj)
         {
             var succes = db.Create(obj);
-            obj.Id = succes;
             if (succes != -1)
             {
+                obj.Id = succes;
                 return estimatedPriceMaterialController.Create(obj);
             }
             return false;
         }
         public bool Delete(int id)
         {
-           return db.Delete(id);
+            return db.Delete(id);
         }
         public EstimatedPrice Get(int id)
         {
@@ -36,7 +36,7 @@ namespace BusinessLogicLayer
         }
         public bool Update(EstimatedPrice obj)
         {
-           return db.Update(obj);
+            return db.Update(obj);
         }
 
         public double CalculatePrice(EstimatedPrice estimatedPrice)
@@ -51,7 +51,7 @@ namespace BusinessLogicLayer
                 Material material = materialController.Get(item.Item1.id); //Henter den nye version af materiale
                 returnPrice += material.price * item.Item2; //Udregner prisen med antal materialer
             }
-            
+
             return returnPrice;
         }
     }
