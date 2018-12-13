@@ -40,7 +40,17 @@ namespace JATotalservice.Core.Service
 
         public static void PutTask(Task task)
         {
+
+            IRestRequest request = new RestRequest("Put", Method.POST); //Virker ikke med put så post er brugt i stedet
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(task);
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+            bool test = Convert.ToBoolean(response.Content);
+
+
+
+          /*  var json = Newtonsoft.Json.JsonConvert.SerializeObject(task);
             string url = "http://jatotalservice.slund.info/api/Task/Put";
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
@@ -60,7 +70,7 @@ namespace JATotalservice.Core.Service
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-            }
+            }*/
         }
 
         public static void DeleteTask(int id)

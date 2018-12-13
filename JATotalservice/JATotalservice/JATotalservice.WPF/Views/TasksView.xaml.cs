@@ -32,46 +32,62 @@ namespace JATotalservice.WPF.Views
             InitializeComponent();
         }
 
-  
+
 
         private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
         {
-           
+
         }
 
         private void Tasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-             var itme = (ListBox)sender;
-             var task =   (ModelLayer.Task)itme.SelectedItem;
-            taskViewModel.Task = task;
-            Name.Content = task.name;
-            Description.Content = task.description;
-            double timeused = 0;
-            foreach (var item in task.timeRegistrations)
+            var itme = (ListBox)sender;
+            var task = (ModelLayer.Task)itme.SelectedItem;
+            if (task != null)
             {
-               double time = item.endTime.Hour - item.startTime.Hour;
-                timeused =  time + timeused;
+                taskViewModel.Task = task;
+                Name.Content = task.name;
+                Description.Content = task.description;
+                double timeused = 0;
+                if (task.timeRegistrations != null)
+                {
+                    foreach (var item in task.timeRegistrations)
+                    {
+                        double time = item.endTime.Hour - item.startTime.Hour;
+                        timeused = time + timeused;
+                    }
+                }
+                Time.Content = timeused;
+                if (task.materials != null)
+                {
+                    Materials.ItemsSource = task.materials;
+                }
             }
-            Time.Content = timeused;
-            Materials.ItemsSource = task.materials;
-            Console.WriteLine("Wuo wup");
+         
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
+            TaskName.Text = "";
+            TaskDescription.Text = "";
             PopupCreate.IsOpen = true;
         }
 
         private void CreateTask_Click(object sender, RoutedEventArgs e)
         {
-
-            ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text }; 
+            
+            ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
             taskViewModel.PostTask(task);
             PopupCreate.IsOpen = false;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+
         }
 
         private void AnnullCreate_Click(object sender, RoutedEventArgs e)
         {
+            EditTask.Visibility = Visibility.Hidden;
+            IsDone.Visibility = Visibility.Hidden;
+            CreateTask.Visibility = Visibility.Visible;
             PopupCreate.IsOpen = false;
         }
 
@@ -86,16 +102,18 @@ namespace JATotalservice.WPF.Views
             IsDone.Visibility = Visibility.Hidden;
             CreateTask.Visibility = Visibility.Visible;
             PopupCreate.IsOpen = false;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+
         }
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            
+
             CreateTask.Visibility = Visibility.Hidden;
             EditTask.Visibility = Visibility.Visible;
             IsDone.Visibility = Visibility.Visible;
             PopupCreate.IsOpen = true;
-            var task= taskViewModel.Task;
+            var task = taskViewModel.Task;
             IsDone.IsChecked = task.isComplete;
             TaskName.Text = task.name;
             TaskDescription.Text = task.description;
@@ -104,6 +122,8 @@ namespace JATotalservice.WPF.Views
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             taskViewModel.delete(taskViewModel.Task.id);
+            Tasks.ItemsSource = taskViewModel.Tasks;
+
             //Optimalt en check på om man vil slette eller ej.
         }
     }
