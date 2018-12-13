@@ -34,9 +34,7 @@ namespace JATotalservice.WPF.Views
             taskViewModel = new TaskViewModel();
             InitializeComponent();
         }
-
-
-
+        
         private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
         {
 
@@ -71,7 +69,6 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            
             pDFHelper.CreatePDF(taskViewModel.Task);
         }
 
