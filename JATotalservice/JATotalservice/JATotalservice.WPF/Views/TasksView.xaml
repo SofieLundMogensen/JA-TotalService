@@ -7,20 +7,48 @@
               mc:Ignorable="d" 
               d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        
-        
+
+
         <ListView Margin="10,57,549,10" Name="Tasks" SelectionChanged="Tasks_SelectionChanged"  ItemsSource="{Binding Tasks}" >
-           
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
-                    <GridViewColumn Header="Id" Width="50" DisplayMemberBinding="{Binding id}" />
+                    <GridViewColumn Header="Færdig" Width="100" DisplayMemberBinding="{Binding isComplete}" />
                   
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Name="Name" Content="Label" HorizontalAlignment="Left" Margin="298,42,0,0" VerticalAlignment="Top"/>
+        <Label Name="Name" Content="Label" HorizontalAlignment="Left" Margin="379,57,0,0" VerticalAlignment="Top"/>
         <Button Content="Print" HorizontalAlignment="Left" Margin="725,27,0,0" VerticalAlignment="Top" Width="75" Name="PrintFaktura"/>
+        <Button Content="Rediger" HorizontalAlignment="Left" Margin="96,27,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Margin="176,27,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Opgave navn:" HorizontalAlignment="Left" Margin="291,57,0,0" VerticalAlignment="Top"/>
+        <Label Content="Beskrivelse:" HorizontalAlignment="Left" Margin="291,83,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description text her" HorizontalAlignment="Left" Margin="291,109,0,0" VerticalAlignment="Top" Name="Description"/>
+        <Label Content="Tid brugt:" HorizontalAlignment="Left" Margin="291,140,0,0" VerticalAlignment="Top"/>
+        <Label Content="28" HorizontalAlignment="Left" Margin="379,140,0,0" VerticalAlignment="Top" Name="Time"/>
+        <Label Content="Matrialer:" HorizontalAlignment="Left" Margin="291,171,0,0" VerticalAlignment="Top"/>
+        <ListView Margin="291,197,268,10" Name="Materials"  >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Navn" Width="120" DisplayMemberBinding="{Binding Item1.name}" />
+                    <GridViewColumn Header="Antal" Width="100" DisplayMemberBinding="{Binding Item2}" />
 
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Name="Create" Content="Opret" HorizontalAlignment="Left" Margin="11,27,0,0" VerticalAlignment="Top" Width="75" Click="Create_Click"/>
+
+        <Popup Name="Popup" HorizontalAlignment="Left"   
+            VerticalAlignment="Stretch" Width="200" Height="200"   
+         IsOpen="True" Placement="Center"  >
+            <Grid HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Background="LightBlue">
+                <Button Content="Opret" HorizontalAlignment="Left" Margin="115,170,0,0" VerticalAlignment="Top" Width="75"/>
+                <Button Content="Annuller" HorizontalAlignment="Left" Margin="35,170,0,0" VerticalAlignment="Top" Width="75"/>
+
+            </Grid>
+
+
+        </Popup>
     </Grid>
 </views:MvxWpfView>

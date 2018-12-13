@@ -45,7 +45,21 @@ namespace JATotalservice.WPF.Views
              var task =   (ModelLayer.Task)itme.SelectedItem;
             taskViewModel.Task = task;
             Name.Content = task.name;
+            Description.Content = task.description;
+            double timeused = 0;
+            foreach (var item in task.timeRegistrations)
+            {
+               double time = item.endTime.Hour - item.startTime.Hour;
+                timeused =  time + timeused;
+            }
+            Time.Content = timeused;
+            Materials.ItemsSource = task.materials;
             Console.WriteLine("Wuo wup");
+        }
+
+        private void Create_Click(object sender, RoutedEventArgs e)
+        {
+            Popup.IsOpen = true;
         }
     }
 }
