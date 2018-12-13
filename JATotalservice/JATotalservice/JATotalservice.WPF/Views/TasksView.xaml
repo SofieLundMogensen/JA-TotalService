@@ -20,7 +20,7 @@
             </ListView.View>
         </ListView>
         <Label Name="Name" Content="Label" HorizontalAlignment="Left" Margin="298,42,0,0" VerticalAlignment="Top"/>
-        <Button Content="Print" HorizontalAlignment="Left" Margin="725,27,0,0" VerticalAlignment="Top" Width="75" Name="PrintFaktura"/>
+        <Button Content="Print" HorizontalAlignment="Left" Margin="725,27,0,0" VerticalAlignment="Top" Width="75" Name="PrintFaktura" Click="PrintFaktura_Click"/>
 
     </Grid>
 </views:MvxWpfView>
