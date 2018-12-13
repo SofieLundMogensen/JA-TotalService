@@ -1,4 +1,5 @@
-﻿using ModelLayer;
+﻿using JATotalservice.Core.Service;
+using ModelLayer;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -35,21 +36,29 @@ namespace JATotalservice.Core.ViewModels
 
         public void PostTask(Task task)
         {
-            //Post her
-            //husk at getliste forfra
-           
+            TaskService.PostTask(task);
+            GetTasks();
+                     
         }
         public void Edit(Task task)
         {
-            // edit her
-     
+            TaskService.PutTask(task);
+            GetTasks();
+
+        }
+        public void delete(int id)
+        {
+            TaskService.DeleteTask(id);
+            GetTasks();
         }
 
         //Function that gets a list of task from api, and returns a list of task
         public void GetTasks()
         {
-            Tasks = new List<Task>();
-            //TODO: Get tasks
+          Tasks =  TaskService.GetAllTasks();
+           // Tasks = new List<Task>();
+
+           /* //TODO: Get tasks
             for (int i = 0; i < 10; i++)
             {
                 Task task = new Task();
@@ -84,10 +93,9 @@ namespace JATotalservice.Core.ViewModels
                     int n = rnd.Next(1, 50);
                   task.materials.Add(Tuple.Create(material, n));
                 }
-                Tasks.Add(task);
+                Tasks.Add(task);*/
             }
         }
 
       
     }
-}
