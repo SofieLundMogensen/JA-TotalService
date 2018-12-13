@@ -46,7 +46,7 @@ namespace JATotalservice.WPF.Views
         private void Tasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
              var itme = (ListBox)sender;
-             var task =   (ModelLayer.Task)itme.SelectedItem;
+             var task =   (ModelLayer.Task)itme.SelectedItem; //Det er den valgte task man har klikket på i view'et
             taskViewModel.Task = task;
             Name.Content = task.name;
             Description.Content = task.description;
@@ -82,5 +82,6 @@ namespace JATotalservice.WPF.Views
         {
             Popup.IsOpen = true;
         }
+        
     }
 }

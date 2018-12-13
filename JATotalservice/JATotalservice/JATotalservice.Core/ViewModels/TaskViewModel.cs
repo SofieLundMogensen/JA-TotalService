@@ -87,6 +87,10 @@ namespace JATotalservice.Core.ViewModels
             }
         }
 
+        public void CreatePdf()
+        {
+
+        }
       
     }
 }
