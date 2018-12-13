@@ -1,0 +1,51 @@
+﻿using JATotalservice.Core.ViewModels;
+using MvvmCross.Platforms.Wpf.Views;
+using MvvmCross.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using ModelLayer;
+namespace JATotalservice.WPF.Views
+{
+    /// <summary>
+    /// Interaction logic for TasksView.xaml
+    /// </summary>
+
+    [MvxViewFor(typeof(TaskViewModel))]
+    public partial class TasksView : MvxWpfView
+    {
+        TaskViewModel taskViewModel;
+        public TasksView()
+        {
+            taskViewModel = new TaskViewModel();
+            InitializeComponent();
+        }
+
+  
+
+        private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
+        {
+           
+        }
+
+        private void Tasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+             var itme = (ListBox)sender;
+             var task =   (ModelLayer.Task)itme.SelectedItem;
+            taskViewModel.Task = task;
+            Name.Content = task.name;
+            Console.WriteLine("Wuo wup");
+        }
+    }
+}

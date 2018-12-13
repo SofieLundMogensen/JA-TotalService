@@ -28,6 +28,10 @@ namespace JATotalservice.Core.ViewModels
         {
             GetMaterials();
         }
+        public void GetMaterial()
+        {
+
+        }
         
         public void PostMaterial(Material material)
         {

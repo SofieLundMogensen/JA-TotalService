@@ -1,4 +1,6 @@
-﻿using MvvmCross.Platforms.Wpf.Views;
+﻿using JATotalservice.Core.ViewModels;
+using MvvmCross.Platforms.Wpf.Views;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,16 +16,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JATotalservice.WPF
+namespace JATotalservice.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MaterialsView.xaml
     /// </summary>
-    public partial class MainWindow : MvxWindow
+   [MvxViewFor(typeof(MaterialsViewModel))]
+    public partial class MaterialsView : MvxWpfView
     {
-        public MainWindow()
+        public MaterialsView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
     }
 }
