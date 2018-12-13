@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModelLayer;
+using JATotalservice.WPF.Helpers;
 
 namespace JATotalservice.WPF.Views
 {
@@ -28,6 +29,7 @@ namespace JATotalservice.WPF.Views
     public partial class TasksView : MvxWpfView
     {
         TaskViewModel taskViewModel;
+        PDFHelper pDFHelper = new PDFHelper();
         public TasksView()
         {
             taskViewModel = new TaskViewModel();
@@ -61,7 +63,8 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            taskViewModel.CreatePDFCommand.Execute();
+            
+            pDFHelper.CreatePDF();
         }
 
         
