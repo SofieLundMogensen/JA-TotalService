@@ -69,7 +69,7 @@ namespace JATotalservice.WPF.Views
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
             Console.WriteLine("-----------------------Hej med dig, jeg er mega sej-----------------");
-            Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
+           /*Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
             PdfWriter w = PdfWriter.GetInstance(doc, new FileStream("File.pdf", FileMode.Create));
 
             iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph("Det her pdf generering virker bare");
@@ -80,7 +80,7 @@ namespace JATotalservice.WPF.Views
             doc.AddTitle("Title");
             doc.Add(p);
             doc.Add(p);
-            doc.Close();
+            doc.Close();*/
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)

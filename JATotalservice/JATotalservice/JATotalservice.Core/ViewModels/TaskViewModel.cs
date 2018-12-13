@@ -96,10 +96,4 @@ namespace JATotalservice.Core.ViewModels
                 Tasks.Add(task);*/
             }
         }
-
-        public void CreatePdf()
-        {
-
-        }
-      
     }
