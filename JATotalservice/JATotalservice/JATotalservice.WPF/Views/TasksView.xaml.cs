@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModelLayer;
+using JATotalservice.WPF.Helpers;
 
 namespace JATotalservice.WPF.Views
 {
@@ -28,14 +28,13 @@ namespace JATotalservice.WPF.Views
     public partial class TasksView : MvxWpfView
     {
         TaskViewModel taskViewModel;
+        PDFHelper pDFHelper = new PDFHelper();
         public TasksView()
         {
             taskViewModel = new TaskViewModel();
             InitializeComponent();
         }
-
-
-
+        
         private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
         {
 
@@ -70,10 +69,8 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            taskViewModel.CreatePDFCommand.Execute();
+            pDFHelper.CreatePDF(taskViewModel.Task);
         }
-
-        
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {

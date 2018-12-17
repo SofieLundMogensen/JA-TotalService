@@ -55,7 +55,35 @@ namespace DataAccessLayer
 
         public List<Task> GetAll()
         {
-            throw new NotImplementedException();
+            MySqlConnection connection = new MySqlConnection(connStr);
+            List<Task> tasks = new List<Task>();
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "SELECT * FROM `TaskMaterial`";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Task task = new Task();
+                    task.id = reader.GetInt32(0);
+                    task.materials = new List<Tuple<Material, int>>();
+
+                    Material material = new Material();
+                    material.id = reader.GetInt32(1);
+                    task.materials.Add(Tuple.Create(material, reader.GetInt32(2)));
+                    
+                    tasks.Add(task);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            connection.Close();
+            return tasks;
         }
 
         public bool Update(Task obj)

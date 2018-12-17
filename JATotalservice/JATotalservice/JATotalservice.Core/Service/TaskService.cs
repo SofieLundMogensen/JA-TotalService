@@ -47,30 +47,7 @@ namespace JATotalservice.Core.Service
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
             bool test = Convert.ToBoolean(response.Content);
-
-
-
-          /*  var json = Newtonsoft.Json.JsonConvert.SerializeObject(task);
-            string url = "http://jatotalservice.slund.info/api/Task/Put";
-
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "PUT";
-
-            //Sending the request
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                streamWriter.Write(json);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
-
-            //Getting the response
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-            }*/
+            
         }
 
         public static void DeleteTask(int id)
