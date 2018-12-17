@@ -37,7 +37,7 @@ namespace JATotalservice.Core.ViewModels
         {
             //Adds the material to the list of materials
             Materials.Add(material);
-            MaterialService.PostMaterial(material);
+            var didSucced = MaterialService.PostMaterial(material);
         }
         public void Edit(Material material)
         {

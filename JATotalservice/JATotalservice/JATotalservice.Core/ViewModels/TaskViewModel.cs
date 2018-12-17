@@ -1,14 +1,21 @@
 ﻿using JATotalservice.Core.Service;
 using ModelLayer;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace JATotalservice.Core.ViewModels
 {
     public class TaskViewModel : MvxViewModel
     {
+
+        public IMvxCommand CreatePDFCommand => new MvxCommand(CreatePDF);
+
         public override void Prepare()
         {
             base.Prepare();
@@ -97,5 +104,21 @@ namespace JATotalservice.Core.ViewModels
             }
         }
 
+        public void CreatePDF()
+        {
+            Console.WriteLine("-----------------------Hej med dig, jeg er mega sej-----------------");
+            Document doc = new Document(iTextSharp.text.PageSize.A4, 20, 20, 42, 35);
+            PdfWriter w = PdfWriter.GetInstance(doc, new FileStream("File.pdf", FileMode.Create));
+
+            iTextSharp.text.Paragraph p = new iTextSharp.text.Paragraph("Det her pdf generering virker bare");
+            doc.Open();
+            doc.AddAuthor("Dennis");
+            doc.AddCreator("Visual Studio");
+            doc.AddSubject("PDF File");
+            doc.AddTitle("Title");
+            doc.Add(p);
+            doc.Add(p);
+            doc.Close();
+        }
       
     }

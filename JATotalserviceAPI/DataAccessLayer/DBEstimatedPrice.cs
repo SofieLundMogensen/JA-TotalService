@@ -20,13 +20,13 @@ namespace DataAccessLayer
                 conn.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`) VALUES (?);" + "SELECT last_insert_id();";
+                cmd.CommandText = "INSERT INTO `EstimatedPrice`(`Estimatedtime`, `Name`) VALUES (?, ?);" + "SELECT last_insert_id();";
                 //cmd.Parameters.Add("?Id", MySqlDbType.Int32).Value = obj.Id;
                 cmd.Parameters.Add("?Estimatedtime", MySqlDbType.Int32).Value = obj.estimatedTime;
+                cmd.Parameters.Add("?Name", MySqlDbType.VarChar).Value = obj.Name;
                 //cmd.ExecuteNonQuery();
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
-
                 
             }
             catch (Exception e)

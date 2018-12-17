@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ModelLayer;
+
 namespace JATotalservice.WPF.Views
 {
     /// <summary>
@@ -65,6 +67,13 @@ namespace JATotalservice.WPF.Views
             }
          
         }
+
+        private void PrintFaktura_Click(object sender, RoutedEventArgs e)
+        {
+            taskViewModel.CreatePDFCommand.Execute();
+        }
+
+        
 
         private void Create_Click(object sender, RoutedEventArgs e)
         {
@@ -126,5 +135,6 @@ namespace JATotalservice.WPF.Views
 
             //Optimalt en check på om man vil slette eller ej.
         }
+        
     }
 }

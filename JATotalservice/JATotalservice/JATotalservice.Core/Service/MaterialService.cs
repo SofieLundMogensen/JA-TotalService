@@ -28,14 +28,14 @@ namespace JATotalservice.Core.Service
             return client.Execute<List<Material>>(request).Data;
         }
 
-        public static void PostMaterial(Material material)
+        public static bool PostMaterial(Material material)
         {           
             IRestRequest request = new RestRequest("Post", Method.POST);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(material);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
-            bool test = Convert.ToBoolean(response.Content);
+            return Convert.ToBoolean(response.Content);
         }
 
         public static void PutMaterial(Material material)
