@@ -60,15 +60,7 @@ namespace JATotalserviceAPI
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new Info { Title = "You api title", Version = "v1" });
-            //    c.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
-            //    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-            //    { "Bearer", Enumerable.Empty<string>() },
-            //});
-
-            //});
+           
 
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
@@ -92,10 +84,11 @@ namespace JATotalserviceAPI
                     }
                 });
 
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
-                { "Bearer", Enumerable.Empty<string>() },
-                });
+                //Til at lave auth knap på api
+                //c.AddSecurityDefinition("Bearer", new ApiKeyScheme { In = "header", Description = "Please enter JWT with Bearer into field", Name = "Authorization", Type = "apiKey" });
+                //c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>> {
+                //{ "Bearer", Enumerable.Empty<string>() },
+                //});
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
