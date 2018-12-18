@@ -1,4 +1,5 @@
 ﻿using ModelLayer;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -24,8 +25,26 @@ namespace JATotalservice.Core.Service
 
         public static List<Task> GetAllTasks()
         {
-            var request = new RestRequest("GetAll", Method.GET);
-            return client.Execute<List<Task>>(request).Data;
+
+           
+            var url = "http://jatotalservice.slund.info/api/Task/getAll";
+
+            var restClient = new RestSharp.RestClient(url);
+
+            var request = new RestSharp.RestRequest();
+            request.Method = RestSharp.Method.GET;
+            request.RequestFormat = RestSharp.DataFormat.Json;
+            request.AddHeader("Content-Type", "application/json;charset=utf-8");
+        
+
+            var result = restClient.Execute(request);
+
+            return JsonConvert.DeserializeObject<List<Task>>(result.Content);
+
+            //return null;
+
+            //IRestRequest request = new RestRequest("GetAll", Method.GET);
+            //return client.Execute<List<Task>>(request).Data;
         }
 
         public static void PostTask(Task task)
@@ -46,8 +65,9 @@ namespace JATotalservice.Core.Service
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
             var response = client.Execute(request);
-            bool test = Convert.ToBoolean(response.Content);
+            //var test = JsonConvert.DeserializeObject<bool>(response.Content);
             
+
         }
 
         public static void DeleteTask(int id)

@@ -18,7 +18,7 @@ namespace BusinessLogicLayer
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            return db.Delete(id);
         }
 
         public Task Get(int id)
@@ -75,9 +75,11 @@ namespace BusinessLogicLayer
             return taskMaterials;
         }
 
-        public bool Update(Task obj)
+         public bool Update(Task obj)
         {
-            throw new NotImplementedException();
+           return Create(obj);
         }
+
+   
     }
 }

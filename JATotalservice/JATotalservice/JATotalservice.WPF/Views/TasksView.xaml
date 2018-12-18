@@ -28,7 +28,7 @@
         <Label Content="Tid brugt:" HorizontalAlignment="Left" Margin="291,140,0,0" VerticalAlignment="Top"/>
         <Label Content="28" HorizontalAlignment="Left" Margin="379,140,0,0" VerticalAlignment="Top" Name="Time"/>
         <Label Content="Matrialer:" HorizontalAlignment="Left" Margin="291,171,0,0" VerticalAlignment="Top"/>
-        <ListView Margin="291,197,268,10" Name="Materials"  >
+        <ListView Margin="291,197,238,10" Name="Materials"  >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Navn" Width="120" DisplayMemberBinding="{Binding Item1.name}" />
@@ -41,7 +41,7 @@
 
         <Popup Name="PopupCreate" HorizontalAlignment="Left"   
             VerticalAlignment="Stretch" Width="322" Height="300"   
-         IsOpen="False" Placement="Center"  >
+           IsOpen="False" Placement="Center"  >
             <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="322" Background="LightGray">
                 <Button Content="Opret" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Click="CreateTask_Click" Name="CreateTask"/>
                 <Button Content="Annuller" HorizontalAlignment="Left" Margin="157,259,0,0" VerticalAlignment="Top" Width="75" Name="AnnullCreate" Click="AnnullCreate_Click"/>
@@ -51,10 +51,35 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="TaskDescription"/>
                 <CheckBox Name="IsDone" Content="Er færdig?" HorizontalAlignment="Left" Margin="10,135,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                 <Button Content="Edit" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Name="EditTask" Visibility="Hidden" Click="EditTask_Click" />
-
             </Grid>
+        </Popup>
+        <Button x:Name="AddMaterial" Content="Tilføj" HorizontalAlignment="Left" Margin="577,198,0,0" VerticalAlignment="Top" Width="75" Click="AddMaterial_Click" />
+        <Button x:Name="EditMaterial" Content="Rediger" HorizontalAlignment="Left" Margin="577,223,0,0" VerticalAlignment="Top" Width="75" Click="EditMaterial_Click" />
+        <Button x:Name="DeleteMaterial" Content="Slet" HorizontalAlignment="Left" Margin="577,248,0,0" VerticalAlignment="Top" Width="75" Click="DeleteMaterial_Click"/>
 
-
+        <Popup Name="PopupMaterial" HorizontalAlignment="Left"   
+            VerticalAlignment="Stretch" Width="322" Height="300"   
+           IsOpen="False" Placement="Center"  >
+            <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="322" Background="LightGray">
+                <Button Content="Opret" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75"  Name="MaterialAccept" Click="MaterialAccept_Click"/>
+                <Button Content="Annuller" HorizontalAlignment="Left" Margin="157,259,0,0" VerticalAlignment="Top" Width="75" Name="MaterialCancell" Click="MaterialCancell_Click"/>
+                <ComboBox Name="MaterialsAmount" Margin="10,42,80,235" ItemsSource="{Binding Materials}">
+                    <ComboBox.ItemTemplate >
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                               
+                                <TextBlock Text="{Binding name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Content="Eine dropdown" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+                <Label Content="Antal" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top"/>
+                
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="Amount"/>   
+                <Button Content="Edit" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Name="te" Visibility="Hidden" />
+                <Button Content="Edit" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Visibility="Hidden"  x:Name="MaterialEdit" Click="MaterialEdit_Click" />
+            </Grid>
         </Popup>
     </Grid>
 </views:MvxWpfView>

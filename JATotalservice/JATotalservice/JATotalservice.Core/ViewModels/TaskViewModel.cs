@@ -18,11 +18,17 @@ namespace JATotalservice.Core.ViewModels
 
         List<Task> tasks;
         Task task;
+        List<Material> materials;
 
         public Task Task
         {
             get { return task; }
             set { SetProperty(ref task, value); }
+        }
+        public List<Material> Materials
+        {
+            get { return materials; }
+            set { SetProperty(ref materials, value); }
         }
 
         public List<Task> Tasks
@@ -34,6 +40,7 @@ namespace JATotalservice.Core.ViewModels
         public TaskViewModel()
         {
             GetTasks();
+            Materials = MaterialService.GetAllMaterials();
         }
 
         public void PostTask(Task task)
@@ -52,11 +59,34 @@ namespace JATotalservice.Core.ViewModels
         {
             TaskService.DeleteTask(id);
             GetTasks();
+          
         }
-
+        public void deleteMaterial(Tuple<Material, int> tuple)
+        {
+            var m = Task.materials.Find(f => f.Item1 == tuple.Item1 && f.Item2 == tuple.Item2);
+            Task.materials.Remove(m);
+            TaskService.PutTask(Task);
+            GetTasks();
+        }
+        public void editMaterial(Tuple<Material, int> oldtuple, Tuple<Material, int> newtuple)
+        {
+          var m = Task.materials.FindAll(f => f.Item1 != newtuple.Item1 && f.Item2 != newtuple.Item2);
+            
+            m.Add(oldtuple);
+            Task.materials = m;
+            TaskService.PutTask(Task);
+            GetTasks();
+        }
+        public void addMaterial(Task task)
+        {
+            TaskService.PutTask(task);
+            Task = task;
+            GetTasks();
+        }
         //Function that gets a list of task from api, and returns a list of task
         public void GetTasks()
         {
+         //   task = TaskService.GetTask(1);
             Tasks = TaskService.GetAllTasks();
             // Tasks = new List<Task>();
 

@@ -40,7 +40,7 @@ namespace BusinessLogicLayer
               ORDER BY `Task`.`Id`
           */
             var taskList = db.GetAll();
-         
+
             var timeList = timeRegistrationController.GetAll();
             var materialList = materialController.GetAll();
 
@@ -68,7 +68,13 @@ namespace BusinessLogicLayer
 
         public bool Update(Task obj)
         {
-            return db.Update(obj);
+            bool succes = false;
+            var b = taskMaterialController.Delete(obj.id);
+            if (b)
+            {
+                succes = taskMaterialController.Update(obj);
+            }
+            return succes;
         }
     }
 }

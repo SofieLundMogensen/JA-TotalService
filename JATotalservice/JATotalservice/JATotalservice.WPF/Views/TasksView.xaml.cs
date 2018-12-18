@@ -34,7 +34,7 @@ namespace JATotalservice.WPF.Views
             taskViewModel = new TaskViewModel();
             InitializeComponent();
         }
-        
+
         private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
         {
 
@@ -64,7 +64,7 @@ namespace JATotalservice.WPF.Views
                     Materials.ItemsSource = task.materials;
                 }
             }
-         
+
         }
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
@@ -81,7 +81,7 @@ namespace JATotalservice.WPF.Views
 
         private void CreateTask_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
             taskViewModel.PostTask(task);
             PopupCreate.IsOpen = false;
@@ -132,6 +132,73 @@ namespace JATotalservice.WPF.Views
 
             //Optimalt en check på om man vil slette eller ej.
         }
-        
+
+        private void AddMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            Amount.Text = null;
+            MaterialsAmount.SelectedItem = null;
+            PopupMaterial.IsOpen = true;
+        }
+
+        private void MaterialAccept_Click(object sender, RoutedEventArgs e)
+        {
+            var task = taskViewModel.Task;
+            var m = MaterialsAmount.SelectedItem;
+            task.materials.Add(Tuple.Create((Material)m, Int32.Parse(Amount.Text)));
+            taskViewModel.addMaterial(task);
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            if (task.materials != null)
+            {
+                Materials.ItemsSource = taskViewModel.Tasks.Find(v => v.id == task.id).materials;
+            }
+
+            PopupMaterial.IsOpen = false;
+        }
+
+        private void MaterialCancell_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialsAmount.SelectedItem = null;
+            Amount.Text = null;
+            PopupMaterial.IsOpen = false;
+        }
+
+        private void EditMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialEdit.Visibility = Visibility.Visible;
+            PopupMaterial.IsOpen = true;
+            Tuple<Material, int> test =  Materials.SelectedItem as Tuple<Material, int>;
+           // MaterialsAmount.SelectedItem = (Material)test.Item1;
+            Amount.Text = test.Item2.ToString();
+            
+        }
+
+        private void MaterialEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Tuple<Material, int> old = Materials.SelectedItem as Tuple<Material, int>;
+            var m = MaterialsAmount.SelectedItem;
+
+            var t = Tuple.Create((Material)m, Int32.Parse(Amount.Text));
+            taskViewModel.editMaterial(t, old);
+
+            var task = taskViewModel.Task;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            PopupMaterial.IsOpen = false;
+            if (task.materials != null)
+            {
+                Materials.ItemsSource = task.materials;
+            }
+            MaterialEdit.Visibility = Visibility.Hidden;
+        }
+
+        private void DeleteMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            taskViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
+            var task = taskViewModel.Task;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            if (task.materials != null)
+            {
+                Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
+            }
+        }
     }
 }
