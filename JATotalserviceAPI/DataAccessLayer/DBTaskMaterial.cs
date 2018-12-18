@@ -88,7 +88,34 @@ namespace DataAccessLayer
 
         public bool Update(Task obj)
         {
-            throw new NotImplementedException();
+            MySqlConnection connection = new MySqlConnection(connStr);
+            bool succes = true;
+            foreach (var item in obj.materials)
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand cmd = new MySqlCommand();
+                    cmd.Connection = connection;
+                    cmd.CommandText = "UPDATE `EstimatedPrice` SET `Id`=@Id,`Estimatedtime`=@EstimatedTime WHERE Id = @Id";
+                    cmd.CommandText = "UPDATE `TaskMaterial` SET `TaskId`=@Id,`MaterialId`=@MaterialId,`Amount`=@Amount WHERE Id = @Id";
+                    cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = obj.id;
+                    cmd.Parameters.Add("@MaterialId", MySqlDbType.Int32).Value = item.Item1;
+                    cmd.Parameters.Add("@Amount", MySqlDbType.Int32).Value = item.Item2;
+
+                    cmd.ExecuteNonQuery();
+                    
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                    succes = false;
+                }
+                connection.Close();
+                
+            }
+
+            return succes;
         }
 
         public List<Tuple<Material, int>> GetMaterialTask(int taskid)

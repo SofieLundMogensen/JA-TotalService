@@ -77,7 +77,7 @@ namespace BusinessLogicLayer
 
         public bool Update(Task obj)
         {
-            throw new NotImplementedException();
+            return db.Update(obj);
         }
     }
 }

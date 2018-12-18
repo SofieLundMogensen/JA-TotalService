@@ -68,6 +68,16 @@ namespace BusinessLogicLayer
 
         public bool Update(Task obj)
         {
+            //var succes = false;
+            //var d = db.Update(obj);
+
+            //if (d == true)
+            //{
+            //    succes = taskMaterialController.Update(obj);
+            //}
+
+            //return succes;
+
             return db.Update(obj);
         }
     }
