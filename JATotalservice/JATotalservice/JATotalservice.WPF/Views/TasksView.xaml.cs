@@ -127,10 +127,13 @@ namespace JATotalservice.WPF.Views
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            taskViewModel.delete(taskViewModel.Task.id);
-            Tasks.ItemsSource = taskViewModel.Tasks;
-
-            //Optimalt en check på om man vil slette eller ej.
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                taskViewModel.delete(taskViewModel.Task.id);
+                Tasks.ItemsSource = taskViewModel.Tasks;
+            }
+           
         }
 
         private void AddMaterial_Click(object sender, RoutedEventArgs e)
@@ -166,10 +169,10 @@ namespace JATotalservice.WPF.Views
         {
             MaterialEdit.Visibility = Visibility.Visible;
             PopupMaterial.IsOpen = true;
-            Tuple<Material, int> test =  Materials.SelectedItem as Tuple<Material, int>;
-           // MaterialsAmount.SelectedItem = (Material)test.Item1;
+            Tuple<Material, int> test = Materials.SelectedItem as Tuple<Material, int>;
+            // MaterialsAmount.SelectedItem = (Material)test.Item1;
             Amount.Text = test.Item2.ToString();
-            
+
         }
 
         private void MaterialEdit_Click(object sender, RoutedEventArgs e)
@@ -192,12 +195,16 @@ namespace JATotalservice.WPF.Views
 
         private void DeleteMaterial_Click(object sender, RoutedEventArgs e)
         {
-            taskViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
-            var task = taskViewModel.Task;
-            Tasks.ItemsSource = taskViewModel.Tasks;
-            if (task.materials != null)
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
             {
-                Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
+                taskViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
+                var task = taskViewModel.Task;
+                Tasks.ItemsSource = taskViewModel.Tasks;
+                if (task.materials != null)
+                {
+                    Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
+                }
             }
         }
     }
