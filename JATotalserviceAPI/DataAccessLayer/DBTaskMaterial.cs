@@ -100,7 +100,9 @@ namespace DataAccessLayer
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT * FROM `TaskMaterial` WHERE TaskId = @Id";
+                cmd.CommandText = "SELECT `TaskMaterial`.`TaskId`, `TaskMaterial`.`MaterialId`, `TaskMaterial`.`Amount`, `Material`.`Id`, `Material`.`Name`, `Material`.`Price`, `Material`.`Description` FROM `TaskMaterial` LEFT JOIN `Material` ON `TaskMaterial`.`TaskId` = `Material`.`Id` WHERE TaskId = @Id";
+
+
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = taskid;
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -111,6 +113,9 @@ namespace DataAccessLayer
 
                     Material material = new Material();
                     material.id = reader.GetInt32(1);
+                    material.name = reader.GetString(4);
+                    material.price = reader.GetDouble(5);
+                    material.description = reader.GetString(6);
                     var tuple = Tuple.Create(material, reader.GetInt32(2));
 
                     tasks.Add(tuple);
