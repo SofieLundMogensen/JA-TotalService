@@ -90,5 +90,40 @@ namespace DataAccessLayer
         {
             throw new NotImplementedException();
         }
+
+        public List<Tuple<Material, int>> GetMaterialTask(int taskid)
+        {
+            MySqlConnection connection = new MySqlConnection(connStr);
+            List<Tuple<Material, int>> tasks = new List<Tuple<Material, int>>();
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "SELECT * FROM `TaskMaterial` WHERE TaskId = @Id";
+                cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = taskid;
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Task task = new Task();
+                    task.id = reader.GetInt32(0);
+                    task.materials = new List<Tuple<Material, int>>();
+
+                    Material material = new Material();
+                    material.id = reader.GetInt32(1);
+                    var tuple = Tuple.Create(material, reader.GetInt32(2));
+
+                    tasks.Add(tuple);
+                }
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            connection.Close();
+            return tasks;
+        }
+
     }
 }

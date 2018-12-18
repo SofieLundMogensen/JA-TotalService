@@ -9,7 +9,7 @@ namespace BusinessLogicLayer
 {
     public class TaskMaterialController : IController<Task>
     {
-        IDB<Task> db = new DBTaskMaterial();
+        DBTaskMaterial db = new DBTaskMaterial();
 
         public bool Create(Task obj)
         {
@@ -28,9 +28,16 @@ namespace BusinessLogicLayer
 
         public List<Task> GetAll()
         {
-            var taskMaterials = db.GetAll();
-            List<Task> returnTaskMaterial = new List<Task>();
+            throw new NotImplementedException();
+        }
 
+        public List<Tuple<Material, int>> GetTaskMaterial(int taskId)
+        {
+            var taskMaterials = db.GetMaterialTask(taskId);
+           
+
+           
+           
 
             //TODO: Virker ikke, man skal samle dataen i en liste sådan listen kun indeholder en af den samme task
 
@@ -65,7 +72,7 @@ namespace BusinessLogicLayer
 
 
 
-            return returnTaskMaterial;
+            return taskMaterials;
         }
 
         public bool Update(Task obj)

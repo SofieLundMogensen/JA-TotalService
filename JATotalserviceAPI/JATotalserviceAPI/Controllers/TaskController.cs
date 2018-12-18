@@ -12,56 +12,12 @@ namespace ServiceAPI.Controllers
     public class TaskController : ControllerBase
     {
         BusinessLogicLayer.TaskController taskcontroller = new BusinessLogicLayer.TaskController();
-        BusinessLogicLayer.TimeRegistrationController timeRegistrationController = new BusinessLogicLayer.TimeRegistrationController();
-        BusinessLogicLayer.MaterialController materialController = new BusinessLogicLayer.MaterialController();
-        BusinessLogicLayer.TaskMaterialController taskMaterialController = new BusinessLogicLayer.TaskMaterialController();
 
         // Get api/Tasks
         [HttpGet("GetAll")]
         public List<Task> GetAll()
         {
-            /* En alternativ til koden, er at lave en left join i da kaldet, sql koden er nedenfor, hvor man left joiner task sammen med timeRegistrations
-                SELECT `Task`.`Id`, `Task`.`Name`, `Task`.`Description`, `Task`.`IsComplete`, 
-                    `TimeRegistration`.`Id`, `TimeRegistration`.`TaskId`, `TimeRegistration`.`StartTime`, `TimeRegistration`.`EndTime`, `TimeRegistration`.`EmployeeId`
-                FROM
-                    `Task`
-                LEFT JOIN
-                    `TimeRegistration` ON `Task`.`Id` = `TimeRegistration`.`TaskId`
-                ORDER BY `Task`.`Id`
-            */
-
-            var taskList = taskcontroller.GetAll();
-            var timeList = timeRegistrationController.GetAll();
-            var materialList = materialController.GetAll();
-            
-            //Tilføjer task og timeRegistrations sammen
-            for (int i = 0; i < taskList.Count; i++) //Man kan ikke bruge foreach ved denne løsning
-            {
-                taskList[i].timeRegistrations = new List<TimeRegistartion>(); //Instansiere listen timeRegistrations på listen af task
-                foreach (var time in timeList)
-                {
-                    if (taskList[i].id == time.task.id) //Spørger om id'erne er det samme, og tilføjer dem hvis de er
-                    {
-                        taskList[i].timeRegistrations.Add(time);
-                    }
-                }
-            }
-
-            //Kører gennem taskListen, og ser om der er nogle der har samme id, som i taskMaterial, hvorefter den så lægger materialerne over i taskListen
-            var taskMaterials = taskMaterialController.GetAll();
-            for (int i = 0; i < taskList.Count; i++)
-            {
-                foreach (var taskMaterial in taskMaterials)
-                {
-                    if (taskList[i].id == taskMaterial.id)
-                    {
-                        taskList[i].materials = new List<Tuple<Material, int>>();
-                        taskList[i].materials = taskMaterial.materials;
-                    }
-                }
-            }
-  
-            return taskList;
+            return taskcontroller.GetAll();
         }
 
         //GET api/Task
