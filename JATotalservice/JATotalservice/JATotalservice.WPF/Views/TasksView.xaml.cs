@@ -114,7 +114,6 @@ namespace JATotalservice.WPF.Views
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-
             CreateTask.Visibility = Visibility.Hidden;
             EditTask.Visibility = Visibility.Visible;
             IsDone.Visibility = Visibility.Visible;

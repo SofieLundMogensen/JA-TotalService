@@ -7,6 +7,29 @@
               mc:Ignorable="d" 
               d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Button Content="Opret" HorizontalAlignment="Left" Margin="48,29,0,0" VerticalAlignment="Top" Width="75" Click="Create_Click"/>
+
+        <Popup Name="PopupCreate" HorizontalAlignment="Left"   
+            VerticalAlignment="Stretch" Width="322" Height="300"   
+         IsOpen="False" Placement="Center"  >
+            <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="322" Background="LightGray" Margin="0,-106,0,0">
+                <Button Content="Opret" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Click="CreateMaterial_Click" Name="CreateMaterial"/>
+                <Button Content="Annuller" HorizontalAlignment="Left" Margin="157,259,0,0" VerticalAlignment="Top" Width="75" Name="AnnullCreate" Click="AnnullCreate_Click"/>
+                <Label Content="Materiale navn:" HorizontalAlignment="Left" Margin="10,11,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="MaterialName"/>
+                <Label Content="Pris:" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.522,2.956"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="MaterialPrice"/>
+                <Label Content="Beskrivelse:" HorizontalAlignment="Left" Margin="10,119,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.522,2.956"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="10,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="MaterialDescription"/>
+                <Button Content="Edit" HorizontalAlignment="Left" Margin="237,259,0,0" VerticalAlignment="Top" Width="75" Name="EditMaterial" Visibility="Hidden" Click="EditMaterial_Click" />
+    
+
+            </Grid>
+
+
+        </Popup>
+        <Button Content="Rediger" HorizontalAlignment="Left" Margin="147,29,0,0" VerticalAlignment="Top" Width="75" Name="Edit" Click="Edit_Click" RenderTransformOrigin="0.601,0.632"/>
+        <Button Content="Slet" HorizontalAlignment="Left" Margin="247,29,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.45,0.834" Click="Delete_Click"/>
 
     </Grid>
 </views:MvxWpfView>
