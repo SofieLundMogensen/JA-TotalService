@@ -45,37 +45,34 @@ namespace JATotalservice.WPF.Views
         {
             Material material = new Material { name = MaterialName.Text, price = double.Parse(MaterialPrice.Text), description = MaterialDescription.Text };
             materialsViewModel.PostMaterial(material);
+            Materials.ItemsSource = materialsViewModel.Materials;
         }
 
-        //private void Delete_Click(object sender, RoutedEventArgs e)
-        //{
-        //    materialsViewModel.DeleteMaterial(Material.id);
-        //}
-        private void EditMaterial_Click(object sender, RoutedEventArgs e)
+        private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            var mat = materialsViewModel.Material;
-            mat.name = MaterialName.Text;
-            mat.price = double.Parse(MaterialPrice.Text);
-            mat.description = MaterialDescription.Text;
-            materialsViewModel.Edit(mat);
-        }
 
+            materialsViewModel.DeleteMaterial(materialsViewModel.Material.id);
+            Materials.ItemsSource = materialsViewModel.Materials;
+        }
 
         public void Edit_Click(object sender, RoutedEventArgs e)
         {
-            MaterialsViewModel materialsViewModel = new MaterialsViewModel();
             var material = materialsViewModel.Material;
-            MaterialName.Text = material.name;
+            material.name = MaterialName.Text;
+            
             material.price = double.Parse(MaterialPrice.Text);
-            MaterialDescription.Text = material.description;
-            materialsViewModel.Edit_Click(material);
+            material.description = MaterialDescription.Text;
+        
+            materialsViewModel.Edit(material);
+            Materials.ItemsSource = materialsViewModel.Materials;
 
         }
-        
+
         private void Materials_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = (ListBox)sender;
             var material = (Material)item.SelectedItem;
+            materialsViewModel.Material = material;
             materialsViewModel.GetMaterials();
         }
     }

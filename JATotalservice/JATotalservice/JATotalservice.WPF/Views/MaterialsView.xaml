@@ -10,12 +10,12 @@
         <Button Content="Opret" HorizontalAlignment="Left" Margin="48,29,0,0" VerticalAlignment="Top" Width="75" Click="CreateMaterial_Click"/>
 
         <Button Content="Rediger" HorizontalAlignment="Left" Margin="147,29,0,0" VerticalAlignment="Top" Width="75" Name="Edit" Click="Edit_Click" RenderTransformOrigin="0.601,0.632"/>
-        <!--<Button Content="Slet" HorizontalAlignment="Left" Margin="247,29,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.45,0.834" Click="Delete_Click"/>-->
+        <Button Content="Slet" HorizontalAlignment="Left" Margin="247,29,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.45,0.834" Click="Delete_Click"/>
         <ListView Margin="247,105,0,0" Name="Materials" SelectionChanged="Materials_SelectionChanged"  ItemsSource="{Binding Materials}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
-                    <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding pris}" />
+                    <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding price}" />
                     <GridViewColumn Header="Description" Width="120" DisplayMemberBinding="{Binding description}" />
                 </GridView>
             </ListView.View>

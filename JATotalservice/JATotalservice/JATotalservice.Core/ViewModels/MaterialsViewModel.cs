@@ -43,6 +43,7 @@ namespace JATotalservice.Core.ViewModels
         public void PostMaterial(Material material)
         {
             //Adds the material to the list of materials
+           
             Materials.Add(material);
             var didSucced = MaterialService.PostMaterial(material);
         }
