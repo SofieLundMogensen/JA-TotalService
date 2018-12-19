@@ -39,45 +39,44 @@ namespace JATotalservice.WPF.Views
             MaterialName.Text = "";
             MaterialPrice.Text = "";
             MaterialDescription.Text = "";
-            PopupCreate.IsOpen = true;
         }
 
         private void CreateMaterial_Click(object sender, RoutedEventArgs e)
         {
-            Material material = new Material { name = MaterialName.Text, price = double.Parse(MaterialName.Text), description = MaterialDescription.Text };
+            Material material = new Material { name = MaterialName.Text, price = double.Parse(MaterialPrice.Text), description = MaterialDescription.Text };
             materialsViewModel.PostMaterial(material);
-            PopupCreate.IsOpen = false;
         }
 
-        private void AnnullCreate_Click(object sender, RoutedEventArgs e)
+        //private void Delete_Click(object sender, RoutedEventArgs e)
+        //{
+        //    materialsViewModel.DeleteMaterial(Material.id);
+        //}
+        private void EditMaterial_Click(object sender, RoutedEventArgs e)
         {
-            CreateMaterial.Visibility = Visibility.Visible;
-            EditMaterial.Visibility = Visibility.Hidden;
-            PopupCreate.IsOpen = false;
+            var mat = materialsViewModel.Material;
+            mat.name = MaterialName.Text;
+            mat.price = double.Parse(MaterialPrice.Text);
+            mat.description = MaterialDescription.Text;
+            materialsViewModel.Edit(mat);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        public void Edit_Click(object sender, RoutedEventArgs e)
         {
+            MaterialsViewModel materialsViewModel = new MaterialsViewModel();
+            var material = materialsViewModel.Material;
+            MaterialName.Text = material.name;
+            material.price = double.Parse(MaterialPrice.Text);
+            MaterialDescription.Text = material.description;
+            materialsViewModel.Edit_Click(material);
 
         }
-
-        //private void Edit_Click(object sender, RoutedEventArgs e)
-        //{
-        //    CreateMaterial.Visibility = Visibility.Hidden;
-        //    EditMaterial.Visibility = Visibility.Visible;
-        //    PopupCreate.IsOpen = true;
-        //    var material = materialsViewModel.Materials;
-        //    MaterialName.Text = material.name;
-        //}
-
-        //private void EditMaterial_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var mat = materialsViewModel.Materials;
-        //}
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
+        
+        private void Materials_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = (ListBox)sender;
+            var material = (Material)item.SelectedItem;
+            materialsViewModel.GetMaterials();
+        }
     }
 }
