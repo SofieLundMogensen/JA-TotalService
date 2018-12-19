@@ -72,8 +72,14 @@ namespace BusinessLogicLayer
             var b = taskMaterialController.Delete(obj.id);
             if (b)
             {
+                foreach (var time in obj.timeRegistrations)
+                {
+                   timeRegistrationController.Update(time);
+                }
+
                 succes = taskMaterialController.Update(obj);
             }
+
             return succes;
         }
     }

@@ -63,6 +63,10 @@ namespace JATotalservice.WPF.Views
                 {
                     Materials.ItemsSource = task.materials;
                 }
+                if (task.timeRegistrations != null)
+                {
+                    Timeregistration.ItemsSource = task.timeRegistrations;
+                }
             }
 
         }
@@ -205,6 +209,76 @@ namespace JATotalservice.WPF.Views
                 {
                     Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
                 }
+            }
+        }
+
+        private void AddTime_Click(object sender, RoutedEventArgs e)
+        {
+            StartTime.Text = "";
+            EndTime.Text = "";
+            PopupTime.IsOpen = true;
+        }
+
+        private void TimeAccept_Click(object sender, RoutedEventArgs e)
+        {
+            string iDate = StartTime.Text;
+            DateTime oDate = Convert.ToDateTime(iDate);
+
+            string iEndDate = EndTime.Text;
+            DateTime oEndDate = Convert.ToDateTime(iEndDate);
+            taskViewModel.addTime(oDate, oEndDate);
+            PopupTime.IsOpen = false;
+
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            Timeregistration.ItemsSource = null;
+            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+        }
+
+        private void TimeCancell_Click(object sender, RoutedEventArgs e)
+        {
+            StartTime.Text = "";
+            EndTime.Text = "";
+            PopupTime.IsOpen = false;
+            TimeEdit.Visibility = Visibility.Hidden;
+        }
+
+        private void TimeEdit_Click(object sender, RoutedEventArgs e)
+        {
+           
+            string iDate = StartTime.Text;
+            DateTime oDate = Convert.ToDateTime(iDate);
+            string iEndDate = EndTime.Text;
+            DateTime oEndDate = Convert.ToDateTime(iEndDate);
+            var t = (TimeRegistartion)Timeregistration.SelectedItem;
+            taskViewModel.editTime(t, oDate, oEndDate);
+            PopupTime.IsOpen = false;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+           
+            PopupTime.IsOpen = false;
+            TimeEdit.Visibility = Visibility.Hidden;
+            Timeregistration.ItemsSource = null;
+            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+        }
+
+        private void EditTime_Click(object sender, RoutedEventArgs e)
+        {
+            var t = (TimeRegistartion)Timeregistration.SelectedItem;
+            StartTime.Text = t.startTime.ToString();
+            EndTime.Text = t.endTime.ToString();
+            TimeEdit.Visibility = Visibility.Visible;
+            PopupTime.IsOpen = true;
+        }
+
+        private void Deletetime_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                var t = (TimeRegistartion)Timeregistration.SelectedItem;
+                taskViewModel.deleteTime(t);
+                Tasks.ItemsSource = taskViewModel.Tasks;
+                Timeregistration.ItemsSource = null;
+                Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
             }
         }
     }

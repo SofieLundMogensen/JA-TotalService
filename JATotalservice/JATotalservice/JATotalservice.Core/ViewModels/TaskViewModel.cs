@@ -59,7 +59,7 @@ namespace JATotalservice.Core.ViewModels
         {
             TaskService.DeleteTask(id);
             GetTasks();
-          
+
         }
         public void deleteMaterial(Tuple<Material, int> tuple)
         {
@@ -70,8 +70,8 @@ namespace JATotalservice.Core.ViewModels
         }
         public void editMaterial(Tuple<Material, int> oldtuple, Tuple<Material, int> newtuple)
         {
-          var m = Task.materials.FindAll(f => f.Item1 != newtuple.Item1 && f.Item2 != newtuple.Item2);
-            
+            var m = Task.materials.FindAll(f => f.Item1 != newtuple.Item1 && f.Item2 != newtuple.Item2);
+
             m.Add(oldtuple);
             Task.materials = m;
             TaskService.PutTask(Task);
@@ -83,10 +83,44 @@ namespace JATotalservice.Core.ViewModels
             Task = task;
             GetTasks();
         }
+        public void addTime(DateTime startTime, DateTime endTime)
+        {
+            TimeRegistartion timeRegistartion = new TimeRegistartion();
+            timeRegistartion.startTime = startTime;
+            timeRegistartion.endTime = endTime;
+            timeRegistartion.task = new Task { id = Task.id };
+            timeRegistartion.employee = new Employee { Id = 1 };
+            TimeRegistartionService.PostTimeInfo(timeRegistartion);
+            if (Task.timeRegistrations != null)
+            {
+                Task.timeRegistrations.Add(timeRegistartion);
+            }
+            else
+            {
+                Task.timeRegistrations = new List<TimeRegistartion>();
+                Task.timeRegistrations.Add(timeRegistartion);
+            }
+            GetTasks();
+        }
+        public void editTime(TimeRegistartion timeRegistartion, DateTime startTime, DateTime endTime)
+        {
+            Task.timeRegistrations.Find(m => m.Id == timeRegistartion.Id).startTime = startTime;
+            Task.timeRegistrations.Find(m => m.Id == timeRegistartion.Id).endTime = endTime;
+            
+            TaskService.PutTask(Task);
+            GetTasks();
+        }
+
+        public void deleteTime(TimeRegistartion timeRegistartion)
+        {
+            TimeRegistartionService.DeleteTimeInfo(timeRegistartion.Id);
+            GetTasks();
+            task.timeRegistrations.Remove(timeRegistartion);
+        }
         //Function that gets a list of task from api, and returns a list of task
         public void GetTasks()
         {
-         //   task = TaskService.GetTask(1);
+            //   task = TaskService.GetTask(1);
             Tasks = TaskService.GetAllTasks();
             // Tasks = new List<Task>();
 
