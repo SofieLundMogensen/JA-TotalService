@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Android;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
+using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
+using JATotalservice.Droid.Helpers;
 using ModelLayer;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+
 
 namespace JATotalservice.Droid.Views
 {
@@ -27,6 +32,7 @@ namespace JATotalservice.Droid.Views
 
         ListView Materials;
         Button sendTimeRegistration;
+        Button locationButton;
         Task task;
         NumberPicker hour;
         NumberPicker minute;
@@ -37,6 +43,8 @@ namespace JATotalservice.Droid.Views
         MaterialsListViewAdapter materialsListViewAdapter;
         EditText employeeId;
         private Android.Support.V7.Widget.Toolbar _toolbar;
+
+        LocationHelper locationHelper = new LocationHelper();
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -69,8 +77,21 @@ namespace JATotalservice.Droid.Views
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
             sendTimeRegistration.Click += delegate { sendData(view.Context); };
 
+            //Finder elementer i view'et
+            locationButton = view.FindViewById<Button>(Resource.Id.Location);
+
+            //Forbinder klik eventet til lokation kanppen
+            //locationButton.Click += delegate { GetLocation(view.Context); };
+            locationButton.Click += delegate { Location(); };
+            
+
             SetupBindings();
             return view;
+        }
+
+        private void Location()
+        {
+            Location location = locationHelper.GetLocation(view.Context); //Her får du den location tilbage med lat og long
         }
 
         private void AddMaterial()
@@ -153,5 +174,82 @@ namespace JATotalservice.Droid.Views
                                                                         // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
             set.Apply();
         }
+
+
+
+        //LocationManager locationManager;
+
+        //public void GetLocation(Context context)
+        //{
+        //    if (ContextCompat.CheckSelfPermission(context, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+        //    {
+
+        //        locationManager = (LocationManager) context.GetSystemService(Context.LocationService);
+
+        //        StartRequestingLocationUpdates();
+        //        //isRequestingLocationUpdates = true;
+        //    }
+        //    else
+        //    {
+        //        // The app does not have permission ACCESS_FINE_LOCATION 
+        //    }
+            
+        //}
+
+
+        //private void StartRequestingLocationUpdates()
+        //{
+            
+        //    var criteria = new Criteria { PowerRequirement = Power.Medium };
+
+        //    var bestProvider = locationManager.GetBestProvider(criteria, true);
+        //    var location = locationManager.GetLastKnownLocation(bestProvider);
+
+        //    var t = location.Latitude;
+        //    var tt = location.Longitude;
+            
+        //}
+
+
+
+        //LocationManager locationManager;
+
+        //public void GetLocation(Context context)
+        //{
+
+        //    if (ContextCompat.CheckSelfPermission(context, Manifest.Permission.AccessFineLocation) == Permission.Granted)
+        //    {
+        //        GetLastLocationFromDevice();
+        //    }
+        //    else
+        //    {
+        //        RequestLocationPermission(RC_LAST_LOCATION_PERMISSION_CHECK);
+        //    }
+        //}
+
+        //void GetLastLocationFromDevice()
+        //{
+        //    //getLastLocationButton.SetText(Resource.String.getting_last_location);
+
+        //    var criteria = new Criteria { PowerRequirement = Power.Medium };
+
+        //    var bestProvider = locationManager.GetBestProvider(criteria, true);
+        //    var location = locationManager.GetLastKnownLocation(bestProvider);
+
+        //    if (location != null)
+        //    {
+        //        string t = Resources.GetString(Resource.String.latitude_string, location.Latitude);
+        //        string tt = Resources.GetString(Resource.String.longitude_string, location.Longitude);
+        //        string ttt = Resources.GetString(Resource.String.provider_string, location.Provider);
+        //        getLastLocationButton.SetText(Resource.String.get_last_location_button_text);
+        //    }
+        //    else
+        //    {
+        //        latitude.SetText(Resource.String.location_unavailable);
+        //        longitude.SetText(Resource.String.location_unavailable);
+        //        provider.Text = Resources.GetString(Resource.String.provider_string, bestProvider);
+        //        getLastLocationButton.SetText(Resource.String.get_last_location_button_text);
+        //    }
+        //}
     }
 }

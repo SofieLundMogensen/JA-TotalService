@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace JATotalservice.Core.ViewModels
 {
     public class TimeViewModel : MvxViewModel
@@ -16,7 +17,10 @@ namespace JATotalservice.Core.ViewModels
         List<Material> materials;
         List<Tuple<Material, int>> materialsAmounts;
         //private readonly IMvxNavigationService _navigationService;
+
         public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
+        
+
         public List<Material> Materials
         {
             get { return materials; }
@@ -40,6 +44,8 @@ namespace JATotalservice.Core.ViewModels
             GetMaterials();
             MaterialsAmount = new List<Tuple<Material, int>>();
         }
+
+        
 
         public void GetTasks()
         {

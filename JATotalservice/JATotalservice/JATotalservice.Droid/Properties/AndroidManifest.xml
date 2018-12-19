@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"  package="com.companyname.JATotalservice" android:versionCode="1" android:versionName="@string/VersionName" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="27" />
+  
+  <!--Det her er noget der skal bruges for at kunne have lokation-->
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+  <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+  
+  
 	<application android:label="@string/ApplicationName" android:icon="@mipmap/ic_launcher" android:theme="@style/MyTheme"></application>
   
- 
+  
 </manifest>
