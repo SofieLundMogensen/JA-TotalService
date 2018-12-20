@@ -82,16 +82,24 @@ namespace JATotalservice.Droid.Views
 
             //Forbinder klik eventet til lokation kanppen
             //locationButton.Click += delegate { GetLocation(view.Context); };
-            locationButton.Click += delegate { Location(); };
+            locationButton.Click += delegate { Location(view.Context); };
             
 
             SetupBindings();
             return view;
         }
 
-        private void Location()
+        private void Location(Context context)
         {
-            Location location = locationHelper.GetLocation(view.Context); //Her får du den location tilbage med lat og long
+            Location location = locationHelper.GetLocation(context); //Her får du den location tilbage med lat og long
+            if (location == null) //Spørger om du fik en lokation tilbage, og hvis ikke så laver en en toast og returner
+            {
+                
+                Toast.MakeText(context, "Kan ikke finde din lokation", ToastLength.Long).Show();
+                return;
+            }
+
+            Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
         }
 
         private void AddMaterial()
