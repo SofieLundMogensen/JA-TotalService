@@ -14,10 +14,12 @@ namespace JATotalservice.Core.ViewModels
         public IMvxCommand NavigateToEstimatePriceCommand => new MvxAsyncCommand(NavigateToEstimatePrice);
         public IMvxCommand NavigateToMaterialsCommand => new MvxAsyncCommand(NavigateToMaterials);
         public IMvxCommand NavigateToTasksCommand => new MvxAsyncCommand(NavigateToTasks);
-        
+        public IMvxAsyncCommand ShowMenuViewModelCommand { get; private set; }
+
         public FirstViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
+            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<MenuViewModel>());
         }
 
         public FirstViewModel()

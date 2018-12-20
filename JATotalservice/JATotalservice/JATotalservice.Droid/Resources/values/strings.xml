@@ -2,5 +2,6 @@
 <resources>
     <string name="VersionName">1.0</string>
     <string name="ApplicationName">JATotalservice</string>
-  
+  <string name="drawer_open">Open</string>
+  <string name="drawer_close">Close</string>
 </resources>

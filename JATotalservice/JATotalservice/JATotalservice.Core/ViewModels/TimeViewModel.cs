@@ -15,7 +15,8 @@ namespace JATotalservice.Core.ViewModels
         List<ModelLayer.Task> tasks;
         List<Material> materials;
         List<Tuple<Material, int>> materialsAmounts;
-        //private readonly IMvxNavigationService _navigationService;
+        //private readonly IMvxNavigationService _navigationS
+        private readonly IMvxNavigationService _navigationService;
         public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
         public List<Material> Materials
         {
@@ -33,8 +34,10 @@ namespace JATotalservice.Core.ViewModels
             set { SetProperty(ref materialsAmounts, value); }
         }
 
-        public TimeViewModel()
+        public TimeViewModel(IMvxNavigationService navigationService)
         {
+            _navigationService = navigationService;
+            
             //Kalder alle tasks
             GetTasks();
             GetMaterials();

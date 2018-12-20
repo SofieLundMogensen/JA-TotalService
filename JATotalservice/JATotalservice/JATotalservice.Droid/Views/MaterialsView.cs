@@ -45,11 +45,12 @@ namespace JATotalservice.Droid.Views
             view = base.OnCreateView(inflater, container, savedInstanceState);
             _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             _toolbar.Title = "Materialer";
+            ParentActivity.SupportActionBar.Title ="Test";
 
             material = new Material();
 
             gridview = view.FindViewById<GridView>(Resource.Id.gridview);
-            addButton = view.FindViewById<FloatingActionButton>(Resource.Id.fab_main);
+            addButton = view.FindViewById<FloatingActionButton>(Resource.Id.Add);
 
             transaction = this.FragmentManager;
 

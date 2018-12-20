@@ -1,6 +1,7 @@
 ﻿using JATotalservice.Core.Service;
 using ModelLayer;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace JATotalservice.Core.ViewModels
     public class EstimateViewModel : MvxViewModel
     {
         //public IMvxCommand PostEstimated => new MvxCommand<EstimatedPrice>(PostEstimatedPrice);
+        private readonly IMvxNavigationService _navigationService;
+        public IMvxCommand NavigateToTimeRegistrationCommand => new MvxAsyncCommand(NavigateToTimeRegistration);
+        public IMvxCommand NavigateToMaterialsCommand => new MvxAsyncCommand(NavigateToMaterials);
         List<Material> materials;
         List<MaterialTask> materialTasks;
 
@@ -31,11 +35,12 @@ namespace JATotalservice.Core.ViewModels
             get { return materialTasks; }
             set { SetProperty(ref materialTasks, value); }
         }
+    
 
-        public EstimateViewModel()
+        public EstimateViewModel(IMvxNavigationService navigationService)
         {
             GetMaterials();
-
+            _navigationService = navigationService;
             MaterialsAmount = new List<Tuple<Material, int>>();
         }
 
@@ -67,6 +72,18 @@ namespace JATotalservice.Core.ViewModels
             estimatedPrice.materials = MaterialsAmount;
             return EstimatedPriceService.CalculatePrice(estimatedPrice);
         }
+
+        public async System.Threading.Tasks.Task NavigateToTimeRegistration()
+        {
+            await _navigationService.Navigate<TimeViewModel>();
+        }
+
+        public async System.Threading.Tasks.Task NavigateToMaterials()
+        {
+            await _navigationService.Navigate<MaterialsViewModel>();
+        }
+
+        
 
     }
 }

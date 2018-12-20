@@ -6,7 +6,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 	android:background="#ffffff">
-	
+	  <include
+		layout="@layout/toolbar_actionbar"/> 
 
 	<ScrollView
         android:layout_width="fill_parent"
@@ -16,9 +17,7 @@
             android:id="@+id/form_layout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
-          <include
-		layout="@layout/toolbar" 
-		android:id="@+id/toolbar_layout"/> 
+        
 		<TextView
                 android:text="Opgave:"
                 android:layout_width="match_parent"
