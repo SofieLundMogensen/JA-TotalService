@@ -25,15 +25,11 @@ namespace JATotalservice.Droid.Helpers
             if (ContextCompat.CheckSelfPermission(context, Manifest.Permission.AccessFineLocation) == Permission.Granted)
             {
                 locationManager = (LocationManager)context.GetSystemService(Context.LocationService); //Initilaizing locationManager
-
-                //StartRequestingLocationUpdates();
-                //isRequestingLocationUpdates = true;
                 
                 var criteria = new Criteria { PowerRequirement = Power.Medium };
-
                 var bestProvider = locationManager.GetBestProvider(criteria, true);
                 var location = locationManager.GetLastKnownLocation(bestProvider);
-
+                
                 return location;
             }
             else //Hvis der ikker er adgang til location services

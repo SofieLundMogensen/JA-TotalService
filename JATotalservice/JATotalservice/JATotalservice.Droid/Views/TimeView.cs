@@ -94,7 +94,6 @@ namespace JATotalservice.Droid.Views
             Location location = locationHelper.GetLocation(context); //Her får du den location tilbage med lat og long
             if (location == null) //Spørger om du fik en lokation tilbage, og hvis ikke så laver en en toast og returner
             {
-                
                 Toast.MakeText(context, "Kan ikke finde din lokation", ToastLength.Long).Show();
                 return;
             }
