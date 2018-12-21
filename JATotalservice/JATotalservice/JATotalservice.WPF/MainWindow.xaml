@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:JATotalservice.WPF.Views"
         xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="1123">
+    <Grid Margin="0,0,2,0">
         
     </Grid>
 </views:MvxWindow>

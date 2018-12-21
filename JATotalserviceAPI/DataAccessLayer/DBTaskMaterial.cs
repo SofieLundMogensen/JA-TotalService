@@ -45,7 +45,24 @@ namespace DataAccessLayer
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            bool succes = false;
+            MySqlConnection connection = new MySqlConnection(connStr);
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandText = "DELETE FROM `TaskMaterial` WHERE TaskId = @Id";
+                cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = id;
+                cmd.ExecuteNonQuery();
+                succes = true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            connection.Close();
+            return succes;
         }
 
         public Task Get(int id)
@@ -127,7 +144,7 @@ namespace DataAccessLayer
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
-                cmd.CommandText = "SELECT `TaskMaterial`.`TaskId`, `TaskMaterial`.`MaterialId`, `TaskMaterial`.`Amount`, `Material`.`Id`, `Material`.`Name`, `Material`.`Price`, `Material`.`Description` FROM `TaskMaterial` LEFT JOIN `Material` ON `TaskMaterial`.`TaskId` = `Material`.`Id` WHERE TaskId = @Id";
+                cmd.CommandText = "SELECT `TaskMaterial`.`TaskId`, `TaskMaterial`.`MaterialId`, `TaskMaterial`.`Amount`, `Material`.`Id`, `Material`.`Name`, `Material`.`Price`, `Material`.`Description` FROM `TaskMaterial` LEFT JOIN `Material` ON `TaskMaterial`.`MaterialId` = `Material`.`Id` WHERE TaskId = @Id";
 
 
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = taskid;
