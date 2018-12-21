@@ -17,6 +17,13 @@ namespace JATotalservice.Core.ViewModels
         }
 
         List<Material> materials;
+        Material material;
+
+        public Material Material
+        {
+            get { return material; }
+            set { SetProperty(ref material, value); }
+        }
 
         public List<Material> Materials
         {
@@ -30,12 +37,13 @@ namespace JATotalservice.Core.ViewModels
         }
         public void GetMaterial()
         {
-
+            materials = MaterialService.GetAllMaterials();
         }
         
         public void PostMaterial(Material material)
         {
             //Adds the material to the list of materials
+           
             Materials.Add(material);
             var didSucced = MaterialService.PostMaterial(material);
         }
@@ -43,6 +51,7 @@ namespace JATotalservice.Core.ViewModels
         {
             //Puts the material into the database
             MaterialService.PutMaterial(material);
+            GetMaterials();
         }
 
         //Function that gets a list of materials from api, and returns a list of materials
@@ -51,10 +60,10 @@ namespace JATotalservice.Core.ViewModels
             Materials = MaterialService.GetAllMaterials();
         }
 
-        //public static void DeleteMaterial()
-        //{
-        //    MaterialService.DeleteMaterial(3);
-        //}
-
+        public void DeleteMaterial(int id)
+        {
+            MaterialService.DeleteMaterial(id);
+            GetMaterials();
+        }
     }
 }
