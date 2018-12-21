@@ -8,50 +8,53 @@
 
   <FrameLayout
       android:id="@+id/content_frame"
-     
       android:layout_width="match_parent"
       android:layout_height="match_parent" >
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <Button
-                android:text="Button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button1" />
-            <TextView
-                android:text="Text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView1"
-				/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="40dp"
-                local:MvxBind="Text Hello" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="40dp"
-                local:MvxBind="Text Hello" />
-            <Button
-                android:text="Navigate to materials"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/navigateToMaterialsView" />
-			<Button
-				android:text="Naviagate to time"
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<TextView
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:textSize="40dp"
+				android:text="J.A. Totalservice"
+				android:gravity="center"/>
+
+		<View 
+		  android:layout_height="2dp" 
+		  android:id ="@+id/Spacer1"
+          android:layout_width="fill_parent" 
+		  
+		  android:layout_marginBottom="10dp" 
+          android:layout_marginTop="10dp" 
+          android:background="#000" 
+         />
+			
+		<View 
+		  android:layout_height="2dp" 
+		  
+          android:layout_width="fill_parent" 
+		  
+		  android:layout_marginBottom="10dp" 
+          android:layout_marginTop="10dp" 
+          
+         />
+			<Button
+				android:text="Matrialer"
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
+				android:id="@+id/navigateToMaterialsView" />
+			<Button
+				android:text="Tidsregistering"
+				android:layout_width="match_parent"
+				android:layout_height="100dp"
 				android:id="@+id/navigateToTimeView" />
 			<Button
-				android:text="Navigate to estimate"
+				android:text="Overslag"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
+				android:layout_height="100dp"
 				android:id="@+id/navigateToEstimateView" />
-			
-        </LinearLayout>
+		</LinearLayout>
   </FrameLayout>
 </RelativeLayout>
