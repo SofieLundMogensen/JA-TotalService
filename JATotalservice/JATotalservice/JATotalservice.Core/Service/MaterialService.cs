@@ -40,6 +40,13 @@ namespace JATotalservice.Core.Service
 
         public static void PutMaterial(Material material)
         {
+            IRestRequest request = new RestRequest("Put", Method.PUT);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(material);
+            request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
+            request.RequestFormat = DataFormat.Json;
+            var response = client.Execute(request);
+         
+            /*
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(material);
             string url = "http://jatotalservice.slund.info/api/Material/Put";
 
@@ -60,7 +67,7 @@ namespace JATotalservice.Core.Service
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 var result = streamReader.ReadToEnd();
-            }
+            }*/
         }
 
         public static void DeleteMaterial(int id)

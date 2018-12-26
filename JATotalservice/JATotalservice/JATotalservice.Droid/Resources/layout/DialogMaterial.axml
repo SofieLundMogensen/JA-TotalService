@@ -35,7 +35,7 @@
 		android:layout_toRightOf="@+id/centerShim"
         android:paddingLeft="100dp"
 		android:inputType="numberDecimal"
-		android:digits="0123456789"/> 
+		android:digits="0123456789."/> 
 	<Button
 		android:text="Opret"
 		android:layout_width="match_parent"

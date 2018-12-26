@@ -66,8 +66,8 @@ namespace JATotalservice.Droid.Adapter
             button.SetPadding(8, 8, 8, 8);
             button.SetBackgroundColor(Color.DarkGray);
             button.SetTextColor(Color.White);
-            
-            button.Text = Materials[position].name + "\n" + Materials[position].price + " kr";
+            var price = System.Math.Round(Materials[position].price - 0.005, 2);
+            button.Text = Materials[position].name + "\n" + price + " kr";
             Console.WriteLine(Materials[position].name);
             button.Click += delegate
             {
