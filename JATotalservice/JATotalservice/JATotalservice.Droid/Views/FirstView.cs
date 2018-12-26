@@ -91,9 +91,6 @@ namespace JATotalservice.Droid.Views
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
 
-            FindViewById(Resource.Id.button1).Click += (o, e) =>
-            textView.Text = "Dennis er awesome";
-
             FirstViewModel t = new FirstViewModel();
             //Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
             //navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view

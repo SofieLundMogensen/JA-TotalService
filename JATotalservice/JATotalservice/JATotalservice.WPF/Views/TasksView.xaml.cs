@@ -34,7 +34,7 @@ namespace JATotalservice.WPF.Views
             taskViewModel = new TaskViewModel();
             InitializeComponent();
         }
-        
+
         private void Selector_OnSelectionChanged(object sender, MouseButtonEventArgs e)
         {
 
@@ -63,8 +63,12 @@ namespace JATotalservice.WPF.Views
                 {
                     Materials.ItemsSource = task.materials;
                 }
+                if (task.timeRegistrations != null)
+                {
+                    Timeregistration.ItemsSource = task.timeRegistrations;
+                }
             }
-         
+
         }
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
@@ -81,7 +85,7 @@ namespace JATotalservice.WPF.Views
 
         private void CreateTask_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
             taskViewModel.PostTask(task);
             PopupCreate.IsOpen = false;
@@ -126,11 +130,155 @@ namespace JATotalservice.WPF.Views
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            taskViewModel.delete(taskViewModel.Task.id);
-            Tasks.ItemsSource = taskViewModel.Tasks;
-
-            //Optimalt en check på om man vil slette eller ej.
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                taskViewModel.delete(taskViewModel.Task.id);
+                Tasks.ItemsSource = taskViewModel.Tasks;
+            }
+           
         }
-        
+
+        private void AddMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            Amount.Text = null;
+            MaterialsAmount.SelectedItem = null;
+            PopupMaterial.IsOpen = true;
+        }
+
+        private void MaterialAccept_Click(object sender, RoutedEventArgs e)
+        {
+            var task = taskViewModel.Task;
+            var m = MaterialsAmount.SelectedItem;
+            task.materials.Add(Tuple.Create((Material)m, Int32.Parse(Amount.Text)));
+            taskViewModel.addMaterial(task);
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            if (task.materials != null)
+            {
+                Materials.ItemsSource = taskViewModel.Tasks.Find(v => v.id == task.id).materials;
+            }
+
+            PopupMaterial.IsOpen = false;
+        }
+
+        private void MaterialCancell_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialsAmount.SelectedItem = null;
+            Amount.Text = null;
+            PopupMaterial.IsOpen = false;
+        }
+
+        private void EditMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            MaterialEdit.Visibility = Visibility.Visible;
+            PopupMaterial.IsOpen = true;
+            Tuple<Material, int> test = Materials.SelectedItem as Tuple<Material, int>;
+            // MaterialsAmount.SelectedItem = (Material)test.Item1;
+            Amount.Text = test.Item2.ToString();
+
+        }
+
+        private void MaterialEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Tuple<Material, int> old = Materials.SelectedItem as Tuple<Material, int>;
+            var m = MaterialsAmount.SelectedItem;
+
+            var t = Tuple.Create((Material)m, Int32.Parse(Amount.Text));
+            taskViewModel.editMaterial(t, old);
+
+            var task = taskViewModel.Task;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            PopupMaterial.IsOpen = false;
+            if (task.materials != null)
+            {
+                Materials.ItemsSource = task.materials;
+            }
+            MaterialEdit.Visibility = Visibility.Hidden;
+        }
+
+        private void DeleteMaterial_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                taskViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
+                var task = taskViewModel.Task;
+                Tasks.ItemsSource = taskViewModel.Tasks;
+                if (task.materials != null)
+                {
+                    Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
+                }
+            }
+        }
+
+        private void AddTime_Click(object sender, RoutedEventArgs e)
+        {
+            StartTime.Text = "";
+            EndTime.Text = "";
+            PopupTime.IsOpen = true;
+        }
+
+        private void TimeAccept_Click(object sender, RoutedEventArgs e)
+        {
+            string iDate = StartTime.Text;
+            DateTime oDate = Convert.ToDateTime(iDate);
+
+            string iEndDate = EndTime.Text;
+            DateTime oEndDate = Convert.ToDateTime(iEndDate);
+            taskViewModel.addTime(oDate, oEndDate);
+            PopupTime.IsOpen = false;
+
+            Tasks.ItemsSource = taskViewModel.Tasks;
+            Timeregistration.ItemsSource = null;
+            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+        }
+
+        private void TimeCancell_Click(object sender, RoutedEventArgs e)
+        {
+            StartTime.Text = "";
+            EndTime.Text = "";
+            PopupTime.IsOpen = false;
+            TimeEdit.Visibility = Visibility.Hidden;
+        }
+
+        private void TimeEdit_Click(object sender, RoutedEventArgs e)
+        {
+           
+            string iDate = StartTime.Text;
+            DateTime oDate = Convert.ToDateTime(iDate);
+            string iEndDate = EndTime.Text;
+            DateTime oEndDate = Convert.ToDateTime(iEndDate);
+            var t = (TimeRegistartion)Timeregistration.SelectedItem;
+            taskViewModel.editTime(t, oDate, oEndDate);
+            PopupTime.IsOpen = false;
+            Tasks.ItemsSource = taskViewModel.Tasks;
+           
+            PopupTime.IsOpen = false;
+            TimeEdit.Visibility = Visibility.Hidden;
+            Timeregistration.ItemsSource = null;
+            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+        }
+
+        private void EditTime_Click(object sender, RoutedEventArgs e)
+        {
+            var t = (TimeRegistartion)Timeregistration.SelectedItem;
+            StartTime.Text = t.startTime.ToString();
+            EndTime.Text = t.endTime.ToString();
+            TimeEdit.Visibility = Visibility.Visible;
+            PopupTime.IsOpen = true;
+        }
+
+        private void Deletetime_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                var t = (TimeRegistartion)Timeregistration.SelectedItem;
+                taskViewModel.deleteTime(t);
+                Tasks.ItemsSource = taskViewModel.Tasks;
+                Timeregistration.ItemsSource = null;
+                Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+            }
+        }
     }
 }

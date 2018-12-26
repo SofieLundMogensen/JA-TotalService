@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Android;
 using Android.App;
 using Android.Content;
+using Android.Content.PM;
+using Android.Locations;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
+using JATotalservice.Droid.Helpers;
 using ModelLayer;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+
 
 namespace JATotalservice.Droid.Views
 {
@@ -27,6 +32,7 @@ namespace JATotalservice.Droid.Views
 
         ListView Materials;
         Button sendTimeRegistration;
+        Button locationButton;
         Task task;
         NumberPicker hour;
         NumberPicker minute;
@@ -37,6 +43,8 @@ namespace JATotalservice.Droid.Views
         MaterialsListViewAdapter materialsListViewAdapter;
         EditText employeeId;
         private Android.Support.V7.Widget.Toolbar _toolbar;
+
+        LocationHelper locationHelper = new LocationHelper();
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -69,8 +77,28 @@ namespace JATotalservice.Droid.Views
             sendTimeRegistration = view.FindViewById<Button>(Resource.Id.Submit);
             sendTimeRegistration.Click += delegate { sendData(view.Context); };
 
+            //Finder elementer i view'et
+            locationButton = view.FindViewById<Button>(Resource.Id.Location);
+
+            //Forbinder klik eventet til lokation kanppen
+            //locationButton.Click += delegate { GetLocation(view.Context); };
+            locationButton.Click += delegate { Location(view.Context); };
+            
+
             SetupBindings();
             return view;
+        }
+
+        private void Location(Context context)
+        {
+            Location location = locationHelper.GetLocation(context); //Her får du den location tilbage med lat og long
+            if (location == null) //Spørger om du fik en lokation tilbage, og hvis ikke så laver en en toast og returner
+            {
+                Toast.MakeText(context, "Kan ikke finde din lokation", ToastLength.Long).Show();
+                return;
+            }
+
+            Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
         }
 
         private void AddMaterial()
@@ -134,16 +162,18 @@ namespace JATotalservice.Droid.Views
             hour.MaxValue = 23;
             hour.MinValue = 0;
             hour.Value = DateTime.Now.Hour;
-            minute.MaxValue = 59;
+            minute.MaxValue = 3;
             minute.MinValue = 0;
+            minute.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter startid
             minute.Value = DateTime.Now.Minute;
             hour1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerHour2);
             minute1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerMinute2);
             hour1.MaxValue = 23;
             hour1.MinValue = 0;
             hour1.Value = DateTime.Now.Hour;
-            minute1.MaxValue = 59;
+            minute1.MaxValue = 3;
             minute1.MinValue = 0;
+            minute1.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter sluttid
             minute1.Value = DateTime.Now.Minute;
         }
         protected void SetupBindings()
@@ -153,5 +183,7 @@ namespace JATotalservice.Droid.Views
                                                                         // set.Bind(Tasks).To(vm => vm.Tasks); //Binds the test from the viewModel til the view's textView
             set.Apply();
         }
+
+        
     }
 }
