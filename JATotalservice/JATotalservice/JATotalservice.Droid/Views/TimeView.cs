@@ -162,16 +162,18 @@ namespace JATotalservice.Droid.Views
             hour.MaxValue = 23;
             hour.MinValue = 0;
             hour.Value = DateTime.Now.Hour;
-            minute.MaxValue = 59;
+            minute.MaxValue = 3;
             minute.MinValue = 0;
+            minute.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter startid
             minute.Value = DateTime.Now.Minute;
             hour1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerHour2);
             minute1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerMinute2);
             hour1.MaxValue = 23;
             hour1.MinValue = 0;
             hour1.Value = DateTime.Now.Hour;
-            minute1.MaxValue = 59;
+            minute1.MaxValue = 3;
             minute1.MinValue = 0;
+            minute1.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter sluttid
             minute1.Value = DateTime.Now.Minute;
         }
         protected void SetupBindings()
