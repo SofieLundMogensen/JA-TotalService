@@ -1,11 +1,12 @@
-<?xml version="1.0" encoding="utf-8" ?>  
-<android.support.design.widget.CoordinatorLayout
+<?xml version="1.0" encoding="utf-8" ?>
+  
+<RelativeLayout 	
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:local="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
-	<include
-		layout="@layout/toolbar_actionbar" />
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:background="#ffffff">
+
 	<ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
@@ -15,7 +16,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <include
-			layout="@layout/toolbar_actionbar"/>
+		layout="@layout/toolbar" 
+		android:id="@+id/toolbar_layout"/>
 			<TextView
 				android:text="Opgave navn:"
 				android:layout_width="match_parent"
@@ -80,40 +82,31 @@
 			    android:layout_height="wrap_content" 
 				android:layout_below="@id/Spacer3"
 			/>
+					
+			
 			<android.support.design.widget.FloatingActionButton
 				android:id="@+id/Add"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_below="@id/MaterialsListView"
 				android:layout_alignParentRight="true"
-		 
 				android:layout_margin="@dimen/fab_margin"
 				local:fabSize="normal"
 				local:srcCompat="@drawable/ic_plus"
 			/>
-			 <Button
+	
+			<Button
                 android:text="Beregn pris"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-		
-				android:layout_below="@+id/Add"
+				android:layout_below="@id/Add"
                 android:id="@+id/Submit" 
 			/>
-			<View 
-				android:layout_height="10dp" 
-				android:layout_width="fill_parent" 
-				android:layout_below="@id/estimatedTimePicker"
-				android:layout_marginBottom="10dp" 
-				android:layout_marginTop="10dp" 
-				android:background="#000" 
-			/>
-
 			
-		
+			
+			
+			
 		</RelativeLayout>
-
     </ScrollView>
-	  
-	
-	
-	</android.support.design.widget.CoordinatorLayout>
+		
+</RelativeLayout >

@@ -8,19 +8,17 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
 using ModelLayer;
 using MvvmCross.Binding.BindingContext;
-using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace JATotalservice.Droid.Views
 {
-    [MvxFragmentPresentation(typeof(FirstViewModel), Resource.Id.content_frame, false)]
+    [MvxFragmentPresentation(typeof(FirstViewModel), Resource.Id.content_frame, true)]
     [Activity(Label = "View for TimeViewModel")]
     public class TimeView : BaseFragment<TimeViewModel>
     {
@@ -35,16 +33,17 @@ namespace JATotalservice.Droid.Views
         NumberPicker hour1;
         NumberPicker minute1;
         Spinner TaskDropDown;
+        View view;
         MaterialsListViewAdapter materialsListViewAdapter;
         EditText employeeId;
         private Android.Support.V7.Widget.Toolbar _toolbar;
-        View view;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            ParentActivity.SupportActionBar.Title = "Time";
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            _toolbar.Title = "Tidsregistering";
             //Set up time spinners
             SetupTime();
 
@@ -71,8 +70,6 @@ namespace JATotalservice.Droid.Views
             sendTimeRegistration.Click += delegate { sendData(view.Context); };
 
             SetupBindings();
-         
-
             return view;
         }
 
@@ -81,7 +78,7 @@ namespace JATotalservice.Droid.Views
             //Adds a material to the MaterialTask list
 
             ViewModel.AddMaterials(Tuple.Create(new Material { id = 1 }, 1));
-            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, View.Context, ViewModel);
+            materialsListViewAdapter = new MaterialsListViewAdapter(ViewModel.MaterialsAmount, view.Context, ViewModel);
 
             Materials.Adapter = materialsListViewAdapter;
             Utility.setListViewHeightBasedOnChildren(Materials); //Hack maybe it works when we are using bindings - Read something about it?

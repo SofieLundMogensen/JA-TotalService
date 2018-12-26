@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:local="http://schemas.android.com/apk/res-auto"
-	android:id="@+id/drawer_layout"
-	android:fitsSystemWindows="true"
-	android:layout_height="match_parent"
-	android:layout_width="match_parent">
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+  
     
-	<android.support.design.widget.CoordinatorLayout
-		android:id="@+id/main_frame"
-		android:fitsSystemWindows="true"
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
-		<FrameLayout
-			android:id="@+id/content_frame"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:layout_centerInParent="true" />
-	</android.support.design.widget.CoordinatorLayout>
-	<FrameLayout
-		android:id="@+id/navigation_frame"
-		android:layout_height="match_parent"
-		android:layout_width="wrap_content"
-		android:layout_gravity="left|start" />
 
-	</android.support.v4.widget.DrawerLayout>
+  <FrameLayout
+      android:id="@+id/content_frame"
+     
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <Button
+                android:text="Button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/button1" />
+            <TextView
+                android:text="Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView1"
+				/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                local:MvxBind="Text Hello" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="40dp"
+                local:MvxBind="Text Hello" />
+            <Button
+                android:text="Navigate to materials"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/navigateToMaterialsView" />
+			<Button
+				android:text="Naviagate to time"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/navigateToTimeView" />
+			<Button
+				android:text="Navigate to estimate"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:id="@+id/navigateToEstimateView" />
+			
+        </LinearLayout>
+  </FrameLayout>
+</RelativeLayout>

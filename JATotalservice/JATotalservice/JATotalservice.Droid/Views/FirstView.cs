@@ -1,46 +1,33 @@
+using Android;
 using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
 using JATotalservice.Core.ViewModels;
+
+using System;
+using ModelLayer;
+using System.Collections.Generic;
+using JATotalservice.Core.Service;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using Android.Support.V4.Widget;
-using Android.Support.V4.View;
-using Android.Views.InputMethods;
-using Android.Content.PM;
+
 namespace JATotalservice.Droid.Views
 {
 
     [MvxActivityPresentation]
-    [Activity(Label = "JA Totalservce",
-           LaunchMode = LaunchMode.SingleTop
-       
-           )]
+    [Activity(Label = "View for FirstViewModel")]
     public class FirstView : MvxAppCompatActivity<FirstViewModel>
     {
         TextView textView;
 
         //View button;
-        // protected override int LayoutResource => Resource.Layout.FirstView;
-        public DrawerLayout DrawerLayout { get; set; }
+       // protected override int LayoutResource => Resource.Layout.FirstView;
+
         protected override void OnCreate(Bundle bundle)
         {
-
             base.OnCreate(bundle);
-            // UserDialogs.Init(this);
-
             SetContentView(Resource.Layout.FirstView);
-
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-
-            if (bundle == null)
-            {
-                ViewModel.NavigateToEstimatePriceCommand.Execute(null);
-                ViewModel.ShowMenuViewModelCommand.Execute(null);
-
-            }
-
             //var dt = new DateTime(2010, 10, 12);   
             //var dt1 = new DateTime(2011, 08, 06);    
 
@@ -89,67 +76,39 @@ namespace JATotalservice.Droid.Views
             //estimatedPrice.materials = listen;
 
             //EstimatedPriceService.CalculatePrice(estimatedPrice);
-
+           
             // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
-            /* Material m = new Material
-             {
-                 name = "wood",
-                 description = "noget træ",
-                 price = 300
-             };
-             MaterialService.PostMaterial(m); */
+           /* Material m = new Material
+            {
+                name = "wood",
+                description = "noget træ",
+                price = 300
+            };
+            MaterialService.PostMaterial(m); */
 
             // SupportActionBar.SetDisplayHomeAsUpEnabled(false);
 
 
             textView = FindViewById(Resource.Id.textView1) as TextView;
 
-            /*  FindViewById(Resource.Id.button1).Click += (o, e) =>
-              textView.Text = "Dennis er awesome";
-              */
+            FindViewById(Resource.Id.button1).Click += (o, e) =>
+            textView.Text = "Dennis er awesome";
+
             FirstViewModel t = new FirstViewModel();
             //Button navigateToMaterialsButton = FindViewById<Button>(Resource.Id.navigateToNextView); //Finds the button
             //navigateToMaterialsButton.Click += delegate { StartActivity(typeof(MaterialsView)); }; //Navigates to the next view
-            //navigateToMaterialsButton.Click += delegate { t.navigateCommand.Execute(); };
+                                                                                                   //navigateToMaterialsButton.Click += delegate { t.navigateCommand.Execute(); };
 
             //t.navigateCommand.Execute();
 
-            /*  Button navigateToMaterialButton = FindViewById<Button>(Resource.Id.navigateToMaterialsView);
-              navigateToMaterialButton.Click += delegate { ViewModel.NavigateToMaterialsCommand.Execute(); };
+            Button navigateToMaterialButton = FindViewById<Button>(Resource.Id.navigateToMaterialsView);
+            navigateToMaterialButton.Click += delegate { ViewModel.NavigateToMaterialsCommand.Execute(); };
 
-              Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
-              navigateToTimeButton.Click += delegate { ViewModel.NavigateToTimeRegistrationCommand.Execute(); };
+            Button navigateToTimeButton = FindViewById<Button>(Resource.Id.navigateToTimeView);
+            navigateToTimeButton.Click += delegate { ViewModel.NavigateToTimeRegistrationCommand.Execute(); };
 
-              Button navigateToEstimateButton = FindViewById<Button>(Resource.Id.navigateToEstimateView);
-              navigateToEstimateButton.Click += delegate { ViewModel.NavigateToEstimatePriceCommand.Execute(); };*/
-        }
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    DrawerLayout.OpenDrawer(GravityCompat.Start);
-                    return true;
-            }
-            return base.OnOptionsItemSelected(item);
-        }
-
-        public override void OnBackPressed()
-        {
-            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
-                DrawerLayout.CloseDrawers();
-            else
-                base.OnBackPressed();
-        }
-        public void HideSoftKeyboard()
-        {
-            if (CurrentFocus == null)
-                return;
-
-            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
-            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
-
-            CurrentFocus.ClearFocus();
+            Button navigateToEstimateButton = FindViewById<Button>(Resource.Id.navigateToEstimateView);
+            navigateToEstimateButton.Click += delegate { ViewModel.NavigateToEstimatePriceCommand.Execute(); };
         }
     }
 }

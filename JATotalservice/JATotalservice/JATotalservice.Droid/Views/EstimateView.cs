@@ -17,8 +17,8 @@ using MvvmCross;
 
 namespace JATotalservice.Droid.Views
 {
-    [MvxFragmentPresentation(typeof(FirstViewModel), Resource.Id.content_frame, false)]
-    [Register("JATotalservice.droid.views.EstimateView")]
+    [MvxFragmentPresentation(typeof(FirstViewModel), Resource.Id.content_frame, true)]
+    [Activity(Label = "View for EstimateViewModel")]
     public class EstimateView : BaseFragment<EstimateViewModel>
     {
         protected override int FragmentId => Resource.Layout.EstimateView;
@@ -28,30 +28,14 @@ namespace JATotalservice.Droid.Views
         TextView estimatedTimeName;
         ListView Materials;
         MaterialsListViewAdapter materialsListViewAdapter;
-       
+        private Android.Support.V7.Widget.Toolbar _toolbar;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);
 
-            ParentActivity.SupportActionBar.Title = "Overslag";
-
-            //Navigation
-           /* var bottomBar = view.FindViewById<BottomNavigationView>(Resource.Id.nav);
-            
-
-
-
-            bottomBar.NavigationItemSelected += async (s, a) =>
-            {
-
-                switch (a.Item.ItemId)
-                {
-                    case Resource.Id.Material:
-                        await ViewModel.NavigateToMaterials();
-                        break;
-                }
-            };*/
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            _toolbar.Title = "Pris overslag";
 
             //Floating botton add material
             var add = view.FindViewById<FloatingActionButton>(Resource.Id.Add);
