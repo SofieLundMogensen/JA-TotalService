@@ -13,6 +13,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
+using JATotalservice.Core.Service;
 using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
 using JATotalservice.Droid.Helpers;
@@ -98,7 +99,12 @@ namespace JATotalservice.Droid.Views
                 return;
             }
 
-            Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
+            var address = LocationService.getLocationAddress(location);
+
+            //Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
+
+            Toast.MakeText(context, "Du befinder dig på vejen: " + address.address.road, ToastLength.Long).Show();
+            
         }
 
         private void AddMaterial()
