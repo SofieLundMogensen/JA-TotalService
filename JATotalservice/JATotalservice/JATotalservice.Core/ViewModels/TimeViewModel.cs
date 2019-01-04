@@ -51,12 +51,13 @@ namespace JATotalservice.Core.ViewModels
         {
 
             //TODO: KALD Service - Kald de forskellige opgaver fra service
-            ModelLayer.Task task = new ModelLayer.Task();
-            var tasks = new List<ModelLayer.Task>();
-            tasks.Add(new ModelLayer.Task { name = "Hans HANSEN VEJ", id = 1});
-            tasks.Add(new ModelLayer.Task { name = "Ib", id = 1  });
-            tasks.Add(new ModelLayer.Task { name = "Bo", id = 1 });
-            Tasks = tasks;
+            //ModelLayer.Task task = new ModelLayer.Task();
+            //var tasks = new List<ModelLayer.Task>();
+            //tasks.Add(new ModelLayer.Task { name = "Hans HANSEN VEJ", id = 1});
+            //tasks.Add(new ModelLayer.Task { name = "Ib", id = 1  });
+            //tasks.Add(new ModelLayer.Task { name = "Bo", id = 1 });
+            //Tasks = tasks;
+            Tasks = TaskService.GetAllTasks();
         }
 
         public void PostTimeRegistration(TimeRegistartion timeRegistartion)
