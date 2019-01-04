@@ -118,8 +118,13 @@ namespace DataAccessLayer
                     task.name = reader.GetString(1);
                     task.description = reader.GetString(2);
                     task.isComplete = reader.GetBoolean(3);
-                  
-                   
+
+                    //TODO: Mangler tjek på om den findes i db, ellers returnerer den bare et tomt array
+                    task.houseNumber = reader.GetString(4);
+                    task.road = reader.GetString(5);
+                    task.zipcode = reader.GetString(6);
+
+
                     tasks.Add(task);
                 }
                 reader.Close();
