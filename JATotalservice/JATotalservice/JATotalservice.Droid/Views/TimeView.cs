@@ -99,7 +99,7 @@ namespace JATotalservice.Droid.Views
                 return;
             }
 
-            var address = LocationService.getLocationAddress(location);
+            var address = LocationService.getLocationAddress(location.Latitude, location.Longitude);
 
             //Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
 

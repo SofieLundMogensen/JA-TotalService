@@ -1,5 +1,4 @@
-﻿using Android.Locations;
-using ModelLayer;
+﻿using ModelLayer;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -11,11 +10,11 @@ namespace JATotalservice.Core.Service
     {
         
 
-        public static LocationModel getLocationAddress(Location location)
+        public static LocationModel getLocationAddress(double lat, double lon)
         {
             
             //Bliver nødt til at sætte lat og long ind sådan her, da forsøg nedenfor ikek virker
-            RestClient client = new RestClient(string.Format("https://nominatim.openstreetmap.org/reverse?format=json&lat={0}&lon={1}", location.Latitude.ToString().Replace(",", "."), location.Longitude.ToString().Replace(",", ".")));
+            RestClient client = new RestClient(string.Format("https://nominatim.openstreetmap.org/reverse?format=json&lat={0}&lon={1}", lat.ToString().Replace(",", "."), lon.ToString().Replace(",", ".")));
 
             IRestRequest request = new RestRequest(Method.GET);
             
