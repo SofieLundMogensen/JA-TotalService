@@ -23,7 +23,7 @@ namespace DataAccessLayer
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = conn;
               
-                cmd.CommandText = "INSERT INTO `Task`(`Name`,`Description`,`isComplete`) VALUES (?,?,?)";
+                cmd.CommandText = "INSERT INTO `Task`(`Name`,`Description`,`isComplete`, `houseNumber`, `road`, `zipcode`) VALUES (?,?,?,?,?,?)";
 
                 cmd.Parameters.Add("?Name", MySqlDbType.String).Value = obj.name;
                 cmd.Parameters.Add("?Description", MySqlDbType.String).Value = obj.description;
@@ -31,6 +31,10 @@ namespace DataAccessLayer
                 cmd.Parameters.Add("@isComplete", MySqlDbType.Bit);
                 var booleanValue = Convert.ToBoolean(cmd.Parameters["@isComplete"].Value);
                 cmd.Parameters["@isComplete"].Value = booleanValue;
+
+                cmd.Parameters.Add("?houseNumber", MySqlDbType.String).Value = obj.houseNumber;
+                cmd.Parameters.Add("?road", MySqlDbType.String).Value = obj.road;
+                cmd.Parameters.Add("?zipcode", MySqlDbType.String).Value = obj.zipcode;
 
                 cmd.ExecuteNonQuery();
                 succes = true;
@@ -138,11 +142,14 @@ namespace DataAccessLayer
                 MySqlCommand cmd = new MySqlCommand();
                 cmd.Connection = connection;
 
-                cmd.CommandText = " UPDATE `Task` SET `Id`=@Id,`Name`=@Name,`isComplete`=@isComplete,`Description`=@Description WHERE Id = @Id";
+                cmd.CommandText = " UPDATE `Task` SET `Id`=@Id,`Name`=@Name,`isComplete`=@isComplete,`Description`=@Description,`houseNumber`=@houseNumber,`road`=@road,`zipcode`=@zipcode WHERE Id = @Id";
                 cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = obj.id;
                 cmd.Parameters.Add("@Name", MySqlDbType.String).Value = obj.name;
                 cmd.Parameters.Add("@isComplete", MySqlDbType.Bit).Value = obj.isComplete;
                 cmd.Parameters.Add("@Description", MySqlDbType.String).Value = obj.description;
+                cmd.Parameters.Add("?houseNumber", MySqlDbType.String).Value = obj.houseNumber;
+                cmd.Parameters.Add("?road", MySqlDbType.String).Value = obj.road;
+                cmd.Parameters.Add("?zipcode", MySqlDbType.String).Value = obj.zipcode;
                 cmd.ExecuteNonQuery();
                 succes = true;
             }

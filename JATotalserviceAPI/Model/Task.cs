@@ -12,5 +12,8 @@ namespace ModelLayer
         public bool isComplete { get; set; }
         public List<TimeRegistartion> timeRegistrations { get; set; }
         public List<Tuple<Material, int>> materials { get; set; }
+        public string houseNumber { get; set; }
+        public string road { get; set; }
+        public string zipcode { get; set; }
     }
 }
