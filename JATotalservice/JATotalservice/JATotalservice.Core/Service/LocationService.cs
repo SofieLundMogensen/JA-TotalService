@@ -28,8 +28,6 @@ namespace JATotalservice.Core.Service
 
             var address = client.Execute<LocationModel>(request).Data;
             
-            Console.WriteLine(address);
-
             return address;
         }
     }

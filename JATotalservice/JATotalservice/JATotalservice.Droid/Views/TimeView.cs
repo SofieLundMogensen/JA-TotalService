@@ -99,9 +99,9 @@ namespace JATotalservice.Droid.Views
                 return;
             }
 
-            var address = LocationService.getLocationAddress(location.Latitude, location.Longitude);
+            LocationModel address = LocationService.getLocationAddress(location.Latitude, location.Longitude);
 
-            //Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
+            var t = ViewModel.CheckIfLocationTaskExist(address); //TODO: sæt det givne meterial til selected
 
             Toast.MakeText(context, "Du befinder dig på vejen: " + address.address.road, ToastLength.Long).Show();
             

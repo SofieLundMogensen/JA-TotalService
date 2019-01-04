@@ -16,10 +16,8 @@ namespace JATotalservice.Core.ViewModels
         List<ModelLayer.Task> tasks;
         List<Material> materials;
         List<Tuple<Material, int>> materialsAmounts;
-        //private readonly IMvxNavigationService _navigationService;
 
         public IMvxCommand PostTime => new MvxCommand<TimeRegistartion>(PostTimeRegistration);
-        
 
         public List<Material> Materials
         {
@@ -44,14 +42,9 @@ namespace JATotalservice.Core.ViewModels
             GetMaterials();
             MaterialsAmount = new List<Tuple<Material, int>>();
         }
-
         
-
         public void GetTasks()
         {
-
-            //TODO: KALD Service - Kald de forskellige opgaver fra service
-            //ModelLayer.Task task = new ModelLayer.Task();
             //var tasks = new List<ModelLayer.Task>();
             //tasks.Add(new ModelLayer.Task { name = "Hans HANSEN VEJ", id = 1});
             //tasks.Add(new ModelLayer.Task { name = "Ib", id = 1  });
@@ -62,12 +55,12 @@ namespace JATotalservice.Core.ViewModels
 
         public void PostTimeRegistration(TimeRegistartion timeRegistartion)
         {
-            
             timeRegistartion.task.materials = MaterialsAmount;
             //Kalder timeregistration service og poster timeregistration
             var didSucced = TimeRegistartionService.PostTimeInfo(timeRegistartion);
             MaterialsAmount.Clear();
         }
+
         public void AddMaterials(Tuple<Material, int> materialAmount)
         {
             //tilføjer en materialertask til matrialertask listen
@@ -77,7 +70,26 @@ namespace JATotalservice.Core.ViewModels
         public void GetMaterials()
         {
            Materials = MaterialService.GetAllMaterials();
-        
+        }
+
+        public Material CheckIfLocationTaskExist(LocationModel locationModel)
+        {
+            List<ModelLayer.Task> tempTasks = Tasks;
+
+            foreach (var task in tempTasks)
+            {
+                if (task.road.Contains(locationModel.address.road))
+                {
+                    Console.WriteLine("ehheheh");
+                }
+                else
+                {
+                    Console.WriteLine("fe,wfewå");
+                }
+            }
+
+
+            return null;
         }
     }
 }
