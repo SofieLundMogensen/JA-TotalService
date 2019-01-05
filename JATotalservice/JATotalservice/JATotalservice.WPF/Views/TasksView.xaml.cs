@@ -27,11 +27,16 @@ namespace JATotalservice.WPF.Views
     [MvxViewFor(typeof(TaskViewModel))]
     public partial class TasksView : MvxWpfView
     {
-        TaskViewModel taskViewModel;
+      
         PDFHelper pDFHelper = new PDFHelper();
-        public TasksView()
+        public new TaskViewModel ViewModel
         {
-            taskViewModel = new TaskViewModel();
+            get { return (TaskViewModel)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
+        public TasksView()
+
+        {
             InitializeComponent();
         }
 
@@ -46,7 +51,7 @@ namespace JATotalservice.WPF.Views
             var task = (ModelLayer.Task)itme.SelectedItem;
             if (task != null)
             {
-                taskViewModel.Task = task;
+                ViewModel.Task = task;
                 Name.Content = task.name;
                 Description.Content = task.description;
                 double timeused = 0;
@@ -73,7 +78,7 @@ namespace JATotalservice.WPF.Views
 
         private void PrintFaktura_Click(object sender, RoutedEventArgs e)
         {
-            pDFHelper.CreatePDF(taskViewModel.Task);
+            pDFHelper.CreatePDF(ViewModel.Task);
         }
 
         private void Create_Click(object sender, RoutedEventArgs e)
@@ -87,9 +92,9 @@ namespace JATotalservice.WPF.Views
         {
 
             ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
-            taskViewModel.PostTask(task);
+            ViewModel.PostTask(task);
             PopupCreate.IsOpen = false;
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            Tasks.ItemsSource = ViewModel.Tasks;
 
         }
 
@@ -103,16 +108,16 @@ namespace JATotalservice.WPF.Views
 
         private void EditTask_Click(object sender, RoutedEventArgs e)
         {
-            var task = taskViewModel.Task;
+            var task = ViewModel.Task;
             task.isComplete = IsDone.IsChecked.Value;
             task.name = TaskName.Text;
             task.description = TaskDescription.Text;
-            taskViewModel.Edit(task);
+            ViewModel.Edit(task);
             EditTask.Visibility = Visibility.Hidden;
             IsDone.Visibility = Visibility.Hidden;
             CreateTask.Visibility = Visibility.Visible;
             PopupCreate.IsOpen = false;
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            Tasks.ItemsSource = ViewModel.Tasks;
 
         }
 
@@ -122,7 +127,7 @@ namespace JATotalservice.WPF.Views
             EditTask.Visibility = Visibility.Visible;
             IsDone.Visibility = Visibility.Visible;
             PopupCreate.IsOpen = true;
-            var task = taskViewModel.Task;
+            var task = ViewModel.Task;
             IsDone.IsChecked = task.isComplete;
             TaskName.Text = task.name;
             TaskDescription.Text = task.description;
@@ -133,8 +138,8 @@ namespace JATotalservice.WPF.Views
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                taskViewModel.delete(taskViewModel.Task.id);
-                Tasks.ItemsSource = taskViewModel.Tasks;
+                ViewModel.delete(ViewModel.Task.id);
+                Tasks.ItemsSource = ViewModel.Tasks;
             }
            
         }
@@ -148,14 +153,14 @@ namespace JATotalservice.WPF.Views
 
         private void MaterialAccept_Click(object sender, RoutedEventArgs e)
         {
-            var task = taskViewModel.Task;
+            var task = ViewModel.Task;
             var m = MaterialsAmount.SelectedItem;
             task.materials.Add(Tuple.Create((Material)m, Int32.Parse(Amount.Text)));
-            taskViewModel.addMaterial(task);
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            ViewModel.addMaterial(task);
+            Tasks.ItemsSource = ViewModel.Tasks;
             if (task.materials != null)
             {
-                Materials.ItemsSource = taskViewModel.Tasks.Find(v => v.id == task.id).materials;
+                Materials.ItemsSource = ViewModel.Tasks.Find(v => v.id == task.id).materials;
             }
 
             PopupMaterial.IsOpen = false;
@@ -184,10 +189,10 @@ namespace JATotalservice.WPF.Views
             var m = MaterialsAmount.SelectedItem;
 
             var t = Tuple.Create((Material)m, Int32.Parse(Amount.Text));
-            taskViewModel.editMaterial(t, old);
+            ViewModel.editMaterial(t, old);
 
-            var task = taskViewModel.Task;
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            var task = ViewModel.Task;
+            Tasks.ItemsSource = ViewModel.Tasks;
             PopupMaterial.IsOpen = false;
             if (task.materials != null)
             {
@@ -201,12 +206,12 @@ namespace JATotalservice.WPF.Views
             MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Er du sikker på du vil slette?", "Slette bekræftelse", System.Windows.MessageBoxButton.YesNo);
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                taskViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
-                var task = taskViewModel.Task;
-                Tasks.ItemsSource = taskViewModel.Tasks;
+                ViewModel.deleteMaterial(Materials.SelectedItem as Tuple<Material, int>);
+                var task = ViewModel.Task;
+                Tasks.ItemsSource = ViewModel.Tasks;
                 if (task.materials != null)
                 {
-                    Materials.ItemsSource = taskViewModel.Tasks.Find(m => m.id == task.id).materials;
+                    Materials.ItemsSource = ViewModel.Tasks.Find(m => m.id == task.id).materials;
                 }
             }
         }
@@ -225,12 +230,12 @@ namespace JATotalservice.WPF.Views
 
             string iEndDate = EndTime.Text;
             DateTime oEndDate = Convert.ToDateTime(iEndDate);
-            taskViewModel.addTime(oDate, oEndDate);
+            ViewModel.addTime(oDate, oEndDate);
             PopupTime.IsOpen = false;
 
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            Tasks.ItemsSource = ViewModel.Tasks;
             Timeregistration.ItemsSource = null;
-            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+            Timeregistration.ItemsSource = ViewModel.Task.timeRegistrations;
         }
 
         private void TimeCancell_Click(object sender, RoutedEventArgs e)
@@ -249,14 +254,14 @@ namespace JATotalservice.WPF.Views
             string iEndDate = EndTime.Text;
             DateTime oEndDate = Convert.ToDateTime(iEndDate);
             var t = (TimeRegistartion)Timeregistration.SelectedItem;
-            taskViewModel.editTime(t, oDate, oEndDate);
+            ViewModel.editTime(t, oDate, oEndDate);
             PopupTime.IsOpen = false;
-            Tasks.ItemsSource = taskViewModel.Tasks;
+            Tasks.ItemsSource = ViewModel.Tasks;
            
             PopupTime.IsOpen = false;
             TimeEdit.Visibility = Visibility.Hidden;
             Timeregistration.ItemsSource = null;
-            Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+            Timeregistration.ItemsSource = ViewModel.Task.timeRegistrations;
         }
 
         private void EditTime_Click(object sender, RoutedEventArgs e)
@@ -274,10 +279,10 @@ namespace JATotalservice.WPF.Views
             if (messageBoxResult == MessageBoxResult.Yes)
             {
                 var t = (TimeRegistartion)Timeregistration.SelectedItem;
-                taskViewModel.deleteTime(t);
-                Tasks.ItemsSource = taskViewModel.Tasks;
+                ViewModel.deleteTime(t);
+                Tasks.ItemsSource = ViewModel.Tasks;
                 Timeregistration.ItemsSource = null;
-                Timeregistration.ItemsSource = taskViewModel.Task.timeRegistrations;
+                Timeregistration.ItemsSource = ViewModel.Task.timeRegistrations;
             }
         }
     }

@@ -26,7 +26,7 @@
         <TextBox HorizontalAlignment="Left" Height="27" Margin="102,270,0,0" TextWrapping="Wrap" Name="MaterialDescription" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.492,0.522"/>
         <Label Content="Pris" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="-0.289,0.269"/>
         <Label Content="Description" HorizontalAlignment="Left" Margin="10,271,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="-0.289,0.269"/>
-
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="715,0,0,0" VerticalAlignment="Top" Width="75" x:Name="PrintFaktura_Copy" Command="{Binding GoBackCommand}"/>
 
 
     </Grid>

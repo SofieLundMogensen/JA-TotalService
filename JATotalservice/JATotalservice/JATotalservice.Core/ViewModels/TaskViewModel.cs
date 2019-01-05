@@ -6,15 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace JATotalservice.Core.ViewModels
 {
     public class TaskViewModel : MvxViewModel
     {
 
-        public override void Prepare()
-        {
-            base.Prepare();
-        }
+     
+        private readonly MvvmCross.Navigation.IMvxNavigationService _navigationService;
+        public IMvxCommand GoBackCommand => new MvxAsyncCommand(goBack);
 
         List<Task> tasks;
         Task task;
@@ -37,10 +37,19 @@ namespace JATotalservice.Core.ViewModels
             set { SetProperty(ref tasks, value); }
         }
 
-        public TaskViewModel()
+  
+
+
+        public TaskViewModel(MvvmCross.Navigation.IMvxNavigationService navigationService)
         {
+            _navigationService = navigationService;
             GetTasks();
             Materials = MaterialService.GetAllMaterials();
+        }
+
+        public override void Prepare()
+        {
+            base.Prepare();
         }
 
         public void PostTask(Task task)
@@ -160,6 +169,15 @@ namespace JATotalservice.Core.ViewModels
                    task.materials.Add(Tuple.Create(material, n));
                  }
                  Tasks.Add(task);*/
+        }
+
+
+
+
+
+        public async System.Threading.Tasks.Task goBack()
+        {
+            await _navigationService.Navigate<FirstViewModel>();
         }
     }
 }

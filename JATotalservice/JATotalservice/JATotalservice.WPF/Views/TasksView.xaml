@@ -112,5 +112,6 @@
                
             </Grid>
         </Popup>
+        <Button Content="Tilbage" HorizontalAlignment="Left" Margin="1041,10,0,0" VerticalAlignment="Top" Width="75" x:Name="PrintFaktura_Copy" Command="{Binding GoBackCommand}"/>
     </Grid>
 </views:MvxWpfView>

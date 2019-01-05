@@ -26,11 +26,14 @@ namespace JATotalservice.WPF.Views
    [MvxViewFor(typeof(MaterialsViewModel))]
     public partial class MaterialsView : MvxWpfView
     {
-        MaterialsViewModel materialsViewModel;
-
-        public MaterialsView()
+        public new MaterialsViewModel ViewModel
         {
-            materialsViewModel = new MaterialsViewModel();
+            get { return (MaterialsViewModel)base.ViewModel; }
+            set { base.ViewModel = value; }
+        }
+        public MaterialsView()
+
+        {
             InitializeComponent();
         }
 
@@ -44,27 +47,27 @@ namespace JATotalservice.WPF.Views
         private void CreateMaterial_Click(object sender, RoutedEventArgs e)
         {
             Material material = new Material { name = MaterialName.Text, price = double.Parse(MaterialPrice.Text), description = MaterialDescription.Text };
-            materialsViewModel.PostMaterial(material);
-            Materials.ItemsSource = materialsViewModel.Materials;
+            ViewModel.PostMaterial(material);
+            Materials.ItemsSource = ViewModel.Materials;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
 
-            materialsViewModel.DeleteMaterial(materialsViewModel.Material.id);
-            Materials.ItemsSource = materialsViewModel.Materials;
+            ViewModel.DeleteMaterial(ViewModel.Material.id);
+            Materials.ItemsSource = ViewModel.Materials;
         }
 
         public void Edit_Click(object sender, RoutedEventArgs e)
         {
-            var material = materialsViewModel.Material;
+            var material = ViewModel.Material;
             material.name = MaterialName.Text;
             
             material.price = double.Parse(MaterialPrice.Text);
             material.description = MaterialDescription.Text;
         
-            materialsViewModel.Edit(material);
-            Materials.ItemsSource = materialsViewModel.Materials;
+            ViewModel.Edit(material);
+            Materials.ItemsSource = ViewModel.Materials;
 
         }
 
@@ -72,8 +75,8 @@ namespace JATotalservice.WPF.Views
         {
             var item = (ListBox)sender;
             var material = (Material)item.SelectedItem;
-            materialsViewModel.Material = material;
-            materialsViewModel.GetMaterials();
+            ViewModel.Material = material;
+            ViewModel.GetMaterials();
         }
     }
 }

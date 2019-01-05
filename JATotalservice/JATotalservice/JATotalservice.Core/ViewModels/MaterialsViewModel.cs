@@ -11,6 +11,10 @@ namespace JATotalservice.Core.ViewModels
 {
     public class MaterialsViewModel : MvxViewModel
     {
+        private readonly MvvmCross.Navigation.IMvxNavigationService _navigationService;
+        public IMvxCommand GoBackCommand => new MvxAsyncCommand(goBack);
+
+
         public override void Prepare()
         {
             base.Prepare();
@@ -31,8 +35,10 @@ namespace JATotalservice.Core.ViewModels
             set { SetProperty(ref materials, value); }
         }
         
-        public MaterialsViewModel()
+     
+        public MaterialsViewModel(MvvmCross.Navigation.IMvxNavigationService navigationService)
         {
+            _navigationService = navigationService;
             GetMaterials();
         }
         public void GetMaterial()
@@ -64,6 +70,10 @@ namespace JATotalservice.Core.ViewModels
         {
             MaterialService.DeleteMaterial(id);
             GetMaterials();
+        }
+        public async System.Threading.Tasks.Task goBack()
+        {
+            await _navigationService.Navigate<FirstViewModel>();
         }
     }
 }
