@@ -13,6 +13,7 @@ using Android.Support.Design.Widget;
 using Android.Support.V4.Content;
 using Android.Views;
 using Android.Widget;
+using JATotalservice.Core.Service;
 using JATotalservice.Core.ViewModels;
 using JATotalservice.Droid.Adapter;
 using JATotalservice.Droid.Helpers;
@@ -98,7 +99,15 @@ namespace JATotalservice.Droid.Views
                 return;
             }
 
-            Toast.MakeText(context, "Din lokation er: " + location.Latitude + " " + location.Longitude, ToastLength.Long).Show();
+            LocationModel address = LocationService.getLocationAddress(location.Latitude, location.Longitude); //Gets the adress for the lat and long given
+
+            var foundTask = ViewModel.CheckIfLocationTaskExist(address); //Finds the task where the location maches
+            int indexForFoundTask = ViewModel.Tasks.FindLastIndex(m => m.id == foundTask.id); //Finds the index for the task 
+
+            TaskDropDown.SetSelection(indexForFoundTask); //Sets the task as selected in the dropdown/spinner for tasks in the view
+            
+            Toast.MakeText(context, "Fandt opgaven: " + foundTask.name + ". Som var tættest på din placering" , ToastLength.Long).Show();
+            
         }
 
         private void AddMaterial()
@@ -165,7 +174,7 @@ namespace JATotalservice.Droid.Views
             minute.MaxValue = 3;
             minute.MinValue = 0;
             minute.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter startid
-            minute.Value = DateTime.Now.Minute;
+            //minute.Value = DateTime.Now.Minute;
             hour1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerHour2);
             minute1 = view.FindViewById<NumberPicker>(Resource.Id.numberPickerMinute2);
             hour1.MaxValue = 23;
@@ -174,7 +183,7 @@ namespace JATotalservice.Droid.Views
             minute1.MaxValue = 3;
             minute1.MinValue = 0;
             minute1.SetDisplayedValues(new String[] { "0", "15", "30", "45" }); //Interval på 15,30,45 minutter sluttid
-            minute1.Value = DateTime.Now.Minute;
+            //minute1.Value = DateTime.Now.Minute;
         }
         protected void SetupBindings()
         {

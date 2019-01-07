@@ -56,7 +56,7 @@ namespace JATotalservice.Core.ViewModels
         {
             TaskService.PostTask(task);
             GetTasks();
-
+            
         }
         public void Edit(Task task)
         {
