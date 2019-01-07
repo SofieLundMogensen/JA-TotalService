@@ -12,7 +12,7 @@ namespace JATotalservice.Core.ViewModels
     public class TaskViewModel : MvxViewModel
     {
 
-     
+
         private readonly MvvmCross.Navigation.IMvxNavigationService _navigationService;
         public IMvxCommand GoBackCommand => new MvxAsyncCommand(goBack);
 
@@ -37,7 +37,7 @@ namespace JATotalservice.Core.ViewModels
             set { SetProperty(ref tasks, value); }
         }
 
-  
+
 
 
         public TaskViewModel(MvvmCross.Navigation.IMvxNavigationService navigationService)
@@ -115,7 +115,7 @@ namespace JATotalservice.Core.ViewModels
         {
             Task.timeRegistrations.Find(m => m.Id == timeRegistartion.Id).startTime = startTime;
             Task.timeRegistrations.Find(m => m.Id == timeRegistartion.Id).endTime = endTime;
-            
+
             TaskService.PutTask(Task);
             GetTasks();
         }
@@ -177,7 +177,8 @@ namespace JATotalservice.Core.ViewModels
 
         public async System.Threading.Tasks.Task goBack()
         {
-            await _navigationService.Navigate<FirstViewModel>();
+            await _navigationService.Close(this);
+
         }
     }
 }

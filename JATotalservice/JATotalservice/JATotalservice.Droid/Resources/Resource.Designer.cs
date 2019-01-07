@@ -6024,8 +6024,8 @@ namespace JATotalservice.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f090092
-			public const int Add = 2131296402;
+			// aapt resource value: 0x7f090091
+			public const int Add = 2131296401;
 			
 			// aapt resource value: 0x7f0900c2
 			public const int Employee = 2131296450;
@@ -6039,8 +6039,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f0900b5
 			public const int Location = 2131296437;
 			
-			// aapt resource value: 0x7f090091
-			public const int MaterialsListView = 2131296401;
+			// aapt resource value: 0x7f090090
+			public const int MaterialsListView = 2131296400;
 			
 			// aapt resource value: 0x7f09000f
 			public const int MvvmCrossTagId = 2131296271;
@@ -6048,14 +6048,14 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090010
 			public const int MvxBindingTagUnique = 2131296272;
 			
-			// aapt resource value: 0x7f09008d
-			public const int Spacer1 = 2131296397;
+			// aapt resource value: 0x7f09008c
+			public const int Spacer1 = 2131296396;
 			
 			// aapt resource value: 0x7f0900bb
 			public const int Spacer2 = 2131296443;
 			
-			// aapt resource value: 0x7f090090
-			public const int Spacer3 = 2131296400;
+			// aapt resource value: 0x7f09008f
+			public const int Spacer3 = 2131296399;
 			
 			// aapt resource value: 0x7f0900b6
 			public const int StartTid = 2131296438;
@@ -6063,8 +6063,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f0900bc
 			public const int StartTid2 = 2131296444;
 			
-			// aapt resource value: 0x7f090093
-			public const int Submit = 2131296403;
+			// aapt resource value: 0x7f090092
+			public const int Submit = 2131296402;
 			
 			// aapt resource value: 0x7f09009b
 			public const int Text = 2131296411;
@@ -6168,8 +6168,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090032
 			public const int center = 2131296306;
 			
-			// aapt resource value: 0x7f090085
-			public const int centerShim = 2131296389;
+			// aapt resource value: 0x7f090097
+			public const int centerShim = 2131296407;
 			
 			// aapt resource value: 0x7f090033
 			public const int center_horizontal = 2131296307;
@@ -6198,8 +6198,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090050
 			public const int contentPanel = 2131296336;
 			
-			// aapt resource value: 0x7f090094
-			public const int content_frame = 2131296404;
+			// aapt resource value: 0x7f090093
+			public const int content_frame = 2131296403;
 			
 			// aapt resource value: 0x7f090078
 			public const int coordinator = 2131296376;
@@ -6216,8 +6216,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090049
 			public const int default_activity_button = 2131296329;
 			
-			// aapt resource value: 0x7f090086
-			public const int description = 2131296390;
+			// aapt resource value: 0x7f090085
+			public const int description = 2131296389;
 			
 			// aapt resource value: 0x7f09007a
 			public const int design_bottom_sheet = 2131296378;
@@ -6255,8 +6255,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09002d
 			public const int enterAlwaysCollapsed = 2131296301;
 			
-			// aapt resource value: 0x7f09008f
-			public const int estimatedTimePicker = 2131296399;
+			// aapt resource value: 0x7f09008e
+			public const int estimatedTimePicker = 2131296398;
 			
 			// aapt resource value: 0x7f09002e
 			public const int exitUntilCollapsed = 2131296302;
@@ -6282,8 +6282,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090041
 			public const int @fixed = 2131296321;
 			
-			// aapt resource value: 0x7f090089
-			public const int form_layout = 2131296393;
+			// aapt resource value: 0x7f090088
+			public const int form_layout = 2131296392;
 			
 			// aapt resource value: 0x7f09009c
 			public const int gridview = 2131296412;
@@ -6348,14 +6348,14 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090084
 			public const int name = 2131296388;
 			
-			// aapt resource value: 0x7f090097
-			public const int navigateToEstimateView = 2131296407;
+			// aapt resource value: 0x7f090096
+			public const int navigateToEstimateView = 2131296406;
+			
+			// aapt resource value: 0x7f090094
+			public const int navigateToMaterialsView = 2131296404;
 			
 			// aapt resource value: 0x7f090095
-			public const int navigateToMaterialsView = 2131296405;
-			
-			// aapt resource value: 0x7f090096
-			public const int navigateToTimeView = 2131296406;
+			public const int navigateToTimeView = 2131296405;
 			
 			// aapt resource value: 0x7f09007d
 			public const int navigation_header_container = 2131296381;
@@ -6399,8 +6399,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f09003a
 			public const int pin = 2131296314;
 			
-			// aapt resource value: 0x7f090087
-			public const int price = 2131296391;
+			// aapt resource value: 0x7f090086
+			public const int price = 2131296390;
 			
 			// aapt resource value: 0x7f090006
 			public const int progress_circular = 2131296262;
@@ -6519,8 +6519,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090060
 			public const int submenuarrow = 2131296352;
 			
-			// aapt resource value: 0x7f090088
-			public const int submit = 2131296392;
+			// aapt resource value: 0x7f090087
+			public const int submit = 2131296391;
 			
 			// aapt resource value: 0x7f090071
 			public const int submit_area = 2131296369;
@@ -6528,11 +6528,11 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090013
 			public const int tabMode = 2131296275;
 			
-			// aapt resource value: 0x7f09008c
-			public const int taskNameEditText = 2131296396;
-			
 			// aapt resource value: 0x7f09008b
-			public const int taskTextView = 2131296395;
+			public const int taskNameEditText = 2131296395;
+			
+			// aapt resource value: 0x7f09008a
+			public const int taskTextView = 2131296394;
 			
 			// aapt resource value: 0x7f0900b3
 			public const int text = 2131296435;
@@ -6546,8 +6546,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f090053
 			public const int textSpacerNoTitle = 2131296339;
 			
-			// aapt resource value: 0x7f09008e
-			public const int textView1 = 2131296398;
+			// aapt resource value: 0x7f09008d
+			public const int textView1 = 2131296397;
 			
 			// aapt resource value: 0x7f0900b7
 			public const int textView4 = 2131296439;
@@ -6585,8 +6585,8 @@ namespace JATotalservice.Droid
 			// aapt resource value: 0x7f0900c4
 			public const int toolbar = 2131296452;
 			
-			// aapt resource value: 0x7f09008a
-			public const int toolbar_layout = 2131296394;
+			// aapt resource value: 0x7f090089
+			public const int toolbar_layout = 2131296393;
 			
 			// aapt resource value: 0x7f09002b
 			public const int top = 2131296299;

@@ -11,29 +11,23 @@
 				/>
 	<EditText  
         android:id="@+id/name"  
-        android:text="Navn"   
+        android:hint="Navn"  
         android:layout_width="wrap_content"  
         android:layout_height="wrap_content"
-		android:layout_toRightOf="@+id/centerShim"
-		
-        android:paddingLeft="100dp"
+
 	/>  
 		<EditText  
         android:id="@+id/description"  
-        android:text="Beskrivelse"   
+       android:hint="Beskrivelse"   
         android:layout_width="wrap_content"  
         android:layout_height="wrap_content"
-		android:layout_toRightOf="@+id/centerShim"
 		
-        android:paddingLeft="100dp"
 	/>  
 		<EditText  
         android:id="@+id/price"  
-        android:text="Pris"   
+        android:hint="Pris" 
         android:layout_width="wrap_content"  
         android:layout_height="wrap_content"
-		android:layout_toRightOf="@+id/centerShim"
-        android:paddingLeft="100dp"
 		android:inputType="numberDecimal"
 		android:digits="0123456789."/> 
 	<Button

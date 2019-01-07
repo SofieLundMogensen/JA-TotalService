@@ -73,7 +73,7 @@ namespace JATotalservice.Core.ViewModels
         }
         public async System.Threading.Tasks.Task goBack()
         {
-            await _navigationService.Navigate<FirstViewModel>();
+            await _navigationService.Close(this);
         }
     }
 }
