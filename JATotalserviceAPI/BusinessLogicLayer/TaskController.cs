@@ -69,16 +69,18 @@ namespace BusinessLogicLayer
         public bool Update(Task obj)
         {
             bool succes = false;
-            var b = taskMaterialController.Delete(obj.id);
-            if (b)
-            {
-                foreach (var time in obj.timeRegistrations)
-                {
-                   timeRegistrationController.Update(time);
-                }
+            //var b = taskMaterialController.Delete(obj.id);
+            //if (b)
+            //{
+            //    foreach (var time in obj.timeRegistrations)
+            //    {
+            //       timeRegistrationController.Update(time);
+            //    }
 
-                succes = taskMaterialController.Update(obj);
-            }
+            //    succes = taskMaterialController.Update(obj);
+            //}
+
+            succes = db.Update(obj);
 
             return succes;
         }

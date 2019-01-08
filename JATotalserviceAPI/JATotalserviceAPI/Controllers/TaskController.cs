@@ -35,7 +35,7 @@ namespace ServiceAPI.Controllers
         }
 
         //Put api/Task
-        [HttpPost("Put")]
+        [HttpPut("Put")]
         public bool Put(Task task)
         {
             return taskcontroller.Update(task);
