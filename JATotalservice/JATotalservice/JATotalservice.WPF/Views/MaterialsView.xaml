@@ -14,9 +14,9 @@
         <ListView Margin="247,105,0,0" Name="Materials" SelectionChanged="Materials_SelectionChanged"  ItemsSource="{Binding Materials}" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Name" Width="120" DisplayMemberBinding="{Binding name}" />
+                    <GridViewColumn Header="Navn" Width="120" DisplayMemberBinding="{Binding name}" />
                     <GridViewColumn Header="Pris" Width="120" DisplayMemberBinding="{Binding price}" />
-                    <GridViewColumn Header="Description" Width="120" DisplayMemberBinding="{Binding description}" />
+                    <GridViewColumn Header="Beskrivelse" Width="120" DisplayMemberBinding="{Binding description}" />
                 </GridView>
             </ListView.View>
         </ListView>

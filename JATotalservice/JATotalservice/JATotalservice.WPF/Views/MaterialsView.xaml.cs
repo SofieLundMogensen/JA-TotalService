@@ -37,12 +37,12 @@ namespace JATotalservice.WPF.Views
             InitializeComponent();
         }
 
-        private void Create_Click(object sender, RoutedEventArgs e)
-        {
-            MaterialName.Text = "";
-            MaterialPrice.Text = "";
-            MaterialDescription.Text = "";
-        }
+        //private void Create_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MaterialName.Text = "";
+        //    MaterialPrice.Text = "";
+        //    MaterialDescription.Text = "";
+        //}
 
         private void CreateMaterial_Click(object sender, RoutedEventArgs e)
         {
@@ -75,8 +75,13 @@ namespace JATotalservice.WPF.Views
         {
             var item = (ListBox)sender;
             var material = (Material)item.SelectedItem;
-            ViewModel.Material = material;
-            ViewModel.GetMaterials();
+            if (material != null)
+            {
+                ViewModel.Material = material;
+            }
+            
+            //ViewModel.GetMaterials();
+            
         }
     }
 }

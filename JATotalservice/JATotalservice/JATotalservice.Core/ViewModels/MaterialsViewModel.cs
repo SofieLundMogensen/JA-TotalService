@@ -43,7 +43,7 @@ namespace JATotalservice.Core.ViewModels
         }
         public void GetMaterial()
         {
-            materials = MaterialService.GetAllMaterials();
+            Materials = MaterialService.GetAllMaterials();
         }
         
         public void PostMaterial(Material material)

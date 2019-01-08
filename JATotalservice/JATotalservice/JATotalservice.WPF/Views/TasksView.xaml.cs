@@ -91,7 +91,7 @@ namespace JATotalservice.WPF.Views
         private void CreateTask_Click(object sender, RoutedEventArgs e)
         {
 
-            ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text };
+            ModelLayer.Task task = new ModelLayer.Task { name = TaskName.Text, description = TaskDescription.Text, houseNumber = "0", road = "Ukendt", zipcode = "Ukendt" }; //TODO: Ændre det predefinerede adresse
             ViewModel.PostTask(task);
             PopupCreate.IsOpen = false;
             Tasks.ItemsSource = ViewModel.Tasks;
