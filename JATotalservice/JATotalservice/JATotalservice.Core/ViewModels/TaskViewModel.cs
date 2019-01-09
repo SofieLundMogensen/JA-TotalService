@@ -89,9 +89,10 @@ namespace JATotalservice.Core.ViewModels
         public void addMaterial(Task task)
         {
             TaskService.PutTask(task);
-            Task = task;
+            //Task = task;
             GetTasks();
         }
+
         public void addTime(DateTime startTime, DateTime endTime)
         {
             TimeRegistartion timeRegistartion = new TimeRegistartion();

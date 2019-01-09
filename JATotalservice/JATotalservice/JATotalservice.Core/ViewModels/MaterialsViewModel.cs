@@ -52,6 +52,7 @@ namespace JATotalservice.Core.ViewModels
            
             Materials.Add(material);
             var didSucced = MaterialService.PostMaterial(material);
+            GetMaterials();
         }
         public void Edit(Material material)
         {

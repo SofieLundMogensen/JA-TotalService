@@ -60,7 +60,7 @@ namespace JATotalservice.Core.Service
         public static void PutTask(Task task)
         {
 
-            IRestRequest request = new RestRequest("Put", Method.POST); //Virker ikke med put så post er brugt i stedet
+            IRestRequest request = new RestRequest("Put", Method.PUT); //Virker ikke med put så post er brugt i stedet
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(task);
             request.AddParameter("application/json; charset=utf-8", json, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
